@@ -3,8 +3,7 @@
 {% assign lang = page.lang | default:site.lang | default:'en' %}
 <link rel="alternate" href="{{ page.url | absolute_url }}" hreflang="{{ lang | downcase | replace:'_','-' }}">
 
-<link rel="icon" href="{{ '/favicon.ico' | relative_url }}" type="image/x-icon" />
-<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?">
+<link rel="shortcut icon" type="image/x-icon" href="/favicon.ico">
 <link rel="apple-touch-icon" href="{{ '/assets/icons/icon.png' | relative_url }}">
 
 <link rel="manifest" href="{{ '/assets/manifest.json' | relative_url }}">
