@@ -6,7 +6,7 @@ description: >
   It features a suite of JavaScript that makes the page feel like an app, without sacrificing backwards-compatibility,
   page-load speed or SEO.
 menu: true
-order: 4
+order: 2
 ---
 
 **Hydejack** is the complete package for professionals on the web.

@@ -1,35 +1,19 @@
 # Config
 # ========================================================================================
 
-# IMPORTANT: Set the URL of your site.
-# Set to https://<username>.github.io when hosting on GitHub Pages
-# (unless you are using a custom domain).
 url:                   https://rokang.github.io
-
-# IMPORTANT: Set The "base URL" of your site.
-#
-# When hosting your site in a subdirectory of a server, set to /<name of directory>
-# (with leading /, but without the < >)
-# Use the empty string '' otherwise.
-#
-# When using GitHub Pages, set to '' when hosting a user- or organization page,
-# i.e. when the name of the repository looks like <username>.github.io.
-# Otherwise, set to /<name of repository> (with leading /, but without the < >).
 baseurl:               ''
+
+title:                 RoKang
 
 # Language of your content in 2-letter code, e.g.: en, de.
 # You may also provide a location, e.g.: en-us, de_AT.
 lang:                  en
 
-# The title of your blog. Used in the sidebar and the browser tab.
-title:                 RoKang
-
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  A Jekyll theme with JavaScript powers. "Best Theme by a Mile".
-  Combines the best of static sites and modern web apps.
-  Open `_config.yml` to edit this text.
+  누군가에게 도움이 되는 서비스를 만들고 싶은 개발자입니다.
 
 # A shorter description for the sidebar.
 tagline:               >
@@ -46,8 +30,6 @@ logo:                  /assets/icons/icon.png
 author:
   name:                <firstname> <lastname>
   email:               <mail@domain.tld>
-  # Used by `jekyll-seo-tag`:
-  # twitter:             <username>
 
 # This text will appear in a `<small>` tag in the footer of every page.
 copyright:             
