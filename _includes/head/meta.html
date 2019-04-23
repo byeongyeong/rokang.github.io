@@ -4,16 +4,20 @@
 
 {% capture title %}
   {% if page.url == "/" %}
-	{{ site.title }}
-	{% if site.tagline %} 
-    	 · {{ site.tagline }}
+    {{ site.title }}
+    {% if site.tagline %} 
+      · {{ site.tagline }}
 	{% endif %}
 
   {% elsif page.title.size > 0 %}
-	{{ page.title }} · {{ site.title }}
+    {{ page.title }} · {{ site.title }}
   {% else %}
-	{{ site.title }}
+	  {{ site.title }}
   {% endif %}
+{% endcapture %}
+
+{% capture title %}
+  {{ site.title }}  
 {% endcapture %}
 
 {% unless page.redirect %}
