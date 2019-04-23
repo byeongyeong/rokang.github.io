@@ -1,5 +1,5 @@
 <span class="sr-only">{{ site.data.strings.social | default:"Social" }}{{ site.data.strings.colon }}</span>
-<ul>
+<ul style="display: flex; justify-content: center;">
   {% unless include.author.social.twitter %}
     {% assign twitter_username = author.twitter.username | default: author.twitter | default:site.twitter.username | default:site.twitter | default:site.twitter_username %}
     {% if twitter_username %}
