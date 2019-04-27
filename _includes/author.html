@@ -1,22 +1,11 @@
 {% assign plugins = site.plugins | default:site.gems %}
 
-<div class="author mt4">
+<div class="author mt4" style="margin-top: 0;">
   {% assign author = include.author %}
 
-  {% if author.picture %}
-    {% include srcset-img.html class="avatar" img=author.picture alt=author.name %}
-  {% elsif plugins contains 'jekyll-avatar' %}
-    {% assign avatar = author.social.github | default:author.github.username | default:author.github  %}
-    {% include avatar-tag.html user=avatar %}
-  {% endif %}
+  <img src="/assets/icons/icon.png" class="sidebar-avatar" style="margin-top: 2rem;"/>
 
-  {% assign heading_tag = include.heading_tag | default:'h2' %}
-  {% assign heading_id = include.heading_id %}
-  <{{ heading_tag }} {% if heading_id %}id="{{ heading_id }}"{% endif %} class="page-title hr">
-    {{ include.heading | default:author.name }}
-  </{{ heading_tag }}>
-
-  {{ .author.about | markdownify }}
+  <p class="sidebar-avatar-desc" align="center">개발을 통해 누군가의 삶에 도움이 되고 싶습니다.</p>
 
   <div class="sidebar-social">
     {% include social.html author=author %}

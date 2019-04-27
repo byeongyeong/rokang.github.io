@@ -1,38 +1,50 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-04-23T16:38:04+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는대로 정리하는 블로그
-</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Welcome to Jekyll!</title><link href="http://localhost:4000/jekyll/update/2019/04/07/welcome-to-jekyll/" rel="alternate" type="text/html" title="Welcome to Jekyll!" /><published>2019-04-07T21:22:21+09:00</published><updated>2019-04-07T21:22:21+09:00</updated><id>http://localhost:4000/jekyll/update/2019/04/07/welcome-to-jekyll</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/04/07/welcome-to-jekyll/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-04-27T20:55:20+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는대로 정리하는 블로그
+</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Apple iOS 개발자 계정 만들기</title><link href="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/" rel="alternate" type="text/html" title="Apple iOS 개발자 계정 만들기" /><published>2019-04-27T00:00:07+09:00</published><updated>2019-04-27T00:00:07+09:00</updated><id>http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll</id><content type="html" xml:base="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/">&lt;p&gt;Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다.&lt;br /&gt;
+이번 글에서는 Apple Developer 계정을 생성하는 방법을 정리하겠습니다.&lt;/p&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;h3 id=&quot;준비하기&quot;&gt;준비하기&lt;/h3&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;신용카드&lt;/li&gt;
+  &lt;li&gt;Apple 계정&lt;/li&gt;
+  &lt;li&gt;영문 주소 &lt;a href=&quot;http://www.jusoen.com/&quot;&gt;(영문 주소 변환 사이트)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;h3 id=&quot;진행하기&quot;&gt;진행하기&lt;/h3&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">First test!</title><link href="http://localhost:4000/jekyll/update/2019/04/07/first/" rel="alternate" type="text/html" title="First test!" /><published>2019-04-07T21:22:21+09:00</published><updated>2019-04-07T21:22:21+09:00</updated><id>http://localhost:4000/jekyll/update/2019/04/07/first</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/04/07/first/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;ul&gt;
+  &lt;li&gt;&lt;a href=&quot;https://developer.apple.com/programs/enroll/&quot;&gt;Apple Developer Program Enroll&lt;/a&gt; 를 클릭하면 Developer 계정을 만들기 위해 필요한 내용이 나옵니다.&lt;br /&gt;
+A D-U-N-S® Number는 dun&amp;amp;bradstreet에서 발급하는 국제사업자등록번호로 회사 법인을 증명하기 위한&lt;br /&gt;
+번호입니다. Apple Developer 계정을 회사 계정으로 등록하기 위해서는 D-U-N-S 번호가 필수입니다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
+&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: 저처럼 1인 개발자이시거나 개인 비즈니스를 운영하시는 분이라면 D-U-N-S가 필요없습니다. 회사 계정이 필요하신 분들은 &lt;a href=&quot;https://m.blog.naver.com/PostView.nhn?blogId=watchmafia&amp;amp;logNo=220669940824&amp;amp;proxyReferer=https%3A%2F%2Fwww.google.com%2F&quot;&gt;링크&lt;/a&gt;혹은 구글에서 검색하면 D-U-N-S 번호를 쉽게 발급받으실 수 있을 겁니다. 참고로 D-U-N-S 발급을 포함해서 Developer 계정 생성에 1달까지도 소요된다고 하니 기간을 넉넉하게 잡으시는게 정신건강에 좋을 것 같습니다.&lt;/p&gt;
 
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;img src=&quot;/assets/img/docs/apple-developer-enroll/below.png&quot; alt=&quot;Apple Developer Below&quot; /&gt;&lt;/p&gt;
 
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
+&lt;ul&gt;
+  &lt;li&gt;
+    &lt;p&gt;페이지 하단에 있는 Start Your Enrollment 버튼을 클릭하면 로그인 페이지가 나올텐데 Apple Developer로 등록하기 위한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Apple 계정&lt;/code&gt;을 입력하면 됩니다.&lt;br /&gt;&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;Entity Type(유형)은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Invidiual / Sole Proprietor / Single Person Business&lt;/code&gt; 를 선택하면 됩니다. 회사 계정이신 분들은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Company / Organization&lt;/code&gt; 을 클릭하면 됩니다.&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;진행하다 보면 주소를 입력하는 부분이 있습니다. 처음에 준비한 영문 주소로 작성하면 됩니다.
+    &lt;ul&gt;
+      &lt;li&gt;Postal Code : 우편번호&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;State / Province : -도 (ex. 경기도, 충청도, 서울특별시)&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;Town / City : -시 (ex. 서울시, 수원시)&lt;br /&gt;&lt;/li&gt;
+      &lt;li&gt;Address Line 1, 2 : 나머지 상세주소&lt;/li&gt;
+    &lt;/ul&gt;
+  &lt;/li&gt;
+  &lt;li&gt;
+    &lt;p&gt;등록을 완료하면 1년동안 사용 가능한 Developer 계정 ID를 받게 됩니다. 준비한 신용카드로 결제를 완료하면 
+Apple에서 최종 승인을 해줍니다(시간이 좀 걸릴 수 있습니다. 저 같은 경우는 하루 정도 소요되었습니다)&lt;/p&gt;
+  &lt;/li&gt;
+  &lt;li&gt;승인이 완료되면 &lt;a href=&quot;https://developer.apple.com/account/#/welcome&quot;&gt;Apple Developer Account Welcome&lt;/a&gt;에서 아래와 같은 화면을 보실 수 있을 겁니다.&lt;/li&gt;
+&lt;/ul&gt;
 
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry><entry><title type="html">Second test!</title><link href="http://localhost:4000/jekyll/update/2019/04/07/second/" rel="alternate" type="text/html" title="Second test!" /><published>2019-04-07T21:22:21+09:00</published><updated>2019-04-07T21:22:21+09:00</updated><id>http://localhost:4000/jekyll/update/2019/04/07/second</id><content type="html" xml:base="http://localhost:4000/jekyll/update/2019/04/07/second/">&lt;p&gt;You’ll find this post in your &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run &lt;code class=&quot;highlighter-rouge&quot;&gt;jekyll serve&lt;/code&gt;, which launches a web server and auto-regenerates your site when a file is updated.&lt;/p&gt;
+&lt;p&gt;&lt;br /&gt;&lt;img src=&quot;/assets/img/docs/apple-developer-enroll/login.png&quot; alt=&quot;Apple Developer Account Login Page&quot; /&gt;&lt;/p&gt;
 
-&lt;p&gt;To add new posts, simply add a file in the &lt;code class=&quot;highlighter-rouge&quot;&gt;_posts&lt;/code&gt; directory that follows the convention &lt;code class=&quot;highlighter-rouge&quot;&gt;YYYY-MM-DD-name-of-post.ext&lt;/code&gt; and includes the necessary front matter. Take a look at the source for this post to get an idea about how it works.&lt;/p&gt;
-
-&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
-
-&lt;figure class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;language-ruby&quot; data-lang=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&quot;&lt;/span&gt;
-&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
-&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;'Tom'&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
-&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints 'Hi, Tom' to STDOUT.&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/figure&gt;
-
-&lt;p&gt;Check out the &lt;a href=&quot;https://jekyllrb.com/docs/home&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/jekyll/jekyll&quot;&gt;Jekyll’s GitHub repo&lt;/a&gt;. If you have questions, you can ask them on &lt;a href=&quot;https://talk.jekyllrb.com/&quot;&gt;Jekyll Talk&lt;/a&gt;.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">You’ll find this post in your _posts directory. Go ahead and edit it and re-build the site to see your changes. You can rebuild the site in many different ways, but the most common way is to run jekyll serve, which launches a web server and auto-regenerates your site when a file is updated.</summary></entry></feed>
+&lt;h3 id=&quot;마무리&quot;&gt;마무리&lt;/h3&gt;
+&lt;p&gt;여기까지 Apple Developer 계정을 생성해 보았습니다. 다음 편에서는 Xcode에 Apple Developer를 등록하고 iOS App을 아이폰에서 실행하는 방법을 포스트하겠습니다. 도움이 되셨기를 바랍니다.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다. 이번 글에서는 Apple Developer 계정을 생성하는 방법을 정리하겠습니다.</summary></entry></feed>

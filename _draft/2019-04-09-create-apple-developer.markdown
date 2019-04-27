@@ -6,8 +6,6 @@ categories: ios
 ---
 [first][1]
 
-[1]: https://developer.apple.com/account/#/welcome
-[2]: https://developer.apple.com/programs/enroll/
 [3]: https://developer.apple.com/account/ios/certificate/?teamId=U2SB734G5Q
 [4]: https://help.apple.com/developer-account/#/deveedc0daa0
 [5]: https://zeddios.tistory.com/392
