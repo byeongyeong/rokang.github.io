@@ -13,11 +13,11 @@ lang:                  en
 # A short description (~150 chars) of the page used for the meta description tag.
 # Can use markdown, but no more than one paragraph (enforced by `>`)
 description:           >
-  생각나는대로 정리하는 블로그
+  생각나는 대로 정리하는 블로그
 
 # A shorter description for the sidebar.
 tagline:               >
-  생각나는대로 정리하는 블로그
+  생각나는 대로 정리하는 블로그
 
 # A list of keywords for your blog
 keywords:              []

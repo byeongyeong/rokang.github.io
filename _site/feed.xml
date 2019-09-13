@@ -1,5 +1,17 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-04-27T21:18:00+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는대로 정리하는 블로그
-</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Apple iOS 개발자 계정 만들기</title><link href="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/" rel="alternate" type="text/html" title="Apple iOS 개발자 계정 만들기" /><published>2019-04-27T00:00:07+09:00</published><updated>2019-04-27T00:00:07+09:00</updated><id>http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll</id><content type="html" xml:base="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/">&lt;p&gt;Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다.&lt;br /&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-09-13T15:01:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는 대로 정리하는 블로그
+</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Javascript Prototype 개념</title><link href="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base/" rel="alternate" type="text/html" title="Javascript Prototype 개념" /><published>2019-09-12T07:07:07+09:00</published><updated>2019-09-12T07:07:07+09:00</updated><id>http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base</id><content type="html" xml:base="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base/">&lt;p&gt;본문 : &lt;a href=&quot;https://medium.com/better-programming/prototypes-in-javascript-5bba2990e04b&quot;&gt;Medium post written by Rupesh Mishra&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;링크 글에 있는 설명이 기가맥힘.&lt;/p&gt;
+
+&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;HIGHLIGHT&lt;/strong&gt;: Prototype object of the constructor function is shared among all the objects created using the constructor function.&lt;/p&gt;
+
+&lt;p class=&quot;message&quot;&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: 프로토타입의 프로퍼티를 재정의하면 프로토타입의 값이 바뀌는게 아니라 해당 객체가 독립된 프로퍼티를 생성하게 된다. 하지만 프로토타입의 프로퍼티가 Array라면 어떤 객체가 Array를 조작했을 땐 새로운 Array 프로퍼티가 객체에 생성되는게 아니라 프로토타입의 Array가 변한다.&lt;/p&gt;
+
+&lt;h3 id=&quot;결론&quot;&gt;결론&lt;/h3&gt;
+&lt;ol&gt;
+  &lt;li&gt;Constructor와 Prototype의 특성을 잘 이해해야 한다.&lt;/li&gt;
+  &lt;li&gt;객체 고유의 값은 Constructor로, 메모리 낭비를 방지하기 위해 객체끼리 공유할 수 있는 부분은 Prototype으로 설정하여 잘  조합해야 한다.&lt;/li&gt;
+&lt;/ol&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">본문 : Medium post written by Rupesh Mishra</summary></entry><entry><title type="html">Apple iOS 개발자 계정 만들기</title><link href="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/" rel="alternate" type="text/html" title="Apple iOS 개발자 계정 만들기" /><published>2019-04-27T06:07:07+09:00</published><updated>2019-04-27T06:07:07+09:00</updated><id>http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll</id><content type="html" xml:base="http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/">&lt;p&gt;Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다.&lt;br /&gt;
 이번 글에서는 Apple Developer 계정을 생성하는 방법을 정리하겠습니다.&lt;/p&gt;
 
 &lt;h3 id=&quot;준비하기&quot;&gt;준비하기&lt;/h3&gt;
@@ -24,7 +36,7 @@ A D-U-N-S® Number는 dun&amp;amp;bradstreet에서 발급하는 국제사업자�
 
 &lt;ul&gt;
   &lt;li&gt;
-    &lt;p&gt;페이지 하단에 있는 Start Your Enrollment 버튼을 클릭하면 로그인 페이지가 나올텐데 Apple Developer로 등록하기 위한 &lt;code class=&quot;highlighter-rouge&quot;&gt;Apple 계정&lt;/code&gt;을 입력하면 됩니다.&lt;br /&gt;&lt;/p&gt;
+    &lt;p&gt;페이지 하단에 있는 Start Your Enrollment 버튼을 클릭하면 로그인 페이지가 나올텐데 Apple Developer로 등록하기 위한 Apple 계정으로 로그인하면 됩니다.&lt;br /&gt;&lt;/p&gt;
   &lt;/li&gt;
   &lt;li&gt;
     &lt;p&gt;Entity Type(유형)은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Invidiual / Sole Proprietor / Single Person Business&lt;/code&gt; 를 선택하면 됩니다. 회사 계정이신 분들은 &lt;code class=&quot;highlighter-rouge&quot;&gt;Company / Organization&lt;/code&gt; 을 클릭하면 됩니다.&lt;/p&gt;
@@ -34,7 +46,7 @@ A D-U-N-S® Number는 dun&amp;amp;bradstreet에서 발급하는 국제사업자�
       &lt;li&gt;Postal Code : 우편번호&lt;br /&gt;&lt;/li&gt;
       &lt;li&gt;State / Province : -도 (ex. 경기도, 충청도, 서울특별시)&lt;br /&gt;&lt;/li&gt;
       &lt;li&gt;Town / City : -시 (ex. 서울시, 수원시)&lt;br /&gt;&lt;/li&gt;
-      &lt;li&gt;Address Line 1, 2 : 나머지 상세주소&lt;/li&gt;
+      &lt;li&gt;Address Line 1, 2 : 나머지 상세주소(구, 동, …)&lt;/li&gt;
     &lt;/ul&gt;
   &lt;/li&gt;
   &lt;li&gt;
@@ -47,4 +59,4 @@ Apple에서 최종 승인을 해줍니다(시간이 좀 걸릴 수 있습니다.
 &lt;p&gt;&lt;br /&gt;&lt;img src=&quot;/assets/img/docs/apple-developer-enroll/login.png&quot; alt=&quot;Apple Developer Account Login Page&quot; /&gt;&lt;/p&gt;
 
 &lt;h3 id=&quot;마무리&quot;&gt;마무리&lt;/h3&gt;
-&lt;p&gt;여기까지 Apple Developer 계정을 생성해 보았습니다. 다음 편에서는 Xcode에 Apple Developer를 등록하고 iOS App을 아이폰에서 실행하는 방법을 포스트하겠습니다. 도움이 되셨기를 바랍니다.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다. 이번 글에서는 Apple Developer 계정을 생성하는 방법을 정리하겠습니다.</summary></entry></feed>
+&lt;p&gt;여기까지 Apple Developer 계정을 생성하는 방법을 알아 보았습니다. 다음 편에서는 Xcode에 Apple Developer를 등록하고 iOS App을 아이폰에서 실행하는 방법을 포스트하겠습니다. 도움이 되셨기를 바랍니다.&lt;/p&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">Apple App Store에 앱을 등록하기 위해서는 Apple Developer 계정이 필요합니다. 이번 글에서는 Apple Developer 계정을 생성하는 방법을 정리하겠습니다.</summary></entry></feed>

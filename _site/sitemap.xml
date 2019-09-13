@@ -2,19 +2,23 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://localhost:4000/tag/blog/</loc>
-<lastmod>2019-04-27T21:18:00+09:00</lastmod>
+<lastmod>2019-09-13T15:01:36+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/tag/hyde/</loc>
-<lastmod>2019-04-27T21:18:00+09:00</lastmod>
+<lastmod>2019-09-13T15:01:36+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/tag/hydejack/</loc>
-<lastmod>2019-04-27T21:18:00+09:00</lastmod>
+<lastmod>2019-09-13T15:01:36+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/</loc>
-<lastmod>2019-04-27T00:00:07+09:00</lastmod>
+<lastmod>2019-04-27T06:07:07+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base/</loc>
+<lastmod>2019-09-12T07:07:07+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>
