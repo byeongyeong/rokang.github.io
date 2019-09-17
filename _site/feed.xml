@@ -1,5 +1,42 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-09-13T15:01:36+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는 대로 정리하는 블로그
-</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Javascript Prototype 개념</title><link href="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base/" rel="alternate" type="text/html" title="Javascript Prototype 개념" /><published>2019-09-12T07:07:07+09:00</published><updated>2019-09-12T07:07:07+09:00</updated><id>http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base</id><content type="html" xml:base="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-base/">&lt;p&gt;본문 : &lt;a href=&quot;https://medium.com/better-programming/prototypes-in-javascript-5bba2990e04b&quot;&gt;Medium post written by Rupesh Mishra&lt;/a&gt;&lt;/p&gt;
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-09-17T18:12:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는 대로 정리하는 블로그
+</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Slack 채널에 Trello 보드 연동하기</title><link href="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/" rel="alternate" type="text/html" title="Slack 채널에 Trello 보드 연동하기" /><published>2019-09-17T07:07:07+09:00</published><updated>2019-09-17T07:07:07+09:00</updated><id>http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello</id><content type="html" xml:base="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/">&lt;p&gt;별 거 없는데 나중에 또 같은 일을 해야한다면 시간을 줄이기 위해서 씀.
+협업 진행을 위해 slack과 trello를 사용하려했는데 두 개를 연동 가능하다는 것을 알게 됐음.&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;순서&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;slack에서 trello 앱을 설치&lt;/li&gt;
+  &lt;li&gt;trello에서 팀을 하나 만들고 slack에서 공유할 보드 하나를 생성함(팀으로만 slack 공유가 가능함. 개인으로 안됨.)&lt;/li&gt;
+  &lt;li&gt;&lt;a href=&quot;https://trello.com/platforms/slack&quot;&gt;Add to Slack&lt;/a&gt; 클릭에 클릭에 클릭을 걸치면 선택한 trello 팀이 slack의 workspace에 연결됨. 링크가 안 뜬다면 trello 팀 setting에 들어가면 settings 탭이 있는데 ‘Slack Team Linking’ 부분 참고하면 됨.&lt;/li&gt;
+  &lt;li&gt;trello와 연동하고 싶은 slack 채널을 하나 생성함(보통 프로젝트 이름)&lt;/li&gt;
+  &lt;li&gt;만든 채널에서 &lt;code class=&quot;highlighter-rouge&quot;&gt;/trello setup&lt;/code&gt; 입력하면 slack에서 trello를 관리,조작 할 수 있는 권한을 부여함.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/trello link&lt;/code&gt; [채널에서 공유할 보드 링크] 를 땅 누르면 보드 리스트가 나옴.&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;/trello help&lt;/code&gt; 로 다양한 명령어 확인해서 유용하게 쓰자.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;Trello Alerts&lt;/strong&gt;&lt;/p&gt;
+&lt;blockquote&gt;
+  &lt;p&gt;Trello에서 리스트가 생기는 등의 이벤트가 발생할 때 slack에 알리기 위함&lt;/p&gt;
+&lt;/blockquote&gt;
+
+&lt;ol&gt;
+  &lt;li&gt;slack과 연동한 trello 보드에 들어가서 Show Menu &amp;gt; Power-Ups를 클릭하면 여러 익스텐션들이 나오는데 slack 검색.&lt;/li&gt;
+  &lt;li&gt;slack 추가하면 Show Menu 버튼 옆에 Slack 버튼이 생성됨. 그거 클릭하면 Add Slack Alert… 버튼 있음.&lt;/li&gt;
+  &lt;li&gt;그거 누르고 또 뭐 권한 부여하는 단계 있는데 다 진행하고 Add Slack Alert… 버튼 다시 클릭.&lt;/li&gt;
+  &lt;li&gt;알림 보내고 싶은 채널이랑 이벤트 종류 선택하고나면(난 전부 다 선택)…&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;DONE&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;테스트해보니 잘 됨.&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;message&quot;&gt;
+  &lt;p&gt;… 제출 후에도 수정 쌉가능! ㅎㅇㅌ :) &lt;br /&gt;
+&lt;em&gt;(LG CNS 인재확보팀의 Web 발신 문자 중에서)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">별 거 없는데 나중에 또 같은 일을 해야한다면 시간을 줄이기 위해서 씀. 협업 진행을 위해 slack과 trello를 사용하려했는데 두 개를 연동 가능하다는 것을 알게 됐음.</summary></entry><entry><title type="html">Javascript Prototype 개념</title><link href="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-1/" rel="alternate" type="text/html" title="Javascript Prototype 개념" /><published>2019-09-12T07:07:07+09:00</published><updated>2019-09-12T07:07:07+09:00</updated><id>http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-1</id><content type="html" xml:base="http://localhost:4000/javascript/prototype/2019/09/12/javascript-prototype-1/">&lt;p&gt;본문 : &lt;a href=&quot;https://medium.com/better-programming/prototypes-in-javascript-5bba2990e04b&quot;&gt;Medium post written by Rupesh Mishra&lt;/a&gt;&lt;/p&gt;
 
 &lt;p&gt;링크 글에 있는 설명이 기가맥힘.&lt;/p&gt;
 
