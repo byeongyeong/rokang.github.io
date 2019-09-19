@@ -2,15 +2,15 @@
 <urlset xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
 <loc>http://localhost:4000/tag/blog/</loc>
-<lastmod>2019-09-17T18:12:34+09:00</lastmod>
+<lastmod>2019-09-19T11:19:47+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/tag/hyde/</loc>
-<lastmod>2019-09-17T18:12:34+09:00</lastmod>
+<lastmod>2019-09-19T11:19:47+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/tag/hydejack/</loc>
-<lastmod>2019-09-17T18:12:34+09:00</lastmod>
+<lastmod>2019-09-19T11:19:47+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/ios/apple/2019/04/27/apple-developer-enroll/</loc>
@@ -23,6 +23,10 @@
 <url>
 <loc>http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/</loc>
 <lastmod>2019-09-17T07:07:07+09:00</lastmod>
+</url>
+<url>
+<loc>http://localhost:4000/zsh/2019/09/19/zshrc-alias/</loc>
+<lastmod>2019-09-19T07:07:07+09:00</lastmod>
 </url>
 <url>
 <loc>http://localhost:4000/about/</loc>

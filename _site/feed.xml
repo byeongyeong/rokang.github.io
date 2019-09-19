@@ -1,5 +1,29 @@
-<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-09-17T18:12:34+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는 대로 정리하는 블로그
-</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">Slack 채널에 Trello 보드 연동하기</title><link href="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/" rel="alternate" type="text/html" title="Slack 채널에 Trello 보드 연동하기" /><published>2019-09-17T07:07:07+09:00</published><updated>2019-09-17T07:07:07+09:00</updated><id>http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello</id><content type="html" xml:base="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/">&lt;p&gt;별 거 없는데 나중에 또 같은 일을 해야한다면 시간을 줄이기 위해서 씀.
+<?xml version="1.0" encoding="utf-8"?><feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en"><generator uri="https://jekyllrb.com/" version="3.8.5">Jekyll</generator><link href="http://localhost:4000/feed.xml" rel="self" type="application/atom+xml" /><link href="http://localhost:4000/" rel="alternate" type="text/html" hreflang="en" /><updated>2019-09-19T11:19:47+09:00</updated><id>http://localhost:4000/feed.xml</id><title type="html">RoKang</title><subtitle>생각나는 대로 정리하는 블로그
+</subtitle><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><entry><title type="html">zsh에서 alias로 편하게 살기</title><link href="http://localhost:4000/zsh/2019/09/19/zshrc-alias/" rel="alternate" type="text/html" title="zsh에서 alias로 편하게 살기" /><published>2019-09-19T07:07:07+09:00</published><updated>2019-09-19T07:07:07+09:00</updated><id>http://localhost:4000/zsh/2019/09/19/zshrc-alias</id><content type="html" xml:base="http://localhost:4000/zsh/2019/09/19/zshrc-alias/">&lt;p&gt;AWS EC2를 쓰다가 매번 터미널 켤 때마다 커맨드 입력하는게 비효율적이다 싶었음.
+쉘 스크립트 찾아보다가 alias 사용하면 매우 간단하게 된다는 걸 알게 됨.
+(bash를 쓴다면 zshrc를 bashrc로 치환하면 됨)&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;순서&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;vi ~/.zshrc&lt;/code&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;alias [name]='cd [path]; ssh -i [key] [server DNS];'&lt;/code&gt; 추가&lt;/li&gt;
+  &lt;li&gt;&lt;code class=&quot;highlighter-rouge&quot;&gt;source ~/.zshrc&lt;/code&gt; 로 커맨드 적용&lt;/li&gt;
+  &lt;li&gt;터미널에서 [name] 입력하면 사용 가능&lt;/li&gt;
+&lt;/ol&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;strong&gt;블로그를 위해 blog alias와 blog_push alias도 추가&lt;/strong&gt;&lt;/p&gt;
+
+&lt;p&gt;&lt;br /&gt;&lt;/p&gt;
+
+&lt;blockquote class=&quot;message&quot;&gt;
+  &lt;p&gt;zshrc에서 rc가 뭘까? &lt;br /&gt;
+A : It stands for “run commands”. (중간 생략) rc stuck as a name for any list of commands. &lt;br /&gt;&lt;br /&gt;
+&lt;em&gt;(superuser.com의 답변 중에서)&lt;/em&gt;&lt;/p&gt;
+&lt;/blockquote&gt;</content><author><name>&lt;firstname&gt; &lt;lastname&gt;</name><email>&lt;mail@domain.tld&gt;</email></author><summary type="html">AWS EC2를 쓰다가 매번 터미널 켤 때마다 커맨드 입력하는게 비효율적이다 싶었음. 쉘 스크립트 찾아보다가 alias 사용하면 매우 간단하게 된다는 걸 알게 됨. (bash를 쓴다면 zshrc를 bashrc로 치환하면 됨)</summary></entry><entry><title type="html">Slack 채널에 Trello 보드 연동하기</title><link href="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/" rel="alternate" type="text/html" title="Slack 채널에 Trello 보드 연동하기" /><published>2019-09-17T07:07:07+09:00</published><updated>2019-09-17T07:07:07+09:00</updated><id>http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello</id><content type="html" xml:base="http://localhost:4000/trello/slack/2019/09/17/connect-slack-with-trello/">&lt;p&gt;별 거 없는데 나중에 또 같은 일을 해야한다면 시간을 줄이기 위해서 씀.
 협업 진행을 위해 slack과 trello를 사용하려했는데 두 개를 연동 가능하다는 것을 알게 됐음.&lt;/p&gt;
 
 &lt;p&gt;&lt;br /&gt;&lt;/p&gt;
