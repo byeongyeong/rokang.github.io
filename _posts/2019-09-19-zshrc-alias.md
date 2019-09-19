@@ -13,7 +13,7 @@ AWS EC2를 쓰다가 매번 터미널 켤 때마다 커맨드 입력하는게 �
 
 **순서**
 1. ```vi ~/.zshrc```
-2. ```alias [name]='cd [path]; ssh -i [key] [server DNS];'``` 추가
+2. ```alias [name]='cd [path]; ssh -i <private_keyfile.pem> <server>@<Public IP Address>;'``` 추가
 3. ```source ~/.zshrc``` 로 커맨드 적용
 4. 터미널에서 [name] 입력하면 사용 가능
 
