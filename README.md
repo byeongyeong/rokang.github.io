@@ -1,3 +1,3 @@
 # Rokang's github page
 
-Go to [rokang.github.io](rokang.github.io).
+Go to [rokang.github.io](rokang.github.io)

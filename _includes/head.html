@@ -1,5 +1,11 @@
 <head>
-  <title>{% if page.title %}{{ page.title }} – {% endif %}{{ site.name }} – {{ site.description }}</title>
+  <title>
+  	{% if page.title %}
+  		{{ page.title }}
+	{% else %}
+		{{ site.name }} - {{ site.description }}
+	{% endif %}
+  </title>
 
   {% include meta.html %}
   {% include fonts.html %}
