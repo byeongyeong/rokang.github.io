@@ -1,7 +1,9 @@
-I"?[<h2 id="why">Why?</h2>
+I" �<p><strong>Codable 프로토콜로 JSON 데이터 처리하기</strong></p>
+
+<h2 id="why">Why?</h2>
 <p>새로운 API와 함께 도착한 JSON 데이터를 처리하려다 보니 잠시 뇌가 멈췄습니다.</p>
 
-<p>처리하려는 JSON 데이터의 구조는 대충 이런 형태였습니다.</p>
+<p>JSON 구조는 대충 이랬습니다.</p>
 
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="p">{</span>
   <span class="o">...</span><span class="p">,</span>
@@ -33,8 +35,13 @@
   <span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div></div>
-<p>JSONSerialization 클래스로 Foundation 객체를 만들고~ 만든 Dictionary로 key값 불러오고~
-열심히 디코딩한 결과는</p>
+<p>정신 차리고 원래 해왔던 것처럼 열심히 디코딩한 결과는 ~</p>
+
+<p>.</p>
+
+<p>..</p>
+
+<p>…</p>
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="n">jsonString</span><span class="o">.</span><span class="nf">data</span><span class="p">(</span><span class="nv">using</span><span class="p">:</span> <span class="o">.</span><span class="n">utf8</span><span class="p">)</span> <span class="p">{</span>
     <span class="k">if</span> <span class="k">let</span> <span class="nv">decoded</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONSerialization</span><span class="o">.</span><span class="nf">jsonObject</span><span class="p">(</span><span class="nv">with</span><span class="p">:</span> <span class="n">data</span><span class="p">,</span> <span class="nv">options</span><span class="p">:</span> <span class="p">[])</span> <span class="p">{</span>
         <span class="k">let</span> <span class="nv">dataDic</span> <span class="o">=</span> <span class="p">(</span><span class="n">decoded</span> <span class="k">as?</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">])?[</span><span class="s">"data"</span><span class="p">]</span> <span class="k">as?</span> <span class="p">[</span><span class="kt">String</span><span class="p">:</span> <span class="kt">Any</span><span class="p">]</span> <span class="p">??</span> <span class="p">[:]</span>
@@ -57,14 +64,14 @@
 </code></pre></div></div>
 <p>…… 하하하</p>
 
-<p>개비스콘이 필요한 이 코드를 그냥 두고 볼 수 없었던 저는 구글링을 시작했고
-Swift4에서 <code class="highlighter-rouge">Codable</code> 이라는 프로토콜을 지원하는 것을 발견하게 되었습니다!
-대충 봐도 안 쓸 수가 없는 프로토콜이어서 JSON 인코딩과 디코딩에 적용하기로 마음 먹었죠.</p>
+<p>개비스콘 없이는 소화하기 힘든 코드네요 껄껄. 이 코드를 그냥 둘 수는 없으니 검색을 해봐야겠습니다. 스위프트 고수 분들은 어떻게 쓰는지..</p>
+
+<p>아 Swift4에 <code class="highlighter-rouge">Codable</code> 이라는 게 생겼군요. 일단 이게 뭔지부터 좀 알아봐야겠습니다.</p>
 
 <h2 id="codable">Codable?</h2>
-<p><a href="https://developer.apple.com/documentation/swift/codable">Codable</a>은 Decodable Encodable을 포함하는 <code class="highlighter-rouge">protocol</code>이라고 공식 문서에 나와있네요. <a href="https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types">Encoding and Decoding Custom Types</a>를 보게 되면, Swift는 데이터를 인코딩하고 디코딩하는 표준화된 접근법을 정의하고 있다는 내용이 있습니다.</p>
+<p><a href="https://developer.apple.com/documentation/swift/codable" target="blank">Codable</a>은 Decodable Encodable을 포함하는 <code class="highlighter-rouge">protocol</code>이라고 공식 문서에 나와있네요. <a href="https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types" target="blank">Encoding and Decoding Custom Types</a>를 보게 되면, Swift는 데이터를 인코딩하고 디코딩하는 표준화된 접근법을 정의하고 있다는 내용이 있습니다. 표준이라는데 당연히 써줘야죠.</p>
 
-<p>그럼 이제 Codable을 이용해서 저 괴물같은 디코딩 코드를 좀 아름답게 바꿔보도록 하죵.</p>
+<p>그럼 이제 Codable로 저 괴물같은 디코딩 코드를 나름대로 좀 아름답게 바꿔보도록 하겠습니다.</p>
 <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">struct</span> <span class="kt">Result</span><span class="p">:</span> <span class="kt">Decodable</span> <span class="p">{</span>
     <span class="k">var</span> <span class="nv">success</span><span class="p">:</span> <span class="kt">Bool</span><span class="p">?</span>
     <span class="k">var</span> <span class="nv">reason</span><span class="p">:</span> <span class="kt">String</span><span class="p">?</span>
@@ -138,24 +145,93 @@ Swift4에서 <code class="highlighter-rouge">Codable</code> 이라는 프로토�
 </code></pre></div></div>
 <p>코드는 더 길어졌지만 json 데이터로부터 Result, Room, Message 구조체 인스턴스를 추출해서 데이터를 더 깔끔하게 처리할 수 있게 되었습니다! 짝짝짝</p>
 
-<p>아ㅏ 참고로, 예시이다보니 print에서 인스턴스 변수를 강제 언래핑으로 처리했지만, 실제 json 데이터는 nil일 수 있기 때문에 if 구문이나 guard를 사용하시는게 더 안전합니다.</p>
+<p>아 참고로, 예시이다보니 print에서 인스턴스 변수를 강제 언래핑했지만, 실제 json 데이터는 nil일 수 있기 때문에 if 구문이나 guard를 사용하시는게 더 안전합니다.</p>
 
-<p>코드를 다시 보면 CodingKey라는 낯선 친구가 보입니다. 이 친구와 함께 <code class="highlighter-rouge">init(from decoder: Decoder)</code>가 어떻게 동작하는지 간단히 살펴보겠습니다.</p>
+<p>코드를 다시 살펴보면 CodingKey라는 낯선 친구가 보입니다. 이 친구와 함께 <code class="highlighter-rouge">init(from decoder: Decoder)</code>가 어떻게 동작하는지 간단히 살펴보겠습니다.</p>
 
 <h2 id="codingkey">CodingKey?</h2>
-<p><a href="https://developer.apple.com/documentation/swift/codingkey">CodingKey</a>는 인코딩과 디코딩을 위한 키로 쓰이는 타입이라고 하네요. 역시나 프로토콜입니다. 많은 분들은 이미 감을 잡으셨을 겁니다. 예. json의 key입니다. 코드를 다시 보시면 CodingKey 프로토콜을 채택한 CodingKeys enum이 json 데이터의 key와 매핑되는 것을 알 수 있습니다.</p>
+<p><a href="https://developer.apple.com/documentation/swift/codingkey" target="blank">CodingKey</a>는 인코딩과 디코딩을 위한 키로 쓰이는 타입이라고 하네요. 코드를 다시 보시면 CodingKey 프로토콜을 채택한 CodingKeys enum의 값들이 json 데이터의 key와 매핑되는 것을 알 수 있습니다. 예를 들어, Result의 rooms 데이터는 디코딩을 위해 “room” 키로 매핑되어있네요.</p>
 
-<p>지금까지 디코딩에 대한 부분만 보여드렸지만 인코딩은 JSONEncoder 클래스를 활용해서 인스턴스를 json data로 변환할 수 있다는 점도 알아두면 좋을 것 같습니다.</p>
+<p>그럼 이 코드가 어떻게 동작하는 지 한번 살펴보도록 해요.</p>
 
-<h2 id="팁">팁?</h2>
+<ol>
+  <li>decode 메서드는 디코딩 될 data로부터 Result 타입의 value를 만들어줍니다.
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span> <span class="k">let</span> <span class="nv">result</span> <span class="o">=</span> <span class="k">try</span><span class="p">?</span> <span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="nf">decode</span><span class="p">(</span><span class="kt">Result</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">from</span><span class="p">:</span> <span class="n">data</span><span class="p">)</span>
+<span class="c1">/// Decodes a top-level value of the given type from the given JSON representation.</span>
+<span class="c1">///</span>
+<span class="c1">/// - parameter type: The type of the value to decode.</span>
+<span class="c1">/// - parameter data: The data to decode from.</span>
+<span class="c1">/// - returns: A value of the requested type.</span>
+<span class="c1">/// - throws: `DecodingError.dataCorrupted` if values requested from the payload are corrupted, or if the given data is not valid JSON.</span>
+<span class="c1">/// - throws: An error if any value throws an error during decoding.</span>
+<span class="kd">open</span> <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">from</span> <span class="nv">data</span><span class="p">:</span> <span class="kt">Data</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span>
+</code></pre></div>    </div>
+  </li>
+  <li>1번 코드가 Result를 초기화하는 init 코드를 실행하겠네요. decoder에 담겨있던 data로부터 container를 생성해줍니다. <code class="highlighter-rouge">CodingKeys.self</code> 타입이 data의 key와 매핑이 되지 않는다면 <code class="highlighter-rouge">DecodingError.typeMismatch</code> 에러를 던지겠네요.
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">container</span> <span class="o">=</span> <span class="k">try</span> <span class="n">decoder</span><span class="o">.</span><span class="nf">container</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">)</span>
+<span class="c1">/// Returns the data stored in this decoder as represented in a container</span>
+<span class="c1">/// keyed by the given key type.</span>
+<span class="c1">///</span>
+<span class="c1">/// - parameter type: The key type to use for the container.</span>
+<span class="c1">/// - returns: A keyed decoding container view into this decoder.</span>
+<span class="c1">/// - throws: `DecodingError.typeMismatch` if the encountered stored value is</span>
+<span class="c1">///   not a keyed container.</span>
+<span class="kd">func</span> <span class="n">container</span><span class="o">&lt;</span><span class="kt">Key</span><span class="o">&gt;</span><span class="p">(</span><span class="n">keyedBy</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">Key</span><span class="o">.</span><span class="k">Type</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">KeyedDecodingContainer</span><span class="o">&lt;</span><span class="kt">Key</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">Key</span> <span class="p">:</span> <span class="kt">CodingKey</span>
+</code></pre></div>    </div>
+  </li>
+  <li>nested이기 때문에 forKey 파라미터가 추가되서 해당 키에 대한 sub container를 생성해줍니다.
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">data</span> <span class="o">=</span> <span class="k">try</span> <span class="n">container</span><span class="o">.</span><span class="nf">nestedContainer</span><span class="p">(</span><span class="nv">keyedBy</span><span class="p">:</span> <span class="kt">CodingKeys</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">data</span><span class="p">)</span>
+<span class="c1">/// Returns the data stored for the given key as represented in a container</span>
+<span class="c1">/// keyed by the given key type.</span>
+<span class="c1">///</span>
+<span class="c1">/// - parameter type: The key type to use for the container.</span>
+<span class="c1">/// - parameter key: The key that the nested container is associated with.</span>
+<span class="c1">/// - returns: A keyed decoding container view into `self`.</span>
+<span class="c1">/// - throws: `DecodingError.typeMismatch` if the encountered stored value is</span>
+<span class="c1">///   not a keyed container.</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">nestedContainer</span><span class="o">&lt;</span><span class="kt">NestedKey</span><span class="o">&gt;</span><span class="p">(</span><span class="n">keyedBy</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">NestedKey</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">KeyedDecodingContainer</span><span class="o">&lt;</span><span class="kt">K</span><span class="o">&gt;.</span><span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">KeyedDecodingContainer</span><span class="o">&lt;</span><span class="kt">NestedKey</span><span class="o">&gt;</span> <span class="k">where</span> <span class="kt">NestedKey</span> <span class="p">:</span> <span class="kt">CodingKey</span>
+</code></pre></div>    </div>
+  </li>
+  <li>sub container인 data 인스턴스에서 “room” key에 해당하는 데이터를 [Room] 타입의 value로 디코딩 해줍니다.
+Room 타입도 구조체이기 때문에 이 과정에서 Room의 init도 실행이 되겠네요.
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">rooms</span> <span class="o">=</span> <span class="k">try</span> <span class="n">data</span><span class="o">.</span><span class="nf">decode</span><span class="p">([</span><span class="kt">Room</span><span class="p">]</span><span class="o">.</span><span class="k">self</span><span class="p">,</span> <span class="nv">forKey</span><span class="p">:</span> <span class="o">.</span><span class="n">rooms</span><span class="p">)</span>
+<span class="c1">/// Decodes a value of the given type for the given key.</span>
+<span class="c1">///</span>
+<span class="c1">/// - parameter type: The type of value to decode.</span>
+<span class="c1">/// - parameter key: The key that the decoded value is associated with.</span>
+<span class="c1">/// - returns: A value of the requested type, if present for the given key</span>
+<span class="c1">///   and convertible to the requested type.</span>
+<span class="c1">/// - throws: `DecodingError.typeMismatch` if the encountered encoded value</span>
+<span class="c1">///   is not convertible to the requested type.</span>
+<span class="c1">/// - throws: `DecodingError.keyNotFound` if `self` does not have an entry</span>
+<span class="c1">///   for the given key.</span>
+<span class="c1">/// - throws: `DecodingError.valueNotFound` if `self` has a null entry for</span>
+<span class="c1">///   the given key.</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="n">decode</span><span class="o">&lt;</span><span class="kt">T</span><span class="o">&gt;</span><span class="p">(</span><span class="n">_</span> <span class="nv">type</span><span class="p">:</span> <span class="kt">T</span><span class="o">.</span><span class="k">Type</span><span class="p">,</span> <span class="n">forKey</span> <span class="nv">key</span><span class="p">:</span> <span class="kt">KeyedDecodingContainer</span><span class="o">&lt;</span><span class="kt">K</span><span class="o">&gt;.</span><span class="kt">Key</span><span class="p">)</span> <span class="k">throws</span> <span class="o">-&gt;</span> <span class="kt">T</span> <span class="k">where</span> <span class="kt">T</span> <span class="p">:</span> <span class="kt">Decodable</span>
+</code></pre></div>    </div>
+  </li>
+</ol>
+
+<p>지금까지의 내용이 디코딩만 다루고 있지만, 인코딩은 JSONEncoder 클래스를 활용한 반대의 과정이니까 식은 죽 먹기 아닐까 싶네요 크크</p>
+
+<h2 id="팁">팁</h2>
 <ol>
   <li>
-    <p>바닐라 Codable도 JSONSerialization에 비해서 상당히 편해졌지만, <a href="https://developer.apple.com/documentation/swift/codingkey">Codextended</a> 라는 오픈소스는 더~ 쉽게 인코딩과 디코딩을 할 수 있게 해줍니다. Star 수도 1,100이고 커밋도 비교적(?) 최근이어서 json 데이터를 더 쉽게 다루고자 하신다면..! 유용할 듯 합니다. 저는 아직 미숙해서… 껄껄</p>
+    <p>🔥 바닐라 Codable도 JSONSerialization에 비해서 상당히 편해졌지만, <a href="https://github.com/JohnSundell/Codextended" target="blank">Codextended</a> 라는 오픈소스는 더 쉽게 인코딩과 디코딩을 할 수 있게 해줍니다. 깃헙의 Star 수도 1,100이고 커밋도 비교적(?) 최근이어서 Codable도 귀찮다! 더 쉽게 json을 다루고 싶다! 하신다면 유용하지 않을까 싶습니다. 저는 아직 애송이라 나중에 고려해봐야겠네요ㅋㅋ</p>
   </li>
   <li>
-    <p>날짜 json data를 Date 타입으로 포맷팅하는건 귀찮은 일이지만, 매우 중요합니다. 그래서..! Codable에는 별다른 포맷팅없이 어떤 데이터가 특정 날짜 포맷에 맞다면 자동으로 Date 디코딩해주는 strategy(전략)를 구사합니다 키키.
-JSONDecoder().dateDecodingStartegy에 위에서 말한 ‘특정 날짜 포맷’ 을 지정할 수 있습니다. 기본으로 제공되는 전략(포맷)도 있지만, 유저가 지정한 DateFormatter를 전략으로 쓸 수도 있고 클로져를 사용한 커스터마이징 전략도 가능합니다.
-음… 저는 formatted를 많이 사용하게 될 것 같네요.</p>
+    <p>📆 날짜 json data를 Date 타입으로 포맷팅하는건 귀찮지만 중요한 일이죠. 그래서 Codable에는 어떤 날짜 데이터가 특정 포맷에 맞다면 <code class="highlighter-rouge">자동으로 Date 인스턴스로 디코딩</code> 해주는 strategy(전략)이 포함되어 있습니다.</p>
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">let</span> <span class="nv">formatter</span> <span class="o">=</span> <span class="kt">DateFormatter</span><span class="p">()</span>
+<span class="n">formatter</span><span class="o">.</span><span class="n">dateFormat</span> <span class="o">=</span> <span class="s">"yyyy.MM.dd"</span>
+<span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">dateDecodingStrategy</span> <span class="o">=</span> <span class="o">.</span><span class="nf">formatted</span><span class="p">(</span><span class="n">formatter</span><span class="p">)</span>
+</code></pre></div>    </div>
+    <p>이렇게 직접 작성한 DateFormatter를 지정해서 yyyy.MM.dd 포맷의 데이터를 Date로 변환할 수도 있구요</p>
+    <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">dateDecodingStrategy</span> <span class="o">=</span> <span class="o">.</span><span class="n">iso8601</span>
+<span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">dateDecodingStrategy</span> <span class="o">=</span> <span class="o">.</span><span class="n">millisecondsSince1970</span>
+<span class="kt">JSONDecoder</span><span class="p">()</span><span class="o">.</span><span class="n">dateDecodingStrategy</span> <span class="o">=</span> <span class="o">.</span><span class="n">secondsSince1970</span>
+</code></pre></div>    </div>
+    <p>이렇게 표준화 된 포맷을 적용할 수도 있습니다!
+저는 아무래도 formatted나 iso8601을 많이 사용하지 않을까 싶네요.</p>
   </li>
 </ol>
 :ET
