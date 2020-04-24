@@ -1,0 +1,248 @@
+I"Q6<p>앱 개발을 할 때 JSON 데이터 처리는 기본이면서도 정말 중요합니다. 기존에는 JSON을 주먹구구식으로 핸들링하거나 <code class="highlighter-rouge">SwiftyJSON</code>을 사용했었는데, <code class="highlighter-rouge">Swift4</code>에서 새로 도입된 <code class="highlighter-rouge">Codable</code>을 알게되서 이 프로토콜을 사용하여 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.</p>
+
+<h1 id="json-예시">JSON 예시</h1>
+<!-- JSON 예제 코드 -->
+<noscript><pre>{
+  &quot;data&quot;: {
+    &quot;room&quot;: [
+      {
+        &quot;name&quot;: &quot;room1&quot;,
+        &quot;order&quot;: 1,
+        &quot;messages&quot;: [
+          {
+            &quot;content&quot;: &quot;Mom&quot;,
+            &quot;person&quot;: &quot;Tom&quot;,
+            &quot;order&quot;: 1
+          },
+          {
+            &quot;content&quot;: &quot;I&#39;m sorry&quot;,
+            &quot;person&quot;: &quot;Will&quot;,
+            &quot;order&quot;: 2
+          },
+          {
+            &quot;content&quot;: &quot;Thank you&quot;,
+            &quot;person&quot;: &quot;Big brother Tom&quot;,
+            &quot;order&quot;: 3
+          }
+        ]
+      }
+    ]
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/cf87c669c296a5392395a7e1eb0f9561.js"> </script>
+
+<h1 id="before">Before</h1>
+<p>위의 예시를 바탕으로 기존에 작성했던 코드는 아래와 같습니다.
+<!-- 하드하게 디코딩한 코드 --></p>
+<noscript><pre>if let data = jsonString.data(using: .utf8) {
+    if let decoded = try? JSONSerialization.jsonObject(with: data, options: []) {
+        let dataDic = (decoded as? [String: Any])?[&quot;data&quot;] as? [String: Any] ?? [:]
+        let roomArray = dataDic[&quot;room&quot;] as? [[String: Any]] ?? []
+
+        for room in roomArray {
+            print(room[&quot;name&quot;])
+            print(room[&quot;order&quot;])
+            
+            let messages = room[&quot;messages&quot;] as? [[String: Any]] ?? []
+            
+            for msg in messages {
+                print(msg[&quot;content&quot;])
+                print(msg[&quot;person&quot;])
+                print(msg[&quot;order&quot;])
+            }
+        }
+    }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/550a3febcce5421f7020a9ef5185c389.js"> </script>
+
+<p>JSONSerialization 객체로 JSON을 Foundation 객체로 변환했습니다. Nested(중첩) JSON이기 때문에 Dictionary로 계속 변환해주었는데 가독성에 문제도 있고, 서버에서 JSON 구조를 변경하게 된다면 그에 맞게 코드를 수정하기 매우 어렵습니다.</p>
+
+<h1 id="codable">Codable</h1>
+<p><code class="highlighter-rouge">Codable</code>을 적용하기 전에 이 프로토콜이 어떤 역할을 하는지 알아야 할 필요가 있습니다. Codable은 Decodable과 Encodable을 포함하는 프로토콜이라고 <a href="https://developer.apple.com/documentation/swift/codable" target="blank">애플 공식 문서</a>에 나와있네요. <a href="https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types" target="blank">Encoding and Decoding Custom Types</a>에서, Swift는 데이터를 인코딩하고 디코딩하는 표준화 된 접근법을 정의하고 있으며, 이 접근법은 Decodable과 Encodable 프로토콜을 적용한 방법이라고 합니다. 그럼 이제 Codable로 코드를 바꿔보도록 하겠습니다.</p>
+
+<h1 id="codingkey">CodingKey</h1>
+<p>Codable을 적용하게 되면 이 <a href="https://developer.apple.com/documentation/swift/codingkey" target="blank">CodingKey</a>라는 것도 필요합니다. CodingKey는 인코딩과 디코딩을 위한 키로 쓰이는 <strong>타입</strong>입니다. 코드를 보시면 이해하기 쉽습니다.</p>
+
+<h1 id="struct-with-codable">Struct with Codable</h1>
+<!-- Codable 적용한 구조체 코드 -->
+<noscript><pre>struct Result: Codable {
+    var success: Bool?
+    var reason: String?
+    var rooms: [Room]?
+    
+    enum CodingKeys: String, CodingKey {
+        case success, reason, rooms = &quot;room&quot;
+        case data = &quot;data&quot;
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        let data = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+        
+        success = try container.decode(Bool.self, forKey: .success)
+        reason = try container.decode(String.self, forKey: .reason)
+        rooms = try data.decode([Room].self, forKey: .rooms)
+    }
+}
+
+struct Room: Codable {
+    var name: String?
+    var order: Int?
+    var messages: [Message]?
+    
+    enum CodingKeys: String, CodingKey {
+        case name, order, messages
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        name = try container.decode(String.self, forKey: .name)
+        order = try container.decode(Int.self, forKey: .order)
+        messages = try container.decode([Message].self, forKey: .messages)
+    }
+}
+
+struct Message : Codable {
+    var content: String?
+    var person: String?
+    var order: Int?
+    
+    enum CodingKeys: String, CodingKey {
+        case content, person, order
+    }
+    
+    init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        content = try container.decode(String.self, forKey: .content)
+        person = try container.decode(String.self, forKey: .person)
+        order = try container.decode(Int.self, forKey: .order)
+    }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/e665070d5d6d6b873446e217e2ea8072.js"> </script>
+
+<p>예시로 든 JSON에는 room key와 messages key안에 배열로 된 데이터가 있습니다. 따라서 <strong>Result &gt; Room &gt; Message</strong> 집합 관계로 정의된 구조체에 Codable을 적용했습니다. 또한, CodingKey 프로토콜을 채택한 CodingKeys의 case가 json 데이터의 key로 매핑되는 것을 알 수 있습니다. 예를 들어, Result의 “rooms”에는 “room” key에 해당하는 데이터가 매핑됩니다.</p>
+
+<h1 id="after">After</h1>
+<!-- Codable이 적용된 구조체로 디코딩하는 예제 코드 -->
+<noscript><pre>let data = jsonString.data(using: .utf8) ?? Data()
+if let result = try? JSONDecoder().decode(Result.self, from: data) {
+    print(&quot;success : \(result.success ?? false)&quot;)
+    print(&quot;reason : \(result.reason ?? &quot;&quot;)\n&quot;)
+    
+    result.rooms?.forEach{ room in
+        print(&quot;  name : \(room.name ?? &quot;&quot;)&quot;)
+        print(&quot;  order : \(room.order ?? 0)\n&quot;)
+        
+        room.messages?.forEach { message in
+            print(&quot;    content : \(message.content ?? &quot;&quot;)&quot;)
+            print(&quot;    person : \(message.person ?? &quot;&quot;)&quot;)
+            print(&quot;    order : \(message.order ?? 0)\n&quot;)
+        }
+    }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/5a0e1026e5313142c2db2a216bea93d3.js"> </script>
+
+<p><code class="highlighter-rouge">try? JSONDecoder().decode(Result.self, from: data)</code> 코드 한 줄로 Result, Room, Message 데이터까지 깔끔하게 처리할 수 있게 되었습니다.
+코드를 자세히 보면서 어떻게 동작하는지 좀 더 자세하게 살펴보겠습니다.</p>
+
+<h3 id="1-json-데이터를-특정-타입으로-decoding">1. JSON 데이터를 특정 타입으로 Decoding</h3>
+<!-- 표준 라이브러리 코드 1 -->
+<noscript><pre>if let result = try? JSONDecoder().decode(Result.self, from: data)
+
+/// decode 표준 라이브러리
+
+/// Decodes a top-level value of the given type from the given JSON representation.
+///
+/// - parameter type: The type of the value to decode.
+/// - parameter data: The data to decode from.
+/// - returns: A value of the requested type.
+/// - throws: `DecodingError.dataCorrupted` if values requested from the payload are corrupted, or if the given data is not valid JSON.
+/// - throws: An error if any value throws an error during decoding.
+open func decode&lt;T&gt;(_ type: T.Type, from data: Data) throws -&gt; T where T : Decodable</pre></noscript>
+<script src="https://gist.github.com/RoKang/3f1252e502a98ce31801600d325a9d32.js"> </script>
+
+<p>decode 메서드는 디코딩 될 data로부터 Result 타입의 value를 만들어줍니다.</p>
+
+<h3 id="2-데이터로부터-container-생성">2. 데이터로부터 container 생성</h3>
+<!-- 표준 라이브러리 코드 2 -->
+<noscript><pre>let container = try decoder.container(keyedBy: CodingKeys.self)
+
+/// container 
+
+/// Returns the data stored in this decoder as represented in a container
+/// keyed by the given key type.
+///
+/// - parameter type: The key type to use for the container.
+/// - returns: A keyed decoding container view into this decoder.
+/// - throws: `DecodingError.typeMismatch` if the encountered stored value is
+///   not a keyed container.
+func container&lt;Key&gt;(keyedBy type: Key.Type) throws -&gt; KeyedDecodingContainer&lt;Key&gt; where Key : CodingKey</pre></noscript>
+<script src="https://gist.github.com/RoKang/c1e77fd8d79dc5816d67cd85b08ea030.js"> </script>
+
+<p>1번 코드가 Result를 초기화하는 init 코드를 실행하고 decoder에 담겨있던 data로부터 container를 생성해줍니다. <code class="highlighter-rouge">CodingKeys.self</code> 타입이 data의 key와 매핑이 되지 않는다면 <code class="highlighter-rouge">DecodingError.typeMismatch</code> 에러를 던지겠네요.</p>
+
+<h3 id="3-container에서-nestedcontainer-생성">3. container에서 nestedContainer 생성</h3>
+<!-- 표준 라이브러리 코드 3 -->
+<noscript><pre>let data = try container.nestedContainer(keyedBy: CodingKeys.self, forKey: .data)
+
+///  nestedContainer 표준 라이브러리
+
+/// Returns the data stored for the given key as represented in a container
+/// keyed by the given key type.
+///
+/// - parameter type: The key type to use for the container.
+/// - parameter key: The key that the nested container is associated with.
+/// - returns: A keyed decoding container view into `self`.
+/// - throws: `DecodingError.typeMismatch` if the encountered stored value is
+///   not a keyed container.
+public func nestedContainer&lt;NestedKey&gt;(keyedBy type: NestedKey.Type, forKey key: KeyedDecodingContainer&lt;K&gt;.Key) throws -&gt; KeyedDecodingContainer&lt;NestedKey&gt; where NestedKey : CodingKey</pre></noscript>
+<script src="https://gist.github.com/RoKang/0c1a401def1d28b496f0bf3947560525.js"> </script>
+
+<p>Nested JSON이기 때문에 해당 키에 대한 sub container를 생성해줍니다.</p>
+
+<h3 id="4-nestedcontainer에서-room-데이터-디코딩">4. nestedContainer에서 [Room] 데이터 디코딩</h3>
+<!-- 표준 라이브러리 코드 4 -->
+<noscript><pre>rooms = try data.decode([Room].self, forKey: .rooms)
+
+/// decode 표준 
+
+/// Decodes a value of the given type for the given key.
+///
+/// - parameter type: The type of value to decode.
+/// - parameter key: The key that the decoded value is associated with.
+/// - returns: A value of the requested type, if present for the given key
+///   and convertible to the requested type.
+/// - throws: `DecodingError.typeMismatch` if the encountered encoded value
+///   is not convertible to the requested type.
+/// - throws: `DecodingError.keyNotFound` if `self` does not have an entry
+///   for the given key.
+/// - throws: `DecodingError.valueNotFound` if `self` has a null entry for
+///   the given key.
+public func decode&lt;T&gt;(_ type: T.Type, forKey key: KeyedDecodingContainer&lt;K&gt;.Key) throws -&gt; T where T : Decodable</pre></noscript>
+<script src="https://gist.github.com/RoKang/a56af6bb733cf19bebbbf177f460d831.js"> </script>
+
+<p>Room 타입도 Codable을 상속한 구조체이기 때문에 이 과정에서 Room도 디코딩이 진행되고 마찬가지로 Message도 디코딩이 이루어집니다.</p>
+
+<h1 id="tip">Tip</h1>
+<ul>
+  <li>
+    <p>바닐라 Codable도 JSONSerialization을 사용한 방법에 비해서 훨씬 편해졌지만, <a href="https://github.com/JohnSundell/Codextended" target="blank">Codextended</a>는 Codable 코드를 더 깔끔하게 만들어줍니다. Codable에 익숙해진다면 고려해 볼 만한 옵션인 것 같습니다.</p>
+  </li>
+  <li>
+    <p>날짜 JSON 데이터를 Date 타입으로 포맷팅하는건 생각보다 귀찮은 일 입니다. 그래서 Codable에는 어떤 날짜 데이터가 <strong>특정 포맷에 맞다면 자동으로 Date 인스턴스로 디코딩 해주는 strategy(전략)</strong>이 포함되어 있습니다.</p>
+
+    <p>formatter 인스턴스를 만들어서 원하는 포맷의 데이터를 Date로 변환할 수도 있고 iso8601 옵션처럼 표준화 된 포맷을 적용할 수도 있습니다. 저는 <strong>formatted</strong>나 <strong>iso8601</strong> 옵션을 많이 활용하게 될 것 같습니다.
+<!-- JSONDecoder().dateDecodingStrategy 예제 코드 1 --><noscript>&lt;pre&gt;let formatter = DateFormatter()
+formatter.dateFormat = "yyyy.MM.dd"
+JSONDecoder().dateDecodingStrategy = .formatted(formatter)
+JSONDecoder().dateDecodingStrategy = .iso8601
+JSONDecoder().dateDecodingStrategy = .millisecondsSince1970
+JSONDecoder().dateDecodingStrategy = .secondsSince1970&lt;/pre&gt;</noscript><script src="https://gist.github.com/RoKang/fa262e9d404d05cf4c7938978fbf7043.js"> </script></p>
+  </li>
+</ul>
+
+<h1 id="정리">정리</h1>
+<p>정리한 내용이 디코딩만을 다루고 있지만, 인코딩은 JSONEncoder 클래스를 활용한 반대의 과정이기 때문에 디코딩을 잘 알고 있다면 어렵지 않을 것 같습니다.</p>
+
+<p>내용 중 오류가 있거나 궁금하신 점이 있다면 댓글 남겨주시면 감사하겠습니다 :)</p>
+:ET

@@ -1,0 +1,101 @@
+I"�#<p>CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶어 <strong>재사용</strong>하기 위해 만듭니다. <strong>불필요한 코드의 중복을 줄이고 유지보수를 쉽게</strong> 해주기 때문에 저는 되도록 만들어 쓰는 편입니다. CustomView를 만드는 건 이미 많은 블로그에 설명되어 있기 때문에 만드는 방법보다는, <code class="highlighter-rouge">CustomView를 만들면서 생긴 궁금함</code>을 해결한 내용을 정리하고자 합니다.</p>
+
+<p>내용이 많을 듯하여 나중에 글을 다시 정리할 때는 여러 개의 포스트로 쪼개야 할 것 같습니다ㅠ</p>
+
+<p>시작해보겠습니다.</p>
+
+<h1 id="placeholders와-files-owner">Placeholders와 File’s Owner</h1>
+<p>CustomView를 만들 때 가장 많이 사용하는 방법은 Interface Builder(IB)에 있는 Placeholders의 File’s Owner에 Custom Class Object를 연결해주는 것입니다. Placeholders와 File’s Owner가 정확히 무엇인지 모르는 상태에서 첫 번째 의문이 생겼습니다.</p>
+<blockquote>
+  <p>아니, UITableViewCell이나 UICollectionViewCell을 만들면 Interface Builder에 File’s Owner가 아니라 Cell Object에 연결되던데 <strong>왜 CustomView는 File’s Owner에 연결해서 사용하지?</strong></p>
+</blockquote>
+
+<p>이 호기심을 해결하기 위해 먼저 nib 파일의 Placeholders와 File’s Owner가 무엇인지 파악해야 할 것 같습니다.</p>
+
+<p><br /></p>
+
+<figure class="image">
+    <img src="../images/2020-04-22-iOS-custom-view/1.png" alt="일반적으로 CustomView를 File's Owner의 Custom Class로 쓸 때" />
+    <figcaption style="color: dimgray; font-size: 14px; text-align: center;">일반적으로 CustomView를 File's Owner의 Custom Class로 쓸 때</figcaption>
+</figure>
+
+<p><br /></p>
+
+<figure class="image">
+    <img src="../images/2020-04-22-iOS-custom-view/2.png" alt="UITableViewCell의 xib를 자동 생성했을 때" />
+    <figcaption style="color: dimgray; font-size: 14px; text-align: center;">UITableViewCell의 xib를 자동 생성했을 때</figcaption>
+</figure>
+<p><br /></p>
+
+<h3 id="1-files-owner">1. File’s Owner</h3>
+<p>먼저 <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/CocoaNibs/CocoaNibs.html">Nib Files</a> 공식 문서에 있는 File’s Owner의 내용 중 일부를 나름대로(?) 번역해보겠습니다.</p>
+
+<p><img src="../images/2020-04-22-iOS-custom-view/3.png" alt="img2" /></p>
+
+<blockquote>
+  <p>nib 파일 안의 객체들 중 가장 중요한 것 중 하나가 File’s Owner 객체이다. Interface objects와 다르게, File’s Owner 객체는 <strong>placeholder 객체</strong>로서 nib 파일이 로드 될 때 생성되지 않는다. 대신, <strong>개발자가 코드 상에서 이 객체를 생성하고 nib-loading code에 전달해야 한다.</strong> 이 객체가 application 코드와 nib 파일의 컨텐츠 사이의 main link로서 너무나도 중요하기 때문이다. <strong>구체적으로 말하자면, File’s Owner는 nib 파일의 컨텐츠 들을 책임지는 Controller object다.</strong>
+<br /><br />
+Xcode에서 개발자는 nib 파일에서 File’s Owner와 다른 interface objects 사이의 connection들을 생성할 수 있다. <strong>nib 파일을 로드 할 때, nib-loading code는 개발자가 명시한 replacement object를 사용해서 이 connection들을 재생성한다.</strong> 이는 객체를 nib 파일 안의 reference objects가 되도록 허용하고, interface objects로 부터 발생한 메시지들을 자동으로 수신하게 해준다.</p>
+</blockquote>
+
+<p><br /></p>
+
+<p>솔직히 모든 내용을 이해하기 어려웠지만(😁), 여기서 유의깊게 봐야할 부분은 File’s Owner가 placeholder 객체라는 점인 것 같습니다. 저는 이 placeholder의 의미를 <strong>nib을 소유할 클래스의 타입(인스턴스가 아닌)을 설정하는 것</strong>이라고 이해했습니다. 즉, Interface Builder에서는 타입만을 지정해주고 실제 객체는 코드 상에서 만든 인스턴스를 전달하여 File’s Owner로 지정하는 것이죠.</p>
+
+<p>이제 Placeholders와 File’s Owner가 무엇인지 대충 감은 잡은 것 같습니다. Placeholders 안에 First Responder도 포함되어 있는데 이 내용은 따로 정리해놓을 예정입니다. 다음은 File’s Owner 객체를 어떻게 <strong>전달</strong>하는지 알아봐야겠네요.</p>
+
+<p><br /></p>
+
+<h3 id="2-loadnibnamed_owneroptions">2. loadNibNamed(_:owner:options:)</h3>
+<noscript><pre>override init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+}
+
+required init?(coder: NSCoder) {
+    super.init(coder: coder)
+    commonInit()
+}
+
+private func commonInit() {
+  if let view = Bundle.main.loadNibNamed(&quot;CustomView&quot;, owner: self, options: nil)?.first as? UIView {
+        view.frame = self.bounds
+        self.addSubview(view)
+    }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/7089f0772ba0ed49e056115487afe626.js"> </script>
+
+<p>CustomView를 만들기 위해 구글링을 하면 대부분의 블로그에 이 코드가 포함되어 있습니다. 메인 Bundle에서 “CustomView” 라는 이름을 가진 nib 파일에 대한 unarchiving, initialize, reestablishing의 과정을 거친 뒤, 해당 nib 파일에 있는 <strong>top-level objects</strong>를 <strong>[Any]</strong>의 형태로 리턴해주죠.(<strong>top-level objects</strong>에 대한 내용도 따로 다루기에는 너무 내용이 많을 것 같아서 공식 문서로 대체하겠습니다 -&gt; <a href="https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/CocoaNibs/CocoaNibs.html">여기있습니다!</a>)</p>
+
+<p><strong>loadNibNamed</strong> 메서드를 잘 살펴보면 <strong>owner</strong> 라는 파라미터가 있습니다. File’s Owner 객체를 여기서 <strong>전달</strong>하네요. owner가 self 즉, <strong>CustomView의 인스턴스</strong>가 되면서 IB에서 File’s Owner와 연결했던 outlet(=connection)들이 해당 인스턴스에 할당됩니다.</p>
+
+<p><br /></p>
+
+<blockquote>
+  <p>CustomView에 대한 구글링을 해보면 coding-compliant에 에러에 대한 질문이 종종 보이는데, 이 에러가 발생하는 이유는 owner를 nil로 설정하기 때문에 발생합니다. File’s Owner에 outlet을 만들어놨는데 해당 클래스의 File’s Owner 객체가 전달되지 않으면 outlet pointer를 재연결하기 위해 실행되는 <strong>setValue:forKey:</strong> 메서드에서 에러가 발생하는 것이죠.</p>
+</blockquote>
+
+<p><br /></p>
+
+<h1 id="tableviewcontroller와-tableviewcell">TableViewController와 TableViewCell</h1>
+<p>File’s Owner로 CustomView를 만드는 일반적인 과정을 파악했습니다. 이제 첫 번째 의문으로 돌아가서, 왜 TableViewCell은 IB에서 cell object에 custom class를 설정하는지 알아보겠습니다.</p>
+<noscript><pre>tableView.register(CustomTableViewCell.self, forCellReuseIdentifier: &quot;CustomTableViewCell&quot;)
+// OR
+tableView.register(UINib(nibName: &quot;CustomTableViewCell&quot;, bundle: nil), forCellReuseIdentifier: &quot;CustomTableViewCell&quot;)</pre></noscript>
+<script src="https://gist.github.com/RoKang/d3d9eae430a8c218fc0ed3ae6a0d4c6d.js"> </script>
+
+<p>보통 테이블 뷰에서 custom cell을 사용할 때, register 메서드로 <strong>테이블 뷰가 어떻게 cell을 생성하는지 지정해줍니다.</strong> 그리고 테이블 뷰의 <code class="highlighter-rouge">dequeueReusableCell</code> 메서드로 cell을 재활용하죠.</p>
+
+<p>하지만 좀 다르게 cell을 로드하고 재활용하는 방법도 있습니다.</p>
+
+<noscript><pre>if let cell = Bundle.main.loadNibNamed(&quot;CustomTableViewCell&quot;, owner: self, options: nil)?.first as? CustomTableViewCell {
+    return cell
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/a12cda61d69c077d2bffae395c846d22.js"> </script>
+
+<p>여기서 중요한 건 <strong>owner가 self</strong> 라는 점입니다. 여기서 self는 테이블 뷰의 <code class="highlighter-rouge">컨트롤러</code>입니다. <code class="highlighter-rouge">File's Owner는 nib 파일의 컨텐츠를 책임지는 Controller object다</code> 라는 내용을 공식 문서에서 확인했었습니다. 이걸 테이블 뷰에 적용해보면 nib 파일이 로드 될 때 각 cell의 UI outlet은 custom cell object가 연결되어 담당하게 되고 File’s Owner는 테이블 뷰 컨트롤러가 되어 테이블 뷰에 포함된 모든 cell의 컨텐츠를 책임지게 되겠네요. 생각해보면 cell의 터치 이벤트를 포함한 다양한 이벤트는 테이블 뷰 컨트롤러가 담당하고 있습니다.</p>
+
+<p>즉, File’s Owner가 아니라 cell object에 custom class가 연결되는 이유는 File’s Owner를 컨트롤러로 지정하기 위함이었습니다.</p>
+
+<p>https://stackoverflow.com/questions/7655560/why-does-a-custom-tableviewcell-not-need-the-file-owner</p>
+:ET

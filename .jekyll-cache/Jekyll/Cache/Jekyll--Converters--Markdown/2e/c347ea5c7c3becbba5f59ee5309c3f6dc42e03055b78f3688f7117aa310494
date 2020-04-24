@@ -1,0 +1,2 @@
+I"&<p>CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶어 <strong>재사용</strong>하기 위해 만듭니다. <strong>불필요한 코드의 중복을 줄이고 유지보수를 쉽게</strong> 해주기 때문에 저는 되도록 만들어 쓰는 편입니다. CustomView를 만드는 건 이미 많은 블로그에 설명되어 있기 때문에 만드는 방법 보다 <code class="highlighter-rouge">CustomView를 만들면서 생긴 궁금함</code>을 해결한 과정에 집중하여 정리하고자 합니다.</p>
+:ET
