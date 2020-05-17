@@ -4,6 +4,4 @@ title: About
 permalink: /about/
 ---
 
-# About
-
-[bykang096@gmail.com](bykang096@gmail.com)
+[bykang096@gmail.com](mailto:bykang096@gmail.com)
