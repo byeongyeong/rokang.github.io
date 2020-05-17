@@ -114,12 +114,3 @@ author: 뱅캉
 social:
   name: 뱅캉
   links:
-
-# og:image
-defaults:
-  - scope:
-      path: ""
-    values:
-      image: /images/og_image.jpg
-      height: 400
-      width: 400
