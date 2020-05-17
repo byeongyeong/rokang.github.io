@@ -58,7 +58,7 @@ footer-text: :)
 disqus: https-rokang-kr-1
 
 # Enter your Google Analytics web tracking code (e.g. UA-2110908-2) to activate tracking
-google_analytics:
+google_analytics: UA-166875445-1
 
 # Your website URL (e.g. http://barryclark.github.io or http://www.barryclark.co)
 # Used for Sitemap.xml and your RSS feed
@@ -97,12 +97,29 @@ sass:
 # Use the following plug-ins
 plugins:
   - jekyll-sitemap # Create a sitemap using the official Jekyll sitemap gem
-  - jekyll-feed # Create an Atom feed using the official Jekyll feed gem
+#- jekyll-feed # Create an Atom feed using the official Jekyll feed gem
   - jekyll-paginate
   - jekyll-gist
+  - jekyll-seo-tag
 
 # Exclude these files from your production _site
 exclude:
   - LICENSE
   - README.md
   - CNAME
+
+# SEO variable
+title: 뱅캉의 블로그
+author: 뱅캉
+social:
+  name: 뱅캉
+  links:
+
+# og:image
+defaults:
+  - scope:
+      path: ""
+    values:
+      image: /images/og_image.jpg
+      height: 400
+      width: 400

@@ -12,23 +12,25 @@
     
   </title>
 
-      <meta charset="utf-8" />
-    <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-    <meta http-equiv='X-UA-Compatible' content='IE=edge'>
-    <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+  <meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+<meta name="author" content="뱅캉" />
 
-    
+
     <meta name="description" content="앱 개발을 할 때 JSON 데이터 처리는 기본이면서도 정말 중요합니다. 기존에는 JSON을 주먹구구식으로 핸들링하거나 SwiftyJSON을 사용했었는데, Swift4에서 새로 도입된 Codable을 알게되서 이 프로토콜을 사용하여 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.
 " />
     <meta property="og:description" content="앱 개발을 할 때 JSON 데이터 처리는 기본이면서도 정말 중요합니다. 기존에는 JSON을 주먹구구식으로 핸들링하거나 SwiftyJSON을 사용했었는데, Swift4에서 새로 도입된 Codable을 알게되서 이 프로토콜을 사용하여 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.
 " />
-    
-    <meta name="author" content="뱅캉" />
 
-    
-    <meta property="og:title" content="JSON과 Codable" />
-    <meta property="twitter:title" content="JSON과 Codable" />
-    
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="뱅캉 - JSON과 Codable" />
+    <meta property="og:url" content="http://localhost:4000/swift-json-codable/">
+    <meta property="og:image" content="http://localhost:4000/images/og_image.jpg">
+
   <!-- Async font loading -->
 <script>
   window.WebFontConfig = {
@@ -459,6 +461,21 @@ JSONDecoder().dateDecodingStrategy = .secondsSince1970&lt;/pre&gt;</noscript><sc
     </div>
 
     
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-166875445-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/swift-json-codable/',
+		  'title': 'JSON과 Codable'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
 
   </body>
 </html>
