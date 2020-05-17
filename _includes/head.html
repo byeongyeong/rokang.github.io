@@ -1,10 +1,26 @@
 <head>
   <title>
-  	{% if page.title %}
-  		{{ page.title }}
-	{% else %}
-		{{ site.name }} - {{ site.description }}
-	{% endif %}
+    {% if page.title %}
+
+      {% if page.title == "About" %}
+        {{ site.name }} - {{ page.title }}
+
+      {% elsif page.title == "Archive" %}
+        {{ site.name }} - {{ page.title }}
+
+      {% elsif page.title == "Tags" %}
+        {{ site.name }} - {{ page.title }}
+
+      {% else %}
+        {{ page.title }}
+
+      {% endif %}
+
+    {% else %}
+
+      {{ site.name }} - {{ site.description }}
+      
+    {% endif %}
   </title>
 
   {% include meta.html %}

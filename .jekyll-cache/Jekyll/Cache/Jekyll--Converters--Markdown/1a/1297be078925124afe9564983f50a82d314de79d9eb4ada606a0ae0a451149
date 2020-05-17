@@ -1,3 +1,0 @@
-I"[<p>앱 개발을 할 때 JSON 데이터를 처리하는 부분은 정말 중요합니다. Swift4에서 도입된 <code class="highlighter-rouge">Codable</code> 프로토콜을 사용해서 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.
-<strong>Codable 프로토콜로 JSON 데이터 처리하기</strong></p>
-:ET
