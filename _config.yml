@@ -3,10 +3,10 @@
 #
 
 # Name of your site (displayed in the header)
-name: 뱅캉
+name: 강병영
 
 # Short bio or description (displayed in the header)
-description: cooool
+description: 불환인지불기지 환기무능야
 
 #
 # Flags below are optional
@@ -50,7 +50,7 @@ footer-links:
   youtube: # channel/<your_long_string> or user/<user-name>
 
 # Text under the icons in footer
-footer-text: :)
+footer-text: © 2017 Kiko Now
 
 # Enter your Disqus shortname (not your username) to enable commenting on posts
 # You can find your shortname on the Settings page of your Disqus account
@@ -109,8 +109,8 @@ exclude:
   - CNAME
 
 # SEO variable
-title: 뱅캉의 블로그
-author: 뱅캉
+title: 강병영의 블로그
+author: 강병영
 social:
-  name: 뱅캉
+  name: 강병영
   links:

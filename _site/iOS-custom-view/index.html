@@ -16,7 +16,7 @@
 <meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
 <meta http-equiv='X-UA-Compatible' content='IE=edge'>
 <meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-<meta name="author" content="뱅캉" />
+<meta name="author" content="강병영" />
 
 
     <meta name="description" content="CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶어 재사용하기 위해 만듭니다. 중복을 줄여주는 장점 때문에 저는 되도록 만들어 쓰는 편입니다. CustomView를 만드는 방법은 쉽게 찾아볼 수 있고 2가지로 나뉘더군요. 그 2개의 방법의 차이점을 파악하고 어떤 방법이 더 나은지를 확인하고자 합니다.
@@ -27,7 +27,7 @@
 
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="뱅캉 - CustomView를 만드는 더 나은 방법" />
+    <meta property="og:title" content="강병영 - CustomView를 만드는 더 나은 방법" />
     <meta property="og:url" content="http://localhost:4000/ios-custom-view/">
     <meta property="og:image" content="http://rokang.github.io/images/og_image.png">
 
@@ -37,6 +37,9 @@
 <meta property="og:image:type" content="image/png">
 
 <meta property="og:site_name" content="뱅캉 - cooool">
+
+<meta name="google-site-verification" content="t8IGfCWvNUUkdB4LZkgdJozlUQ0CEkIcOtuiQV3qiQA" />
+<meta name="google-site-verification" content="rMIHrIDY7gLS2tLF4Dq_mpy8-Z-dAQ-vaJlL5s5Mpe4" />
   <!-- Async font loading -->
 <script>
   window.WebFontConfig = {
@@ -58,7 +61,7 @@
   <![endif]-->
 
   <link rel="stylesheet" type="text/css" href="/style.css" />
-  <link rel="alternate" type="application/rss+xml" title="뱅캉 - cooool" href="/feed.xml" />
+  <link rel="alternate" type="application/rss+xml" title="강병영 - 불환인지불기지 환기무능야" href="/feed.xml" />
   <link rel="shortcut icon" href="../images/circle-photoman.ico">
 
   <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
@@ -72,8 +75,8 @@
       
 
       <div class="site-info">
-        <h1 class="site-name"><a href="/">뱅캉</a></h1>
-        <p class="site-description">cooool</p>
+        <h1 class="site-name"><a href="/">강병영</a></h1>
+        <p class="site-description">불환인지불기지 환기무능야</p>
       </div>
 
       <nav>
@@ -242,7 +245,7 @@ private func commonInit() {
 
 <p>그렇다면 왜 Xcode에서 UITableViewCell nib을 자동 생성할 때 1번 방법이 아닌 2번 방법으로 CustomView를 만들까요?</p>
 
-<p>지금은 <code class="highlighter-rouge">dequeueReusableCell</code> 에서 nil이 리턴되지 않지만 예전에는 이 메서드에서 nil을 뱉어내는 경우가 있었습니다.(재활용할 cell이 memory에 없을 경우겠죠) 그 때를 대비해서 cell을 직접 생성하는 코드를 작성해주어야 했습니다. 그 코드를 보면 UITableViewCell의 nib이 어떻게 로드되는지 알 수 있습니다.</p>
+<p>지금은 <code class="highlighter-rouge">equeueReusableCell</code> 에서 nil이 리턴되지 않지만 예전에는 이 메서드에서 nil을 뱉어내는 경우가 있었습니다.(재활용할 cell이 memory에 없을 경우겠죠) 그 때를 대비해서 cell을 직접 생성하는 코드를 작성해주어야 했습니다. 그 코드를 보면 UITableViewCell의 nib이 어떻게 로드되는지 알 수 있습니다.</p>
 
 <noscript><pre>if let cell = Bundle.main.loadNibNamed(&quot;CustomTableViewCell&quot;, owner: self, options: nil)?.first as? CustomTableViewCell {
     return cell
@@ -279,6 +282,12 @@ private func commonInit() {
           </a>
       </span>
     
+    
+      <span class="next" >
+          <a href="http://localhost:4000/ios-start-project/">
+            스토리보드없이 iOS 프로젝트를 시작할 때 &#xE001;
+          </a>
+      </span>
     
   </div>
 
@@ -347,7 +356,7 @@ private func commonInit() {
 
 
 
-<p>:)</p>
+<p>© 2017 Kiko Now</p>
 
         </footer>
       </div>

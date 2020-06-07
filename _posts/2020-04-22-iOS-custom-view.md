@@ -66,7 +66,7 @@ CustomView를 만들기 위해 구글링을 하면 대부분의 블로그에 이
 
 그렇다면 왜 Xcode에서 UITableViewCell nib을 자동 생성할 때 1번 방법이 아닌 2번 방법으로 CustomView를 만들까요?
 
-지금은 `dequeueReusableCell` 에서 nil이 리턴되지 않지만 예전에는 이 메서드에서 nil을 뱉어내는 경우가 있었습니다.(재활용할 cell이 memory에 없을 경우겠죠) 그 때를 대비해서 cell을 직접 생성하는 코드를 작성해주어야 했습니다. 그 코드를 보면 UITableViewCell의 nib이 어떻게 로드되는지 알 수 있습니다.
+지금은 `equeueReusableCell` 에서 nil이 리턴되지 않지만 예전에는 이 메서드에서 nil을 뱉어내는 경우가 있었습니다.(재활용할 cell이 memory에 없을 경우겠죠) 그 때를 대비해서 cell을 직접 생성하는 코드를 작성해주어야 했습니다. 그 코드를 보면 UITableViewCell의 nib이 어떻게 로드되는지 알 수 있습니다.
 
 {% gist RoKang/a12cda61d69c077d2bffae395c846d22 %}
 

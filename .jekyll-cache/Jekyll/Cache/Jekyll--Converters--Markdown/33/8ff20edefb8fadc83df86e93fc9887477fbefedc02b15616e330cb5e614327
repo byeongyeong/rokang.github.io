@@ -1,0 +1,10 @@
+I"`<p>iOS 프로젝트를 시작하면서 첫 커밋에 해야하는 것들</p>
+<ol>
+  <li>pod init, pod ‘SwiftLint’, pod update</li>
+  <li>.swiftlint.yml 파일 생성하고 SwiftLint rule 지정</li>
+  <li>Run script 추가(${PODS_ROOT}/SwiftLint/swiftlint)</li>
+  <li>https://www.gitignore.io/ 에서 ‘swift’ ‘xcode’ ‘cocoapods’ 태그 달아서 만든 .gitignore 파일 추가하기
+4-1. 수정된 .gitignore를 적용하고 싶다면 https://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository 참고</li>
+  <li>README.md 생성</li>
+</ol>
+:ET

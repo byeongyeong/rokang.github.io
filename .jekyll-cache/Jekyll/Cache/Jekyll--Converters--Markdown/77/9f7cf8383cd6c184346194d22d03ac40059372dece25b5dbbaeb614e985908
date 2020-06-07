@@ -1,0 +1,15 @@
+I"&<h1 id="defer문">defer문</h1>
+<p>Swift 2.0에서 추가된 구문.
+링크드리스트의 remove 파트를 공부하다가 알게 된 구문.
+컨텍스트 매니저처럼 현재 스코프를 벗어나는 시점에 동작할 것을 미리 정할 수 있게 해주는 구문.
+File Open이나 DB 혹은 Network 연결을 만들어 놓고 작업하는 중 예외를 만나도 안전하게 리소스를 닫을 수 있게 해주는 꿀떡 구문.
+defer문은 스코프 내에서 스택에 쌓이게 되어 여러 개의 defer문이 정의되어 있으면 LIFO로 실행된다고 한다.</p>
+
+<h1 id="sequence-collection-protocol">Sequence, Collection Protocol</h1>
+
+<h1 id="reference">Reference</h1>
+<p><a href="https://soooprmx.com/archives/6118">soooprmx 숩님 블로그 defer</a>
+<a href="https://soooprmx.com/archives/7047">soooprmx 숩님 블로그 Sequence Protocol</a>
+<a href="https://soooprmx.com/archives/7049">soooprmx 숩님 블로그 Collection Protocol</a>
+<a href="https://oaksong.github.io/2018/01/06/copy-on-write/">OAKSONG님 블로그 CoW</a></p>
+:ET

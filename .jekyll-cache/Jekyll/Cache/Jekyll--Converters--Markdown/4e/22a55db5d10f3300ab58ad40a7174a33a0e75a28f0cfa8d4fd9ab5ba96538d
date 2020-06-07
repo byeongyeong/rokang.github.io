@@ -1,0 +1,50 @@
+I"�	<p>스토리보드로 개발을 하다보면 merge conflict 문제가 큰 장애물로 다가올 때가 있습니다.
+그래서 저는 되도록 스토리보드없이 새로운 프로젝트를 진행하고 있고 이 때 설정해야 할 것 들을 간단하게 정리하고자 합니다.</p>
+
+<ul>
+  <li>기본 생성된 Main.storyboard 삭제</li>
+  <li>Target에서 Main Interface에 지정된 Main 삭제(빈 상태로 만듬)</li>
+  <li>info.plist에서 Application Scene Manifest &gt; Scene Configuration &gt; Application Session Rule &gt; Item 0 &gt; Storyboard Name 삭제</li>
+  <li>AppDelegate의 didFinishLaunchingWithOptions 메서드에 UIWindow와 RootViewController 설정</li>
+</ul>
+<noscript><pre>func application(_ application: UIApplication, 
+                 didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
+  // ...
+  if #available(iOS 13.0, *) {
+    // SceneDelegate에서 진행 됨
+  } else if #available(iOS 11.0, *) {
+    let window = UIWindow(frame: UIScreen.main.bounds)
+    self.window = window
+
+    let launchVC = LaunchViewController()
+    self.window?.rootViewController = launchVC
+    self.window?.makeKeyAndVisible()
+  }
+}
+</pre></noscript>
+<script src="https://gist.github.com/RoKang/86c78c9975b25be0efa74222f2d16933.js"> </script>
+
+<ul>
+  <li>SceneDelegate의 willConnectTo 메서드에 UIWindow와 RootViewController 설정</li>
+</ul>
+<noscript><pre>func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
+  if let windowScene = scene as? UIWindowScene {
+    self.window = UIWindow(windowScene: windowScene)
+    let launchVC = LaunchViewController()
+    self.window?.rootViewController = launchVC
+    self.window?.makeKeyAndVisible()
+  }
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/4291c34109ea5d3b0b17b52c6c4db0f2.js"> </script>
+
+<ol>
+  <li>pod init, pod ‘SwiftLint’, pod update</li>
+  <li>.swiftlint.yml 파일 생성하고 SwiftLint rule 지정</li>
+  <li>Run script 추가(${PODS_ROOT}/SwiftLint/swiftlint)</li>
+  <li>https://www.gitignore.io/ 에서 ‘swift’ ‘xcode’ ‘cocoapods’ 태그 달아서 만든 .gitignore 파일 추가하기
+4-1. 수정된 .gitignore를 적용하고 싶다면 https://stackoverflow.com/questions/1139762/ignore-files-that-have-already-been-committed-to-a-git-repository 참고</li>
+  <li>README.md 생성</li>
+</ol>
+
+<p>&lt;iOS Deployment Target이 13 이전이고 AppDelegate와 SceneDelegate를 둘 다 살리는 쪽&gt;</p>
+:ET
