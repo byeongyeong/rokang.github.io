@@ -1,6 +1,6 @@
 ---
 layout: post
-title: JSON과 Codable
+title: Swift Codable이 무엇인가?
 tags:
   - Swift
   - iOS

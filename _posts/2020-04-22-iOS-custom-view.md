@@ -1,6 +1,6 @@
 ---
 layout: post
-title: CustomView를 만드는 더 나은 방법
+title: CustomView를 어떻게 만들어야 할까?
 tags:
   - Swift
   - iOS
@@ -14,9 +14,11 @@ CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶�
 두 개의 방법은 IB에서의 차이점도 있지만 뷰를 초기화하는 코드에도 차이점이 있습니다.
 (지금부터는 편의상 두 가지 방법을 1번, 2번으로 쓰겠습니다)
 
-- **1번 초기화 방법**{% gist RoKang/afb8acf15ff66017fcf3311114b06595 %}
+- **1번 초기화 방법**
+{% gist RoKang/afb8acf15ff66017fcf3311114b06595 %}
 
-- **2번 초기화 방법**{% gist RoKang/c1b1dd0771cb9eeea2dee7c7f19b87bb %}
+- **2번 초기화 방법**
+{% gist RoKang/c1b1dd0771cb9eeea2dee7c7f19b87bb %}
 
 <br>
 
@@ -88,4 +90,4 @@ CustomView를 만들기 위해 구글링을 하면 대부분의 블로그에 이
 다만, File's Owner의 정의를 깊이 고민해본다면 `1번 방법보다는 2번 방법이 더 옳은 방법이 아닐까 싶습니다.`
 1개의 xib에서 1개의 View만을 표현하도록 강제하고 싶다면 1번 방법이 목적에 더 부합한다고 볼 수도 있겠지만 말이죠.
 
-읽어주셔서 감사합니다. 피드백은 언제나 환영입니다. 🚀
+피드백은 언제나 환영입니다. 🚀

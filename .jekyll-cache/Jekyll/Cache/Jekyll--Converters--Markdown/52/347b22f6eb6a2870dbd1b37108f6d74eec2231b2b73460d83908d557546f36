@@ -1,4 +1,4 @@
-I",<p>CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶어 <strong>재사용</strong>하기 위해 만듭니다. 중복을 줄여주는 장점 때문에 저는 되도록 만들어 쓰는 편입니다. CustomView를 만드는 방법은 쉽게 찾아볼 수 있고 2가지로 나뉘더군요. 그 2개의 방법의 차이점을 파악하고 어떤 방법이 더 나은지를 확인하고자 합니다.</p>
+I"�+<p>CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶어 <strong>재사용</strong>하기 위해 만듭니다. 중복을 줄여주는 장점 때문에 저는 되도록 만들어 쓰는 편입니다. CustomView를 만드는 방법은 쉽게 찾아볼 수 있고 2가지로 나뉘더군요. 그 2개의 방법의 차이점을 파악하고 어떤 방법이 더 나은지를 확인하고자 합니다.</p>
 
 <h2 id="customview를-만드는-2가지-방법">CustomView를 만드는 2가지 방법</h2>
 <blockquote>
@@ -12,30 +12,34 @@
 (지금부터는 편의상 두 가지 방법을 1번, 2번으로 쓰겠습니다)</p>
 
 <ul>
-  <li><strong>1번 초기화 방법</strong><noscript>&lt;pre&gt;override public init(frame: CGRect) {
-  super.init(frame: frame)
-  commonInit()
-}</noscript></li>
+  <li><strong>1번 초기화 방법</strong></li>
 </ul>
+<noscript><pre>override public init(frame: CGRect) {
+    super.init(frame: frame)
+    commonInit()
+}
 
-<p>required public init?(coder: NSCoder) {
+required public init?(coder: NSCoder) {
     super.init(coder: coder)
     commonInit()
-}</p>
+}
 
-<p>open func commonInit() {
-    if let view = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.first as? UIView {
+open func commonInit() {
+    if let view = Bundle.main.loadNibNamed(&quot;CustomView&quot;, owner: self, options: nil)?.first as? UIView {
         view.frame = self.bounds
         self.addSubview(view)
     }
-}&lt;/pre&gt;&lt;/noscript&gt;<script src="https://gist.github.com/RoKang/afb8acf15ff66017fcf3311114b06595.js"> </script></p>
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/afb8acf15ff66017fcf3311114b06595.js"> </script>
 
 <ul>
-  <li><strong>2번 초기화 방법</strong><noscript>&lt;pre&gt;class func instanceFromNib() -&gt; CustomView? {
-  let instance = Bundle.main.loadNibNamed("CustomView", owner: self, options: nil)?.lazy.filter{$0 is CustomView}.first as? CustomView
-  return instance
-}&lt;/pre&gt;</noscript><script src="https://gist.github.com/RoKang/c1b1dd0771cb9eeea2dee7c7f19b87bb.js"> </script></li>
+  <li><strong>2번 초기화 방법</strong></li>
 </ul>
+<noscript><pre>class func instanceFromNib() -&gt; CustomView? {
+    let instance = Bundle.main.loadNibNamed(&quot;CustomView&quot;, owner: self, options: nil)?.lazy.filter{$0 is CustomView}.first as? CustomView
+    return instance
+}</pre></noscript>
+<script src="https://gist.github.com/RoKang/c1b1dd0771cb9eeea2dee7c7f19b87bb.js"> </script>
 
 <p><br /></p>
 
@@ -139,5 +143,5 @@ private func commonInit() {
 다만, File’s Owner의 정의를 깊이 고민해본다면 <code class="highlighter-rouge">1번 방법보다는 2번 방법이 더 옳은 방법이 아닐까 싶습니다.</code>
 1개의 xib에서 1개의 View만을 표현하도록 강제하고 싶다면 1번 방법이 목적에 더 부합한다고 볼 수도 있겠지만 말이죠.</p>
 
-<p>읽어주셔서 감사합니다. 피드백은 언제나 환영입니다. 🚀</p>
+<p>피드백은 언제나 환영입니다. 🚀</p>
 :ET

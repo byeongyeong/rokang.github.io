@@ -1,6 +1,6 @@
 ---
 layout: post
-title: 스토리보드없이 iOS 프로젝트를 시작할 때
+title: 스토리보드없이 iOS 프로젝트를 시작하려면?
 tags:
   - Swift
   - iOS
