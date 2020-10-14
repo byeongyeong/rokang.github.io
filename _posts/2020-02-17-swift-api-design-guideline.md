@@ -43,10 +43,9 @@ API도 마찬가지입니다. 카카오의 지도 API를 사용해서 우리는 
     - [인자 레이블(Argument Labels)](../swift-api-design-guideline3/#argument-labels)
 - [특별 지침(Special Instructions)](../swift-api-design-guideline3/#special-instructions)
 
-```markdown
-✍🏼 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
-Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다른 포스트에 연결되어 있습니다.
-```
+
+> ✍🏼 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
+> Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다른 포스트에 연결되어 있습니다.
  
 ---
 
