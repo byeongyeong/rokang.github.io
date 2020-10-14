@@ -25,6 +25,18 @@
         <loc>http://localhost:4000/codable/</loc>
     </url>
     
+    <url>
+        <loc>http://localhost:4000/swift-api-design-guideline3/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/swift-api-design-guideline2/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/swift-api-design-guideline/</loc>
+    </url>
+    
 
     
     
