@@ -180,37 +180,49 @@ Swift도 Apple에서 제안하는 API Design Guidelines가 있습니다.
 </ul>
 
 <blockquote>
-  <p>✍🏼 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
+  <p>📕 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
 Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다른 포스트에 연결되어 있습니다.</p>
 </blockquote>
 
 <hr />
 
 <h2 id="fundamentals">기본 개념(Fundamentals)</h2>
+
 <ul>
-  <li><strong>가장 중요한 목표는 사용 시점에서의 명료성입니다.</strong> API는 한번 선언되지만 반복적으로 사용되는 메소드, 속성과 같은 개체(Entity)들을 이해하기 쉽고 간결하게 만드는 데에 중점을 두어야 합니다. API의 설계에 대한 평가는 선언부를 읽는 것만으로는 충분하지 않습니다. 사용 사례에서 문맥상 명확하게 이해가 되는지를 기준으로 평가해야 합니다.</li>
-  <li><strong>명료성은 간결성보다 중요합니다.</strong> Swift 코드를 간결하게 작성할 수는 있지만, 문자들 몇 개만 사용해서 가능한 가장 적은 양의 코드를 작성하는 것이 목표가 아닙니다. Swift 코드의 간결함은 강력한 type 시스템과 boilerplate 코드를 줄여주는 기능들이 제공하는 부수적인 효과입니다.</li>
-  <li>모든 선언문에 문서화용 주석(documentation comments)을 작성하세요. API 문서를 작성하면서 얻은 통찰력은 API 디자인에 큰 영향을 미칠 수 있으니 절대 미루지 마세요.</li>
-  <li>간단한 용어로 API 기능을 설명할 수 없다면, <strong>당신의 API 설계는 잘못되었을 가능성이 높습니다.</strong></li>
+  <li>
+    <p><strong>가장 중요한 목표는 사용 시점에서의 명료성입니다.</strong> API는 한번 선언되지만 반복적으로 사용되는 메소드, 속성과 같은 개체(Entity)들을 이해하기 쉽고 간결하게 만드는 데에 중점을 두어야 합니다. API의 설계에 대한 평가는 선언부를 읽는 것만으로는 충분하지 않습니다. 사용 사례에서 문맥상 명확하게 이해가 되는지를 기준으로 평가해야 합니다.</p>
+  </li>
+  <li>
+    <p><strong>명료성은 간결성보다 중요합니다.</strong> Swift 코드를 간결하게 작성할 수는 있지만, 문자들 몇 개만 사용해서 가능한 가장 적은 양의 코드를 작성하는 것이 목표가 아닙니다. Swift 코드의 간결함은 강력한 type 시스템과 boilerplate 코드를 줄여주는 기능들이 제공하는 부수적인 효과입니다.</p>
+  </li>
+  <li>
+    <p>모든 선언문에 문서화용 주석(documentation comments)을 작성하세요. API 문서를 작성하면서 얻은 통찰력은 API 디자인에 큰 영향을 미칠 수 있으니 절대 미루지 마세요.</p>
+  </li>
+  <li>
+    <p><code class="highlighter-rouge">간단한 용어로 API 기능을 설명할 수 없다면, 당신의 API 설계는 잘못되었을 가능성이 높습니다.</code></p>
+  </li>
 </ul>
 
+<p><br /></p>
+
 <blockquote>
-  <p>API는 결국 간단한 용어로 설명이 가능하며, 읽기 쉽고 그 역할이 명확해서 사용하기 편해야 합니다.
+  <p>🧑🏻‍💻 API는 결국 간단한 용어로 설명이 가능하며, 읽기 쉽고 그 역할이 명확해서 사용하기 편해야 합니다.
 또한, 주석을 항상 작성해서 사용자가 이해하기 쉽게 만들어주어야 합니다.
 그러지 못해온 제 자신을 반성합니다.</p>
 </blockquote>
 
-<h3 id="more-detail">More Detail</h3>
+<p><br /></p>
+
+<h3 id="문서화용-주석documentation-comments-자세히">문서화용 주석(documentation comments) 자세히</h3>
 <ul>
-  <li>Swift에서 지원하는 <a href="https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/">Markdown 언어</a>를 사용하기.
-    <blockquote>
-      <p>마크다운 언어를 사용해서 API에 대한 주석을 더 풍성하게 만들 수 있습니다!</p>
-    </blockquote>
+  <li>
+    <p>Swift에서 지원하는 <a href="https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/">Markdown 언어</a>를 사용하기.</p>
   </li>
   <li>선언된 개체(entity)를 설명하는 요약으로 시작하세요. API는 선언과 요약을 통해 완전히 이해되는 경우가 많습니다.
     <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// 같은 요소를 포함하는 `self`의 "view"를 역순으로 반환.</span>
 <span class="kd">func</span> <span class="nf">reversed</span><span class="p">()</span> <span class="o">-&gt;</span> <span class="kt">ReverseCollection</span>
 </code></pre></div>    </div>
+
     <ul>
       <li>
         <p><strong>요약에 초점을 맞추세요.</strong> 요약은 매우 중요한 부분입니다. 많은 우수한 코드 주석은 훌륭한 요약문을 가지고 있습니다.</p>
@@ -240,7 +252,6 @@ Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다�
       <li>그 외의 경우, 선언된 개체가 무엇인지 설명합니다.
         <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// 어떤 위치에서든 똑같이 효율적으로 삽입/제거할 수 있는 컬렉션.</span>
 <span class="kd">struct</span> <span class="kt">List</span> <span class="p">{</span>
-
 <span class="c1">/// `self`의 첫 번째 요소, 또는 self가 비어있다면 `nil`</span>
 <span class="k">var</span> <span class="nv">first</span><span class="p">:</span> <span class="kt">Element</span><span class="p">?</span>
 <span class="o">...</span>
@@ -248,13 +259,6 @@ Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다�
       </li>
     </ul>
   </li>
-</ul>
-
-<blockquote>
-  <p>선언된 모든 entity에 대해서 간단한 용어로 작성된 주석이 반드시 있어야 합니다.</p>
-</blockquote>
-
-<ul>
   <li>경우에 따라서는 굳이 1개의 절이 아니라 여러 절과 글 머리 기호를 사용할 수 있습니다. 공백 줄로 절을 나누고 완전한 문장을 사용합니다.
     <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">/// 표준 출력에 `items` 각 요소의 텍스트 표현을 작성합니다. ← 요약</span>
 <span class="c1">///                                             ← 빈 줄</span>
@@ -264,13 +268,12 @@ Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다�
 <span class="c1">/// - Parameter seperator: 요소 사이에 출력되는 텍스트     ⎫</span>
 <span class="c1">/// - Parameter terminator: 끝부분에 출력되는 텍스트      ⎭ 매개변수 부분</span>
 <span class="c1">///</span>
-<span class="c1">/// - Note: 끝부분에 줄 바꿈을 출력하지 않으려면           ⎫</span>
+<span class="c1">/// - Note: 끝부분에 줄 바꿈을 출력하지 않으려면          ⎫</span>
 <span class="c1">///   `terminator: ""`를 전달하세요.                ⎟</span>
 <span class="c1">///                                              ⎬ 기타 참고사항</span>
-<span class="c1">/// - SeeAlso: `CustomDebugStringConvertible`,       ⎟</span>
+<span class="c1">/// - SeeAlso: `CustomDebugStringConvertible`,   ⎟</span>
 <span class="c1">///   `CustomStringConvertible`, `debugPrint`.   ⎭</span>
-<span class="kd">public</span> <span class="kd">func</span> <span class="nf">print</span><span class="p">(</span>
-<span class="nv">items</span><span class="p">:</span> <span class="kt">Any</span><span class="o">...</span><span class="p">,</span> <span class="nv">separator</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">" "</span><span class="p">,</span> <span class="nv">terminator</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
+<span class="kd">public</span> <span class="kd">func</span> <span class="nf">print</span><span class="p">(</span><span class="nv">items</span><span class="p">:</span> <span class="kt">Any</span><span class="o">...</span><span class="p">,</span> <span class="nv">separator</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">" "</span><span class="p">,</span> <span class="nv">terminator</span><span class="p">:</span> <span class="kt">String</span> <span class="o">=</span> <span class="s">"</span><span class="se">\n</span><span class="s">"</span><span class="p">)</span>
 </code></pre></div>    </div>
     <ul>
       <li>요약문 외에 추가 정보를 제공할 때에는 많은 사람들이 이해할 수 있게 <a href="https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/SymbolDocumentation.html#//apple_ref/doc/uid/TP40016497-CH51-SW1">symbol 문서 마크업 요소들</a>을 사용하세요.</li>
@@ -280,22 +283,29 @@ Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다�
   </li>
 </ul>
 
+<p><br /></p>
+
 <blockquote>
-  <p>API나 엔티티를 더 이해하기 쉽게 표현해 줄 수 있는 마크다운 언어가 Xcode 내에서도 지원이 됩니다.
-이 부분을 잘 사용한다면 우리가 만든 API나 엔티티도 다른 사람에게는 iOS 프레임워크 라이브러리처럼 기깔나게 보여질 수 있습니다!</p>
+  <p>🧑🏻‍💻 선언된 모든 entity에 대해서 간단한 용어로 작성된 주석이 반드시 있어야 한다는 점이 중요해보입니다.
+저는 당연하게 생각한 entity도 누군가에겐 설명이 필요할 수 있겠다는 생각이 들었습니다. <br />
+Xcode에서 지원되는 마크다운 언어에 대한 문서를 확인하고 code snippet으로 추가해 사용한다면 매우 유용할 것 같습니다.
+마크다운 언어를 잘 사용한다면, 제가 만든 API나 엔티티도 다른 사람에게는 iOS 프레임워크 라이브러리처럼 기깔나게 보여질 수 있겠다는 생각이 드네요!</p>
 </blockquote>
+
+<hr />
 
 <p><br /></p>
 
-<p>내용이 길어질 것 같아서 3개의 파트로 나눠서 작성하도록 하겠습니다.</p>
+<p>내용이 길어질 것 같아서 3개의 파트로 나눠서 작성하도록 하겠습니다. <br />
+다음 포스트는 이름 지정(Naming)입니다 😎</p>
 
-<p>다음 포스트는 이름 지정(Naming)입니다 😎</p>
+<p><br /></p>
 
 <h2 id="레퍼런스">레퍼런스</h2>
 
 <ul>
   <li><a href="https://swift.org/documentation/api-design-guidelines/">[원문] Swift API Design Guidelines</a></li>
-  <li><a href="http://minsone.github.io/programming/translate-swift-api-design-guideline">[번역] Swift API Design Guidelines</a></li>
+  <li><a href="https://minsone.github.io/swift-internals/api-design-guidelines/">[번역] Swift API Design Guidelines</a></li>
 </ul>
 
   </div>

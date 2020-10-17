@@ -44,66 +44,72 @@ API도 마찬가지입니다. 카카오의 지도 API를 사용해서 우리는 
 - [특별 지침(Special Instructions)](../swift-api-design-guideline3/#special-instructions)
 
 
-> ✍🏼 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
+> 📕 하나의 포스트로 모든 내용을 다루기엔 내용이 많아서 총 3개의 포스트로 나누어 작성하였습니다.
 > Table of Contents의 기본 개념(Fundamentals)을 제외한 각 링크는 다른 포스트에 연결되어 있습니다.
- 
+
 ---
 
 <h2 id="fundamentals">기본 개념(Fundamentals)</h2>
-- **가장 중요한 목표는 사용 시점에서의 명료성입니다.** API는 한번 선언되지만 반복적으로 사용되는 메소드, 속성과 같은 개체(Entity)들을 이해하기 쉽고 간결하게 만드는 데에 중점을 두어야 합니다. API의 설계에 대한 평가는 선언부를 읽는 것만으로는 충분하지 않습니다. 사용 사례에서 문맥상 명확하게 이해가 되는지를 기준으로 평가해야 합니다.
-- **명료성은 간결성보다 중요합니다.** Swift 코드를 간결하게 작성할 수는 있지만, 문자들 몇 개만 사용해서 가능한 가장 적은 양의 코드를 작성하는 것이 목표가 아닙니다. Swift 코드의 간결함은 강력한 type 시스템과 boilerplate 코드를 줄여주는 기능들이 제공하는 부수적인 효과입니다.
-- 모든 선언문에 문서화용 주석(documentation comments)을 작성하세요. API 문서를 작성하면서 얻은 통찰력은 API 디자인에 큰 영향을 미칠 수 있으니 절대 미루지 마세요.
-- 간단한 용어로 API 기능을 설명할 수 없다면, **당신의 API 설계는 잘못되었을 가능성이 높습니다.**
 
-> API는 결국 간단한 용어로 설명이 가능하며, 읽기 쉽고 그 역할이 명확해서 사용하기 편해야 합니다.
+- **가장 중요한 목표는 사용 시점에서의 명료성입니다.** API는 한번 선언되지만 반복적으로 사용되는 메소드, 속성과 같은 개체(Entity)들을 이해하기 쉽고 간결하게 만드는 데에 중점을 두어야 합니다. API의 설계에 대한 평가는 선언부를 읽는 것만으로는 충분하지 않습니다. 사용 사례에서 문맥상 명확하게 이해가 되는지를 기준으로 평가해야 합니다.
+
+- **명료성은 간결성보다 중요합니다.** Swift 코드를 간결하게 작성할 수는 있지만, 문자들 몇 개만 사용해서 가능한 가장 적은 양의 코드를 작성하는 것이 목표가 아닙니다. Swift 코드의 간결함은 강력한 type 시스템과 boilerplate 코드를 줄여주는 기능들이 제공하는 부수적인 효과입니다.
+
+- 모든 선언문에 문서화용 주석(documentation comments)을 작성하세요. API 문서를 작성하면서 얻은 통찰력은 API 디자인에 큰 영향을 미칠 수 있으니 절대 미루지 마세요.
+
+- `간단한 용어로 API 기능을 설명할 수 없다면, 당신의 API 설계는 잘못되었을 가능성이 높습니다.`
+
+<br>
+
+> 🧑🏻‍💻 API는 결국 간단한 용어로 설명이 가능하며, 읽기 쉽고 그 역할이 명확해서 사용하기 편해야 합니다.
 > 또한, 주석을 항상 작성해서 사용자가 이해하기 쉽게 만들어주어야 합니다.
 > 그러지 못해온 제 자신을 반성합니다.
 
-### More Detail
+<br>
+
+### 문서화용 주석(documentation comments) 자세히
 - Swift에서 지원하는 [Markdown 언어](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/)를 사용하기.
-> 마크다운 언어를 사용해서 API에 대한 주석을 더 풍성하게 만들 수 있습니다!
 
 - 선언된 개체(entity)를 설명하는 요약으로 시작하세요. API는 선언과 요약을 통해 완전히 이해되는 경우가 많습니다.
 ```swift
 /// 같은 요소를 포함하는 `self`의 "view"를 역순으로 반환.
 func reversed() -> ReverseCollection
 ```
+
   - **요약에 초점을 맞추세요.** 요약은 매우 중요한 부분입니다. 많은 우수한 코드 주석은 훌륭한 요약문을 가지고 있습니다.
 
   - 가능하면 한 개의 절을 사용하고, 마침표로 끝내세요. 완전한 문장을 사용하지 마세요.
 
   - 함수 또는 메소드가 어떤 일을 하는지, 어떤 것을 반환하는지 설명하고, null 효과와 Void 반환은 설명을 생략하세요.
-  ```swift
-  /// `self` 시작부분에 `newHead`를 삽입.
-  mutating func prepend(newHead: Int)
-  /// `self`의 요소를 동반하는 `head` 가 포함된 `List` 를 반환.
-  func prepending(head: Element) -> List
-  /// 비어있지 않다면 `self`의 첫 번째 요소를 제거 및 반환하고; 비어있다면 `nil`을 반환.
-  mutating func popFirst() -> Element?
-  ```
+```swift
+/// `self` 시작부분에 `newHead`를 삽입.
+mutating func prepend(newHead: Int)
+/// `self`의 요소를 동반하는 `head` 가 포함된 `List` 를 반환.
+func prepending(head: Element) -> List
+/// 비어있지 않다면 `self`의 첫 번째 요소를 제거 및 반환하고; 비어있다면 `nil`을 반환.
+mutating func popFirst() -> Element?
+```
 
   - subscript가 어떤 것에 접근하는지 설명합니다.
-  ```swift
-  /// `index` 번째 요소에 접근.
-  subscript(index: Int) -> Element { get set }
-  ```
+```swift
+/// `index` 번째 요소에 접근.
+subscript(index: Int) -> Element { get set }
+```
 
   - 이니셜라이저가 무엇을 생성하는지 설명합니다.
-  ```swift
-  /// `x`를 `n`번 반복하는 인스턴스를 생성.
-  init(count n: Int, repeatedElement x: Element)
-  ```
+```swift
+/// `x`를 `n`번 반복하는 인스턴스를 생성.
+init(count n: Int, repeatedElement x: Element)
+```
+
   - 그 외의 경우, 선언된 개체가 무엇인지 설명합니다.
-  ```swift
-  /// 어떤 위치에서든 똑같이 효율적으로 삽입/제거할 수 있는 컬렉션.
-  struct List {
-
-    /// `self`의 첫 번째 요소, 또는 self가 비어있다면 `nil`
-    var first: Element?
-    ...
-  ```
-
-> 선언된 모든 entity에 대해서 간단한 용어로 작성된 주석이 반드시 있어야 합니다.
+```swift
+/// 어떤 위치에서든 똑같이 효율적으로 삽입/제거할 수 있는 컬렉션.
+struct List {
+  /// `self`의 첫 번째 요소, 또는 self가 비어있다면 `nil`
+  var first: Element?
+  ...
+```
 
 - 경우에 따라서는 굳이 1개의 절이 아니라 여러 절과 글 머리 기호를 사용할 수 있습니다. 공백 줄로 절을 나누고 완전한 문장을 사용합니다.
 ```swift
@@ -115,28 +121,39 @@ func reversed() -> ReverseCollection
 /// - Parameter seperator: 요소 사이에 출력되는 텍스트     ⎫
 /// - Parameter terminator: 끝부분에 출력되는 텍스트      ⎭ 매개변수 부분
 ///
-/// - Note: 끝부분에 줄 바꿈을 출력하지 않으려면           ⎫
+/// - Note: 끝부분에 줄 바꿈을 출력하지 않으려면          ⎫
 ///   `terminator: ""`를 전달하세요.                ⎟
 ///                                              ⎬ 기타 참고사항
-/// - SeeAlso: `CustomDebugStringConvertible`,       ⎟
+/// - SeeAlso: `CustomDebugStringConvertible`,   ⎟
 ///   `CustomStringConvertible`, `debugPrint`.   ⎭
-public func print(
-  items: Any..., separator: String = " ", terminator: String = "\n")
+public func print(items: Any..., separator: String = " ", terminator: String = "\n")
 ```
   - 요약문 외에 추가 정보를 제공할 때에는 많은 사람들이 이해할 수 있게 [symbol 문서 마크업 요소들](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/SymbolDocumentation.html#//apple_ref/doc/uid/TP40016497-CH51-SW1)을 사용하세요.
   - [symbol 커맨드 구문](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/SymbolDocumentation.html#//apple_ref/doc/uid/TP40016497-CH51-SW1)을 익히고 활용하세요. Xcode와 같이 인기 있는 개발 도구는 다음 키워드로 시작하는 글 머리 기호(예: - Note)를 특별하게 취급합니다.
   - [특별하게 취급되는 키워드 리스트(Attention~Warning)](https://developer.apple.com/library/archive/documentation/Xcode/Reference/xcode_markup_formatting_ref/Attention.html)
 
-> API나 엔티티를 더 이해하기 쉽게 표현해 줄 수 있는 마크다운 언어가 Xcode 내에서도 지원이 됩니다.
-> 이 부분을 잘 사용한다면 우리가 만든 API나 엔티티도 다른 사람에게는 iOS 프레임워크 라이브러리처럼 기깔나게 보여질 수 있습니다!
+<br>
+
+> 🧑🏻‍💻 선언된 모든 entity에 대해서 간단한 용어로 작성된 주석이 반드시 있어야 한다는 점이 중요해보입니다.
+> 저는 당연하게 생각한 entity도 누군가에겐 설명이 필요할 수 있겠다는 생각이 들었습니다.   
+> Xcode에서 지원되는 마크다운 언어에 대한 문서를 확인하고 code snippet으로 추가해 사용한다면 매우 유용할 것 같습니다.
+> 마크다운 언어를 잘 사용한다면, 제가 만든 API나 엔티티도 다른 사람에게는 iOS 프레임워크 라이브러리처럼 기깔나게 보여질 수 있겠다는 생각이 드네요!
+
+---
+
+
+
+
+
 
 <br>
 
-내용이 길어질 것 같아서 3개의 파트로 나눠서 작성하도록 하겠습니다.
-
+내용이 길어질 것 같아서 3개의 파트로 나눠서 작성하도록 하겠습니다.   
 다음 포스트는 이름 지정(Naming)입니다 😎
+
+<br>
 
 ## 레퍼런스
 
 - [[원문] Swift API Design Guidelines](https://swift.org/documentation/api-design-guidelines/)
-- [[번역] Swift API Design Guidelines](http://minsone.github.io/programming/translate-swift-api-design-guideline)
+- [[번역] Swift API Design Guidelines](https://minsone.github.io/swift-internals/api-design-guidelines/)
