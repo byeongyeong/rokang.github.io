@@ -147,32 +147,11 @@
 <h3 id="2-target에서-main-interface에-지정된-main-삭제빈-상태로-만듬">2. Target에서 Main Interface에 지정된 Main 삭제(빈 상태로 만듬)</h3>
 <h3 id="3-infoplist에서-application-scene-manifest--scene-configuration--application-session-rule--item-0--storyboard-name-main-삭제">3. info.plist에서 Application Scene Manifest &gt; Scene Configuration &gt; Application Session Rule &gt; Item 0 &gt; Storyboard Name: Main 삭제</h3>
 <h3 id="4-appdelegate의-didfinishlaunchingwithoptions-메서드에-코드-추가">4. AppDelegate의 didFinishLaunchingWithOptions 메서드에 코드 추가</h3>
-<noscript><pre>func application(_ application: UIApplication, 
-                 didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -&gt; Bool {
-  // ...
-  if #available(iOS 13.0, *) {
-    // SceneDelegate에서 진행 됨
-  } else if #available(iOS 11.0, *) {
-    let window = UIWindow(frame: UIScreen.main.bounds)
-    self.window = window
-
-    let launchVC = LaunchViewController()
-    self.window?.rootViewController = launchVC
-    self.window?.makeKeyAndVisible()
-  }
-}
-</pre></noscript>
+<noscript><pre>404: Not Found</pre></noscript>
 <script src="https://gist.github.com/RoKang/86c78c9975b25be0efa74222f2d16933.js"> </script>
 
 <h3 id="5-scenedelegate의-willconnectto-메서드에-코드-추가">5. SceneDelegate의 willConnectTo 메서드에 코드 추가</h3>
-<noscript><pre>func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-  if let windowScene = scene as? UIWindowScene {
-    self.window = UIWindow(windowScene: windowScene)
-    let launchVC = LaunchViewController()
-    self.window?.rootViewController = launchVC
-    self.window?.makeKeyAndVisible()
-  }
-}</pre></noscript>
+<noscript><pre>404: Not Found</pre></noscript>
 <script src="https://gist.github.com/RoKang/4291c34109ea5d3b0b17b52c6c4db0f2.js"> </script>
 
 <p>4번과 5번은 iOS Deployment Target이 13 이전이고 SceneDelegate를 살리기 위해서 작성하는 코드입니다. 
