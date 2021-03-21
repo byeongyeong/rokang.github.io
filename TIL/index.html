@@ -1,0 +1,72 @@
+---
+layout: page
+title: TIL
+permalink: /til/
+---
+
+{% assign count = 0 %}
+
+<!-- tag에 TIL이 포함된 포스트 개수만 가져옴 -->
+{% for post in site.posts %}
+    {% if post.tags contains "TIL" %}
+        {% assign count = count | plus: 1 %}
+    {% endif %}
+{% endfor %}
+
+{% if count == 0 %}
+    <h2>작성된 TIL이 없습니다.</h2>
+{% else %}
+    <ul class="til">
+        {% for post in site.posts %}
+            {% if post.tags contains "TIL" %}
+                <!-- 가장 최근 포스트의 경우 next가 없기 때문에 날짜 강제 생성 -->
+                {% unless post.next %}
+                    <h2>{{ post.date | date: '%Y-%m' }}</h2>
+                {% else %}
+                    {% capture ym %}{{ post.date | date: '%Y-%m' }}{% endcapture %}
+                    {% capture nym %}{{ post.next.date | date: '%Y-%m' }}{% endcapture %}
+                    <!-- 날짜상 이전 포스트와 비교 시, %Y-%m가 다를 때 날짜 헤더 추가 -->
+                    {% if ym != nym %}
+                        <h2>{{ post.date | date: '%Y-%m' }}</h2>
+                    {% endif %}
+                {% endunless %}
+                
+                <li>
+                    {% if post.link %}
+                    <a href="{{ post.link }}">
+                    {% else %}
+                    <a href="{{ site.baseurl }}{{ post.url }}">
+                    {% endif %}
+                        {{ post.title }}
+                    </a>
+                    <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+                </li>
+            {% endif%}
+        {% endfor %}
+    </ul>
+{% endif %}
+
+<!-- <ul class="archive">
+    {% for post in site.posts %}
+        {% unless post.next %}
+        <h2>{{ post.date | date: '%Y' }}</h2>
+        {% else %}
+        {% capture year %}{{ post.date | date: '%Y' }}{% endcapture %}
+        {% capture nyear %}{{ post.next.date | date: '%Y' }}{% endcapture %}
+        {% if year != nyear %}
+        <h2>{{ post.date | date: '%Y' }}</h2>
+        {% endif %}
+        {% endunless %}
+
+        <li>
+            {% if post.link %}
+            <a href="{{ post.link }}">
+                {% else %}
+                <a href="{{ site.baseurl }}{{ post.url }}">
+                    {% endif %}
+                    {{ post.title }}
+                </a>
+                <time>{{ post.date | date: "%Y-%m-%d" }}</time>
+        </li>
+    {% endfor %}
+</ul> -->

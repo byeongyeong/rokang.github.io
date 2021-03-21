@@ -2,6 +2,14 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
+        <loc>http://localhost:4000/til-test/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/til-test2/</loc>
+    </url>
+    
+    <url>
         <loc>http://localhost:4000/monad/</loc>
     </url>
     
@@ -58,6 +66,22 @@
     
     
     <url>
+        <loc>http://localhost:4000/til/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
         <loc>http://localhost:4000/archive/</loc>
     </url>
     
@@ -73,14 +97,6 @@
     
     
     
-    <url>
-        <loc>http://localhost:4000/</loc>
-    </url>
-    
-    
-    
-    
-    
     
     
     
@@ -89,6 +105,14 @@
     
     <url>
         <loc>http://localhost:4000/page2/</loc>
+    </url>
+    
+    
+    
+    
+    
+    <url>
+        <loc>http://localhost:4000/page3/</loc>
     </url>
     
     

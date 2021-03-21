@@ -526,6 +526,17 @@ nav a {
   color: #495057;
 }
 
+.til a {
+  color: #343a40;
+}
+
+.til time {
+  color: #868e96;
+  font-size: 14px;
+  font-weight: 300;
+  margin-left: 3px;
+}
+
 .archive a {
   color: #343a40;
 }

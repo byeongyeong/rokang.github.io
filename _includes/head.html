@@ -2,7 +2,10 @@
   <title>
     {% if page.title %}
 
-      {% if page.title == "About" %}
+      {% if page.title == "TIL" %}
+        {{ site.name }} - {{ page.title }}
+
+      {% elsif page.title == "About" %}
         {{ site.name }} - {{ page.title }}
 
       {% elsif page.title == "Archive" %}
