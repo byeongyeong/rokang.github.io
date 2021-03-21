@@ -1,3 +1,2 @@
-# Rokang's github page
-
-Go to [my blog](https://byeongyeong.kr)
+# 병영의 블로그
+[https://byeongyeong.kr](https://byeongyeong.kr)
