@@ -1,0 +1,5 @@
+I"<p>iOS 개발을 하다보면 Simulator에서는 할 수 없고 디바이스에서만 가능한 작업들이 있다.
+간단하게 Xcode Simulator로 할 수 있는 것과 할 수 없는 것을 알아본다.</p>
+
+<h2 id="frame과-bounds">Frame과 Bounds</h2>
+:ET
