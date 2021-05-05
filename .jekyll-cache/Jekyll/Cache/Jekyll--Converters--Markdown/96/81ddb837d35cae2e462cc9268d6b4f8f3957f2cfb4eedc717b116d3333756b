@@ -1,0 +1,55 @@
+I"�	<p>iOS 개발을 하다보면 Simulator에서는 할 수 없고 디바이스에서만 가능한 작업들이 있다.
+간단하게 Xcode Simulator로 할 수 있는 것과 할 수 없는 것을 알아본다.</p>
+
+<h2 id="simulator-user-guide">Simulator User Guide</h2>
+<p>애플에서 제공하는 <a href="https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator/TestingontheiOSSimulator.html">Simulator User Guide</a>를 보면 Simulator에서 테스팅과 디버깅을 할 때 참고할만한
+내용을 파악할 수 있다. 또한 Introduction 페이지에서 나온 디바이스 테스팅과의 하드웨어 차이점, API 차이점을 통해 Simulator에서 할 수 없는 것을 알 수 있다.</p>
+
+<h2 id="하드웨어-차이점">하드웨어 차이점</h2>
+<ul>
+  <li><strong>모션 미지원(가속도계, 자이로스코프)</strong>
+    <ul>
+      <li>가속도 센서: 3-axis 축의 디바이스 이동 값을 측정. 걷기나 달리기 측정에 사용되는 센서</li>
+      <li>자이로스코프 센서: 3-axis 축을 측정해서 각속도 값을 구하고, 그 각속도 값을 누적해서 움직인 총 각도를 구함. 자세제어에 사용되는 센서</li>
+    </ul>
+  </li>
+  <li><strong>오디오, 비디오 입력 미지원(카메라, 마이크)</strong></li>
+  <li><strong>근접 센서 미지원</strong>
+    <ul>
+      <li>전화 중에 귀를 화면에 가까이 대면 근접 센서가 인식해서 화면을 끔</li>
+    </ul>
+  </li>
+  <li><strong>기압 센서 미지원</strong>
+    <ul>
+      <li>건강앱에서 활용</li>
+    </ul>
+  </li>
+  <li><strong>주변 광 센서 미지원</strong>
+    <ul>
+      <li>주변 밝기에 따라 화면 밝기 자동 조정</li>
+    </ul>
+  </li>
+  <li><strong>블루투스 미지원</strong>
+    <ul>
+      <li>External Accessory 프레임워크도 사용 불가</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="api-차이점">API 차이점</h2>
+<ul>
+  <li>Apple 푸시 알림 미지원(받기, 보내기 둘 다)</li>
+  <li>사진, 연락처, 캘린더, Reminders 접근 알림 미지원</li>
+  <li>UIBackgroundModes key 미지원</li>
+  <li>Handoff 미지원</li>
+</ul>
+
+<h2 id="framework-차이점">Framework 차이점</h2>
+<ul>
+  <li>External Accessory 미지원</li>
+  <li>IOSurface 미지원</li>
+  <li>Media Player 미지원</li>
+  <li>Message UI 미지원</li>
+  <li>UIKit에 포함되어있는 UIVideoEditorController class 미지원</li>
+</ul>
+:ET
