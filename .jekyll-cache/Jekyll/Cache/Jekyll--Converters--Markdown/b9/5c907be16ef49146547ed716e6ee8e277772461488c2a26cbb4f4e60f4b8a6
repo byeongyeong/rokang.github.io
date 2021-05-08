@@ -1,0 +1,153 @@
+I""!<p>iOS 개발을 하다보면 Simulator에서는 할 수 없고 디바이스에서만 가능한 작업들이 있다.
+간단하게 Xcode Simulator로 할 수 있는 것과 할 수 없는 것을 알아본다.</p>
+
+<h2 id="알아보기-전에">알아보기 전에</h2>
+<p>Xcode Simulator는 Emulator가 아니다. 실제 디바이스를 최대한 모방하여 재현하고자 하는 목적이 있는 Emulator와 달리,
+Simulator는 말 그대로 <strong>시뮬레이션</strong>이 목적이다. 시뮬레이션하는 디바이스의 주요 특성만을 재현해주는 것 뿐이다. 그래서 Xcode Simulator로만
+테스트를 끝내서는 안된다. 실제 디바이스에서 모든 테스트 항목이 정상적으로 동작한다고 보장할 수 없기 때문이다.</p>
+
+<p>Xcode Simulator는 CPU, 메모리, 네트워크 등 여러 측면에서 디바이스보다 더 유리한 조건을 갖고있는 것이 보통이기 때문에
+이 부분을 항상 유의하며 Simulator 사용해야한다.</p>
+
+<p><br /></p>
+
+<h2 id="simulator-user-guide">Simulator User Guide</h2>
+<p>애플에서 제공하는 <a href="https://developer.apple.com/library/archive/documentation/IDEs/Conceptual/iOS_Simulator_Guide/TestingontheiOSSimulator/TestingontheiOSSimulator.html">Simulator User Guide</a>를 보면 Simulator에서 테스팅과 디버깅을 할 때 참고할만한
+내용을 파악할 수 있다. 또한 Introduction 페이지에서 디바이스 테스팅과는 다르게 Simulator에서 할 수 없는 것들을 확인할 수 있다.</p>
+
+<h3 id="하드웨어-차이점으로-인해-simulator에서-할-수-없는-것">하드웨어 차이점으로 인해 Simulator에서 할 수 없는 것</h3>
+<ul>
+  <li><code class="highlighter-rouge">모션 미지원(가속도계, 자이로스코프)</code>
+    <ul>
+      <li>가속도 센서: 3-axis 축의 디바이스 이동 값을 측정. 걷기나 달리기 측정에 사용되는 센서</li>
+      <li>자이로스코프 센서: 3-axis 축을 측정해서 각속도 값을 구하고, 그 각속도 값을 누적해서 움직인 총 각도(회전값)를 구함. 자세제어나 회전값 측정에 사용되는 센서</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">오디오, 비디오 입력 미지원(카메라, 마이크)</code></li>
+  <li><code class="highlighter-rouge">근접 센서 미지원</code>
+    <ul>
+      <li>전화 중에 귀를 화면에 가까이 대면 근접 센서가 인식해서 화면을 끔</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">기압 센서 미지원</code>
+    <ul>
+      <li>건강앱에서 활용</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">주변 광 센서 미지원</code>
+    <ul>
+      <li>주변 밝기에 따라 화면 밝기 자동 조정</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">블루투스 미지원</code>
+    <ul>
+      <li>External Accessory 프레임워크도 사용 불가</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="api-차이점으로-인해-simulator에서-할-수-없는-것">API 차이점으로 인해 Simulator에서 할 수 없는 것</h3>
+<ul>
+  <li><code class="highlighter-rouge">Apple 푸시 알림 미지원(받기, 보내기 둘 다 지원하지 않음)</code></li>
+  <li><code class="highlighter-rouge">사진, 연락처, 캘린더, Reminders 접근 알림 미지원</code></li>
+  <li><code class="highlighter-rouge">UIBackgroundModes key 미지원</code>
+    <ul>
+      <li>UIBackgroundModes: 백그라운드에서 실행되는 앱에서 제공하는 서비스</li>
+      <li>Possible Values(Key List) -&gt; <a href="https://developer.apple.com/documentation/bundleresources/information_property_list/uibackgroundmodes">공식문서</a>
+        <ul>
+          <li>audio</li>
+          <li>location</li>
+          <li>voip</li>
+          <li>external-accessory</li>
+          <li>bluetooth-central(advertising signal 주기적으로 스캔하는 디바이스)</li>
+          <li>bluetooth-peripheral(advertising signal 주기적으로 내보내는 디바이스)</li>
+          <li>fetch(컨텐츠 업데이트)</li>
+          <li>remote-notification</li>
+          <li>processing(백그라운드 태스크 실행)</li>
+        </ul>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Handoff 미지원</code>
+    <ul>
+      <li>Handoff를 지원하는 앱으로 Apple 기기간에 작업 전환이 가능함</li>
+      <li>크롬을 Mac이나 iPhone 간에 서로 전환하여 오픈할 수 있는 기능이 Handoff</li>
+    </ul>
+  </li>
+</ul>
+
+<h3 id="framework-차이점으로-인해-simulator에서-할-수-없는-것">Framework 차이점으로 인해 Simulator에서 할 수 없는 것</h3>
+<ul>
+  <li><code class="highlighter-rouge">External Accessory 미지원</code></li>
+  <li><code class="highlighter-rouge">IOSurface 미지원</code>
+    <ul>
+      <li>다중 프로세스가 프레임버퍼(화면에 그려질 화면 전체에 대한 정보를 담는 메모리)나 텍스처를 공유하는 프레임워크</li>
+      <li>이미지 메모리를 더 효울적으로 관리하게 해줄 수 있다능… 그런… 거랍디다…</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Media Player 미지원</code>
+    <ul>
+      <li>앱에있는 노래나 팟캐스트, 오디오북 등의 Media 컨텐츠를 찾고 실행할 수 있는 프레임워크</li>
+      <li>MPMusicPlayerController로 현재 재생 중인 Media item로 가져올 수 있다고 한다… 오…</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Message UI 미지원</code>
+    <ul>
+      <li>MFMailComposeViewController, MFMessageComposeViewController로 앱 내에서 email, SMS 처리 가능한 프레임워크</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">UIKit에 포함되어있는 UIVideoEditorController class 미지원</code>
+    <ul>
+      <li>UIVideoEditorController는 말그대로 비디오 수정이 가능… 오… 처음 알게된 프레임워크</li>
+    </ul>
+  </li>
+</ul>
+
+<p><br /></p>
+
+<h2 id="추가-simulator에서도-할-수-있는-것">추가) Simulator에서(도) 할 수 있는 것</h2>
+<ul>
+  <li><code class="highlighter-rouge">네트워크 상태 변경</code>
+    <ul>
+      <li><strong>Additional Tools for Xcode</strong> 중에서 <strong>Network Link Conditioner</strong>를 설치하면 다양한 네트워크 환경으로 변경하여 테스트가 가능</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Attach to Process by PID or Name...</code>
+    <ul>
+      <li>앱이 비활성화되어 있는 상태에서 딥링크나 유니버셜링크로 앱 랜딩을 테스트해보고 싶을 때 이 기능을 사용하면 앱이 시작될 때 Xcode Debugger가 자동으로 Attach 됨</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Safari Debugging</code>
+    <ul>
+      <li>웹 인스펙터로 웹뷰를 테스트를 해보고 싶을 때 Safari를 사용하는데, 디바이스는 잘 안될 때가 있음</li>
+      <li>그럴 때 Simulator로 테스트하면 조금 더 편함</li>
+    </ul>
+  </li>
+</ul>
+
+<h2 id="추가-simulator에서-할-수-없는-것">추가) Simulator에서 할 수 없는 것</h2>
+<ul>
+  <li><code class="highlighter-rouge">IDFA 수집</code>
+    <ul>
+      <li>IDFA(ID For Advertisers: 광고식별자)는 실제 디바이스에서만 가져올 수 있음</li>
+      <li>
+        <div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">AdSupport</span>
+<span class="c1">// "00000000-0000-0000-0000-000000000000"</span>
+<span class="nf">print</span><span class="p">(</span><span class="kt">ASIdentifierManager</span><span class="o">.</span><span class="nf">shared</span><span class="p">()</span><span class="o">.</span><span class="n">advertisingIdentifier</span><span class="o">.</span><span class="n">uuidString</span><span class="p">)</span>
+</code></pre></div>        </div>
+      </li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">Face ID 테스트</code>
+    <ul>
+      <li>단, <strong>인식됨</strong> 혹은 <strong>인식 안됨</strong> 으로 처리할 수는 있음</li>
+    </ul>
+  </li>
+  <li><code class="highlighter-rouge">faceUp, faceDown</code>
+    <ul>
+      <li>Device Orientation에서 portrait, portraitUpsideDown, landscapeLeft, landscapeRight는 테스트해볼 수 있지만,
+ faceUp, faceDown는 테스트해볼 수 없음</li>
+    </ul>
+  </li>
+</ul>
+:ET
