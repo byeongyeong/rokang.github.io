@@ -1,0 +1,41 @@
+I"�<p>앱이 Foreground(Active, inActive)에 있을 때와 Background에 있을 때의 차이점을 알아본다.
+각 상태에서 어떤 일을 할 수 있고 할 수 없는 지에 대해 파악하는 것은 실제 개발을 할 때 매우 중요하다.</p>
+
+<h2 id="ios-앱-라이프사이클">iOS 앱 라이프사이클</h2>
+<p>iOS 13에서 Scene이 도입되면서 앱은 Scene-based App과 App-based App으로 나뉜다.
+그에 따라 라이프사이클 이벤트에 대응되는 객체도 UISceneDelegate, UIApplicationDelegateㄹ로 나뉘는데,
+Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based App 기준으로 iOS 앱의 라이프사이클을 알아본다.</p>
+
+<p align="center">
+   <img src="../images/2021-05-08-til-20210508/1.png" width="270" />
+   <em>출처: developer apple</em>
+</p>
+
+<p>https://eunjin3786.tistory.com/163
+https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle</p>
+
+<h2 id="foreground-제약사항">Foreground 제약사항</h2>
+<p>더 효율적인 작업을 위해 Qos(Quality of service)를 고려해야한다.
+더 깊은 내용은 추후 정리할 예정. 컨셉만 소개</p>
+
+<p>https://zeddios.tistory.com/521</p>
+
+<h2 id="background-제약사항">Background 제약사항</h2>
+<p>백그라운드에서 약간의 작업이 필요할 때
+https://hamait.tistory.com/715</p>
+
+<p>NSURLSession로 다운로드나 전송할 때도 백그라운드에서 별도의 세팅을 해주어야 함
+https://rhammer.tistory.com/109</p>
+
+<p>백그라운드 모드를 활용해야 원하는 Task를 수행할 수 있음
+https://hamait.tistory.com/715</p>
+
+<p>보통 뭐 리소스 제약사항임
+https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background</p>
+
+<p>저전력모드에서 임의로 백그라운드 태스킹이 종료될 수 있음
+https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html#//apple_ref/doc/uid/TP40015243-CH31-SW1</p>
+
+<h2 id="결론">결론</h2>
+<p>백그라운드 환경에서의 제약사항이 많은 만큼 어떤 작업을 적절히 수행하기 위한 방법을 잘 파악하고 있어야함.</p>
+:ET
