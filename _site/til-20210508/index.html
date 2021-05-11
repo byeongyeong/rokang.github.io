@@ -187,39 +187,6 @@ Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based �
 <h4 id="suspended">Suspended</h4>
 <p>App이 Background에서 Task를 끝내고 활동을 멈춘 상태. 메모리가 부족할 때 시스템에 의해 강제종료될 수 있는 상태.</p>
 
-<p>각 상태에 대한 간략한 정리</p>
-
-<p>대부분의 상태 전환은 AppDelegate객체의 메소드 호출을 거칩니다. AppDelegate 객체는 UIResponder, UIApplicationDelegate를 상속 및 델리게이트 참조하고 있습니다.
-UIApplicationDelegate은 UIApplication 객체의 작업에 개발자가 접근할 수 있도록 하는 메소드들을 담고 있습니다.
-해당 메소드는 다음번에 정리</p>
-
-<p>https://eunjin3786.tistory.com/163
-https://developer.apple.com/documentation/uikit/app_and_environment/managing_your_app_s_life_cycle</p>
-
-<h2 id="foreground-제약사항">Foreground 제약사항</h2>
-<p>더 효율적인 작업을 위해 Qos(Quality of service)를 고려해야한다.
-더 깊은 내용은 추후 정리할 예정. 컨셉만 소개</p>
-
-<p>https://zeddios.tistory.com/521</p>
-
-<h2 id="background-제약사항">Background 제약사항</h2>
-<p>백그라운드에서 약간의 작업이 필요할 때
-https://hamait.tistory.com/715</p>
-
-<p>NSURLSession로 다운로드나 전송할 때도 백그라운드에서 별도의 세팅을 해주어야 함
-https://rhammer.tistory.com/109</p>
-
-<p>백그라운드 모드를 활용해야 원하는 Task를 수행할 수 있음
-https://hamait.tistory.com/715</p>
-
-<p>보통 뭐 리소스 제약사항임
-https://developer.apple.com/documentation/uikit/app_and_environment/scenes/preparing_your_ui_to_run_in_the_background</p>
-
-<p>저전력모드에서 임의로 백그라운드 태스킹이 종료될 수 있음
-https://developer.apple.com/library/archive/documentation/Performance/Conceptual/EnergyGuide-iOS/LowPowerMode.html#//apple_ref/doc/uid/TP40015243-CH31-SW1</p>
-
-<h2 id="결론">결론</h2>
-<p>백그라운드 환경에서의 제약사항이 많은 만큼 어떤 작업을 적절히 수행하기 위한 방법을 잘 파악하고 있어야함.</p>
 
   </div>
 
