@@ -172,10 +172,10 @@ Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based �
   <li><code class="highlighter-rouge">Suspended</code></li>
 </ol>
 
-<h4 id="not-running">Not Running</h4>
+<h4 id="1-not-running">1. Not Running</h4>
 <p>App이 실행되지 않은 상태로 App이 실행되기 전이거나 혹은 실행되었지만 System에 의해 종료된 상태.</p>
 
-<h4 id="inactiveforeground">Inactive(Foreground)</h4>
+<h4 id="2-inactiveforeground">2. Inactive(Foreground)</h4>
 <p>App이 실행 중이지만 이벤트를 받고있지 않은 상태. Inactive에 해당되는 케이스는 아래와 같음.</p>
 <ul>
   <li>앱 실행 중 전화가 왔을 때</li>
@@ -185,18 +185,17 @@ Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based �
   <li>앱 실행 중 홈버튼을 눌러 Background 상태로 진입하기 전</li>
 </ul>
 
-<h4 id="activeforeground">Active(Foreground)</h4>
+<h4 id="3-activeforeground">3. Active(Foreground)</h4>
 <p>App이 실질적으로 활동하고 있는 상태로 Inactive가 아닌 Foreground 상태.</p>
 
-<h4 id="background">Background</h4>
+<h4 id="4-background">4. Background</h4>
 <p>Foreground 상태에서 홈버튼을 누르거나 전원버튼을 눌렀을 때 실행되는 상태.</p>
 <ul>
   <li>App이 Background에서 Task를 실행하고 있는 상태</li>
   <li>여러 방법으로 Background에서 Task를 실행하도록 할 수 있음</li>
-  <li>보통 어느정도 시간이 지나면(최대 30초로 알려짐) 시스템이 자동으로 Suspend 상태로 변경함</li>
 </ul>
 
-<h4 id="suspended">Suspended</h4>
+<h4 id="5-suspended">5. Suspended</h4>
 <p>App이 Background에서 Task를 끝내고 활동을 멈춘 상태</p>
 <ul>
   <li>App의 Snapshot을 생성함. 앱 스위쳐를 열면 Suspend 상태의 앱 Snapshot을 확인할 수 있음</li>
