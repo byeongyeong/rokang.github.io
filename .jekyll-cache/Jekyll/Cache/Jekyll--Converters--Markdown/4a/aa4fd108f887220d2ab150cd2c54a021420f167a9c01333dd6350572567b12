@@ -1,149 +1,7 @@
-<!DOCTYPE html>
-<html>
-  <head>
-  <title>
-    
-
-      
-        iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?
-
-      
-
-    
-  </title>
-
-  <meta charset="utf-8" />
-<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
-<meta http-equiv='X-UA-Compatible' content='IE=edge'>
-<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
-<meta name="author" content="강병영" />
-
-
-    <meta name="description" content="앱이 Foreground에 있을 때와 Background에 있을 때의 차이점을 알아본다.
-각 상태에서 어떤 일을 할 수 있고 할 수 없는 지에 대해 파악하는 것은 실제 개발을 할 때 매우 중요하다.
-" />
-    <meta property="og:description" content="앱이 Foreground에 있을 때와 Background에 있을 때의 차이점을 알아본다.
-각 상태에서 어떤 일을 할 수 있고 할 수 없는 지에 대해 파악하는 것은 실제 개발을 할 때 매우 중요하다.
-" />
-
-
-
-    <meta property="og:type" content="article">
-    <meta property="og:title" content="강병영 - iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?" />
-    <meta property="og:url" content="http://localhost:4000/til-20210508/">
-    <meta property="og:image" content="http://rokang.github.io/images/og_image.png">
-
-
-<meta property="og:image:width" content="2400"/>
-<meta property="og:image:height" content="1600"/>
-<meta property="og:image:type" content="image/png">
-
-<meta property="og:site_name" content="뱅캉 - cooool">
-
-<meta name="google-site-verification" content="t8IGfCWvNUUkdB4LZkgdJozlUQ0CEkIcOtuiQV3qiQA" />
-<meta name="google-site-verification" content="rMIHrIDY7gLS2tLF4Dq_mpy8-Z-dAQ-vaJlL5s5Mpe4" />
-  <!-- Async font loading -->
-<script>
-  window.WebFontConfig = {
-      custom: {
-          families: ['Noto Sans KR'],
-        //   families: ['Spoqa Han Sans:100,300,400,700'],
-          // urls: ['https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css']
-          urls: ['https://fonts.googleapis.com/earlyaccess/notosanskr.css']
-        //   urls: ['https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css']
-      },
-      timeout: 60000
-  };
-  (function(d) {
-      var wf = d.createElement('script'), s = d.scripts[0];
-      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
-      s.parentNode.insertBefore(wf, s);
-  })(document);
-</script>
-
-  <!--[if lt IE 9]>
-    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
-  <![endif]-->
-
-  <link rel="stylesheet" type="text/css" href="/style.css" />
-  <link rel="alternate" type="application/rss+xml" title="강병영 - 해보고 후회하기" href="/feed.xml" />
-  <link rel="shortcut icon" href="../images/circle-photoman.ico">
-
-  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
-</head>
-  <body>
-    <div class="wrapper-masthead">
-  <div class="container">
-    <header class="masthead clearfix">
-      
-        <a href="/" class="site-avatar"><img src="https://lh3.googleusercontent.com/-LITB2XPacmw/XKDlAAeQ-mI/AAAAAAAAAC4/0RaeagHdwjABcaTOCYgvh1N9XO2lSijwwCEwYBhgLKs0DAL1OcqwASHNlJBabvWRNzO9amoXI9XMoKOgoY8eph6PZ8UibTzv4-gIuLE0FD3yOMfaIaGoG2KnNNOvoNjjTtbrPW-Qjj63-ddkYvDGrXkZ1sXGpO9yO_0tc04Ql-y_wy6H2aoqv53pYhdJ_TO50iRGKtdLPnvl4x3lwnH-rIR7hixpDyYNDNgH4stYLfQ337WdMi2Gk2VCKIOHv_xsArEciGmqE96BkjCgPUwsAIuotfOuOx14M7RpCHXG5xpAZcj6A00t0wDWu9Bp_Sr1lWvvmimYrUAXDiC2nYBejOLTMrgnUZ97OQVnMic0Mvm-BewUtk7PsVyfbQCO-C-gFzPvKPbh_OZJ5m_bWwsAI-mM-LF8sgO55oHKNO4ADdzbxUzl2VidrJCJjEXpn9N6lwsf4L3tudDExPEmm0VsQCBsqr5yMFKodFz6TnE8wVThfi1E1T1mjQfpR4J6-HiAdCPSOFMgIGuxUfZWIwMVa25AcQdlz8bvdX3_2hbxF1MBk02jei5lmI03AbdXFOl-36SJhZyzRYixcmJqW0xtvCqUCd_vb1xG_mdtw4TDQM_axEVjWCKSsChakvbRKSJojA2oO3vOMEFNgnQH_FJoww8mD9gU/w139-h140-p/photoman.png" /></a>
-      
-
-      <div class="site-info">
-        <h1 class="site-name"><a href="/">강병영</a></h1>
-        <p class="site-description">해보고 후회하기</p>
-      </div>
-
-      <nav>
-        
-        
-        <a href="/">Home</a>
-        
-        
-        
-        <a href="/til">TIL</a>
-        
-        
-        
-        <a href="/archive">Archive</a>
-        
-        
-        
-        <a href="/about">About</a>
-        
-        
-      </nav>
-    </header>
-  </div>
-</div>
-
-    <div id="main" role="main" class="container">
-      <article class="post">
-  <h1>iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?</h1>
-
-  <div>
-    <span class="date">
-      2021-05-08
-    </span>
-
-    <ul class="tag">
-      
-      <li>
-        <a href="http://localhost:4000/tags#TIL">
-          TIL
-        </a>
-      </li>
-      
-      <li>
-        <a href="http://localhost:4000/tags#iOS App Lifecycle">
-          iOS App Lifecycle
-        </a>
-      </li>
-      
-      <li>
-        <a href="http://localhost:4000/tags#iOS Background Mode">
-          iOS Background Mode
-        </a>
-      </li>
-      
-    </ul>
-  </div>
-
-  <div class="entry">
-    <p>앱이 Foreground에 있을 때와 Background에 있을 때의 차이점을 알아본다.
+I"�R<p>앱이 Foreground에 있을 때와 Background에 있을 때의 차이점을 알아본다.
 각 상태에서 어떤 일을 할 수 있고 할 수 없는 지에 대해 파악하는 것은 실제 개발을 할 때 매우 중요하다.</p>
 
-<h2 id="️-ios-앱-라이프사이클">♻️ iOS 앱 라이프사이클</h2>
+<h2 id="ios-앱-라이프사이클">iOS 앱 라이프사이클</h2>
 <p>iOS 13에서 Scene이 도입되면서 앱은 Scene-based 앱과 그렇지 않은 일반 앱으로 나뉜다.
 그에 따라 라이프사이클 이벤트에 대응되는 객체도 UISceneDelegate, UIApplicationDelegate로 나뉘는데,
 Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based 기준으로 iOS 앱의 라이프사이클을 알아본다.</p>
@@ -202,7 +60,7 @@ Scene에 관련된 내용은 나중에 정리하도록하고 먼저 App-based �
   <li>메모리가 부족할 때 시스템에 의해 강제종료(Not Running)될 수 있음. 강제종료 된 앱은 재실행 시, 찍어둔 Snpashot 상태로 돌아오지 않고 앱을 재실행 함</li>
 </ul>
 
-<h2 id="-foreground-상태에서의-제약사항">📘 Foreground 상태에서의 제약사항</h2>
+<h2 id="foreground-상태에서의-제약사항">Foreground 상태에서의 제약사항</h2>
 <p>앱의 Foreground, Background 상태가 어떤 것인지 파악했다. 이제 각 상태에서 생기는 제약사항에 대해 알아본다.</p>
 
 <p>Foreground 상태의 제약사항에는 QoS가 있다.
@@ -211,7 +69,7 @@ QoS로 작업의 priority를 설정하면 해당 작업의 중요도를 시스�
 당연하게도 priority가 높을 수록 더 많은 리소스를 할당받으면서 더 빠르게 수행될 것이다. QoS에 대해서는 알아봐야 할 내용이 많기 때문에
 별도의 포스트로 정리하고자 한다. 결론은, Foreground에서 수행되는 작업들에 적절한 QoS를 설정하면 더 효율적인 앱을 만들 수 있다는 것이다.</p>
 
-<h2 id="-background-상태에서의-제약사항">📗 Background 상태에서의 제약사항</h2>
+<h2 id="background-상태에서의-제약사항">Background 상태에서의 제약사항</h2>
 <p>Background는 아무래도 제약사항이 많을 수 밖에 없다.
 시스템 상 Background에 있는 앱은 중요성이 떨어지는 앱이기 때문에 많은 리소스를 할당하지 않는다.
 또한 Foreground 앱보다 낮은 우선순위를 갖기 때문에 시스템 리소스가 부족할 때 필요에 따라 강제 종료되기도 한다.</p>
@@ -310,20 +168,14 @@ OS는 Background 전송 작업을 관리하기 위해 이 Daemon을 실행하는
 
 <h4 id="background-modes"><code class="highlighter-rouge">Background Modes</code></h4>
 <p>Apple에서 지원하는 Background Mode를 사용하는 방법이다. UIBackgroundModes key를 plist에 등록하여 특정 모드를 사용할 수 있다.
-Xcode 앱의 Capabilities에서 사용 가능한 Background Mode 리스트를 확인할 수 있다.</p>
+Xcode 앱의 Capabilities에서 사용 가능한 Background Mode의 리스트를 확인할 수 있다.</p>
 
-<p><br /></p>
 <p align="center">
    <img src="../images/2021-05-08-til-20210508/2.png" width="500" />
 </p>
 <p><br /></p>
 
-<h2 id="-결론">🧑🏻‍💻 결론</h2>
-<p>앱의 라이프사이클에 따른 각 상태와 Foreground, Background 상태의 제약사항을 확인했다.
-어떤 제약사항이 있으며 해당 제약사항에 대한 대응법이 무엇인지 알게 되었으니, 이에 대한 이슈가 생길 때 해결방법에 조금 더 빠르게 다가갈 수 있을 것 같다. 
-알아보는 재미가 있었다.</p>
-
-<h2 id="-레퍼런스">🔗 레퍼런스</h2>
+<h2 id="레퍼런스">레퍼런스</h2>
 <ul>
   <li><a href="https://hamait.tistory.com/715]">https://hamait.tistory.com/715</a></li>
   <li><a href="https://devmjun.github.io/archive/URLsession">https://devmjun.github.io/archive/URLsession</a></li>
@@ -331,107 +183,4 @@ Xcode 앱의 Capabilities에서 사용 가능한 Background Mode 리스트를 �
   <li><a href="https://www.andyibanez.com/posts/background-execution-in-ios/">https://www.andyibanez.com/posts/background-execution-in-ios/</a></li>
   <li><a href="https://devmjun.github.io/archive/URLsession">https://devmjun.github.io/archive/URLsession</a></li>
 </ul>
-
-  </div>
-
-  <div class="pagination">
-    
-      <span class="prev" >
-          <a href="http://localhost:4000/til-20210504/">
-          < Xcode Simulator로 할 수 있는 것과 할 수 없는 것
-          </a>
-      </span>
-    
-    
-  </div>
-
-  
-<div class="comments">
-	<div id="disqus_thread"></div>
-	<script type="text/javascript">
-
-	    var disqus_shortname = 'https-rokang-kr-1';
-
-	    (function() {
-	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
-	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
-	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
-	    })();
-
-	</script>
-	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
-</div>
-
-</article>
-
-    </div>
-
-    <div class="wrapper-footer">
-      <div class="container">
-        <footer class="footer">
-          <!-- Refer to https://codepen.io/ruandre/pen/howFi -->
-<ul class="svg-icon">
-
-  
-
-  
-
-  
-  <li><a href="mailto:bykang096@gmail.com" class="icon-8 email" title="Email"><svg viewBox="0 0 512 512"><path d="M101.3 141.6v228.9h0.3 308.4 0.8V141.6H101.3zM375.7 167.8l-119.7 91.5 -119.6-91.5H375.7zM127.6 194.1l64.1 49.1 -64.1 64.1V194.1zM127.8 344.2l84.9-84.9 43.2 33.1 43-32.9 84.7 84.7L127.8 344.2 127.8 344.2zM384.4 307.8l-64.4-64.4 64.4-49.3V307.8z"/></svg><!--[if lt IE 9]><em>Email</em><![endif]--></a></li>
-  
-
-  
-
-  
-
-  
-  <li><a href="https://github.com/byeongyeong" class="icon-13 github" title="GitHub"><svg viewBox="0 0 512 512"><path d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"/></svg><!--[if lt IE 9]><em>GitHub</em><![endif]--></a></li>
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-  
-
-</ul>
-
-
-
-<p>Theme by kiko-now</p>
-
-        </footer>
-      </div>
-    </div>
-
-    
-	<!-- Google Analytics -->
-	<script>
-		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
-		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
-		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
-		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
-
-		ga('create', 'UA-166875445-1', 'auto');
-		ga('send', 'pageview', {
-		  'page': '/til-20210508/',
-		  'title': 'iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?'
-		});
-	</script>
-	<!-- End Google Analytics -->
-
-
-  </body>
-</html>
+:ET
