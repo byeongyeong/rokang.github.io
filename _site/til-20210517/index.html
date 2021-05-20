@@ -5,7 +5,7 @@
     
 
       
-        강병영 - Archive
+        App Delegate 메서드란?
 
       
 
@@ -19,14 +19,18 @@
 <meta name="author" content="강병영" />
 
 
-    <meta name="description" content="해보고 후회하기">
-    <meta property="og:description" content="해보고 후회하기" />
+    <meta name="description" content="iOS 앱의 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들이 있다.
+이 메서드들과 함께 앱이 어떠한 실행과정을 거쳐 AppDelegate를 생성하는지까지 알아보려 한다.
+" />
+    <meta property="og:description" content="iOS 앱의 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들이 있다.
+이 메서드들과 함께 앱이 어떠한 실행과정을 거쳐 AppDelegate를 생성하는지까지 알아보려 한다.
+" />
 
 
 
     <meta property="og:type" content="article">
-    <meta property="og:title" content="강병영 - Archive" />
-    <meta property="og:url" content="http://localhost:4000/archive/">
+    <meta property="og:title" content="강병영 - App Delegate 메서드란?" />
+    <meta property="og:url" content="http://localhost:4000/til-20210517/">
     <meta property="og:image" content="http://rokang.github.io/images/og_image.png">
 
 
@@ -104,213 +108,102 @@
 </div>
 
     <div id="main" role="main" class="container">
-      <article class="page">
+      <article class="post">
+  <h1>App Delegate 메서드란?</h1>
 
-  <h1>Archive</h1>
+  <div>
+    <span class="date">
+      2021-05-17
+    </span>
+
+    <ul class="tag">
+      
+      <li>
+        <a href="http://localhost:4000/tags#TIL">
+          TIL
+        </a>
+      </li>
+      
+    </ul>
+  </div>
 
   <div class="entry">
-    
+    <p>iOS 앱의 상태 변화에 따라 다른 동작을 처리하기 위한 App Delegate 메서드들이 있다.
+이 메서드들과 함께 앱이 어떠한 실행과정을 거쳐 AppDelegate를 생성하는지까지 알아보려 한다.</p>
 
-<ul class="archive">
-  
-    
-      <h2>2021</h2>
-    
+<h2 id="ios-app의-실행과정">iOS App의 실행과정</h2>
+<p>앱의 실행과정은 아래와 같다.</p>
+<ol>
+  <li>앱의 main 함수 실행</li>
+  <li>main 함수에서 UIApplicationMain 함수 실행</li>
+  <li>UIApplicationMain 함수에서 UIApplication 싱글턴 객체 생성</li>
+  <li>생성된 UIApplication 객체는 info.plist 파일을 바탕으로 앱에 필요한 데이터와 객체를 로드</li>
+  <li>AppDelegate 객체를 생성하고 UIApplication 객체와 연결</li>
+  <li>Main Run Loop 생성 및 관리를 하면서 실행에 필요한 준비(초기 데이터 구조를 설정하거나 즉, 커스텀 코드를 작성하는 것)</li>
+  <li>앱 델리게이트의 application(_:didFinishLaunchingWithOptions:) 메소드를 호출</li>
+  <li></li>
+</ol>
 
-    <li>
-      
-      <a href="/til-20210517/">
-      
-        App Delegate 메서드란?
-      </a>
-      <time>2021-05-17</time>
-    </li>
-  
-    
-      
-      
-      
-    
+<p><br /></p>
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/1.png" width="700" />
+   <em style="font-size: 0.9em;">출처: https://oleb.net/blog/2012/02/app-launch-sequence-ios-revisited/</em>
+</p>
+<p><br /></p>
 
-    <li>
-      
-      <a href="/til-20210508/">
-      
-        iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?
-      </a>
-      <time>2021-05-08</time>
-    </li>
-  
-    
-      
-      
-      
-    
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/2.png" width="600" />
+   <em style="font-size: 0.9em;">출처: https://stackoverflow.com/questions/17366107/what-is-the-launch-sequence-of-an-ios-app</em>
+</p>
+<p><br /></p>
 
-    <li>
-      
-      <a href="/til-20210504/">
-      
-        Xcode Simulator로 할 수 있는 것과 할 수 없는 것
-      </a>
-      <time>2021-05-04</time>
-    </li>
-  
-    
-      
-      
-      
-    
+<p>두 개의 이미지를 비교해보면 공통점이 있다.</p>
+<ol>
+  <li>main 함수를 실행한다.</li>
+  <li>UIApplicationMain 함수를 실행한다.</li>
+</ol>
 
-    <li>
-      
-      <a href="/til-20210503/">
-      
-        Frame vs Bounds
-      </a>
-      <time>2021-05-03</time>
-    </li>
-  
-    
-      
-      
-      
-        <h2>2020</h2>
-      
-    
+<p>내부적으로 더 상세한 내용이 있지만 사실상 이 2개의 함수를 실행함으로써</p>
 
-    <li>
-      
-      <a href="/monad/">
-      
-        모나드란 무엇인가?
-      </a>
-      <time>2020-08-27</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/ios-start-project/">
-      
-        스토리보드없이 iOS 프로젝트를 시작하려면?
-      </a>
-      <time>2020-05-12</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/custom-view/">
-      
-        CustomView를 어떻게 만들어야 할까?
-      </a>
-      <time>2020-04-22</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/qara-soft-epilogue2/">
-      
-        2019 프로그래머스 윈터코딩 후기 - 2
-      </a>
-      <time>2020-03-03</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/qara-soft-epilogue/">
-      
-        2019 프로그래머스 윈터코딩 후기 - 1
-      </a>
-      <time>2020-03-02</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/codable/">
-      
-        Swift Codable이 무엇인가?
-      </a>
-      <time>2020-02-20</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/swift-api-design-guideline3/">
-      
-        Swift API Design Guidelines 톺아보기 - 3
-      </a>
-      <time>2020-02-19</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/swift-api-design-guideline2/">
-      
-        Swift API Design Guidelines 톺아보기 - 2
-      </a>
-      <time>2020-02-18</time>
-    </li>
-  
-    
-      
-      
-      
-    
-
-    <li>
-      
-      <a href="/swift-api-design-guideline/">
-      
-        Swift API Design Guidelines 톺아보기 - 1
-      </a>
-      <time>2020-02-17</time>
-    </li>
-  
-</ul>
+<ol>
+  <li>AppDelegate란?</li>
+  <li>AppDelegate는 어떻게 생성될까</li>
+  <li>AppDelegate의 역할</li>
+  <li>AppDelegate의 메서드</li>
+  <li>결론</li>
+  <li>레퍼런스</li>
+</ol>
 
   </div>
+
+  <div class="pagination">
+    
+      <span class="prev" >
+          <a href="http://localhost:4000/til-20210508/">
+          < iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?
+          </a>
+      </span>
+    
+    
+  </div>
+
+  
+<div class="comments">
+	<div id="disqus_thread"></div>
+	<script type="text/javascript">
+
+	    var disqus_shortname = 'https-rokang-kr-1';
+
+	    (function() {
+	        var dsq = document.createElement('script'); dsq.type = 'text/javascript'; dsq.async = true;
+	        dsq.src = '//' + disqus_shortname + '.disqus.com/embed.js';
+	        (document.getElementsByTagName('head')[0] || document.getElementsByTagName('body')[0]).appendChild(dsq);
+	    })();
+
+	</script>
+	<noscript>Please enable JavaScript to view the <a href="http://disqus.com/?ref_noscript">comments powered by Disqus.</a></noscript>
+</div>
+
 </article>
 
     </div>
@@ -375,8 +268,8 @@
 
 		ga('create', 'UA-166875445-1', 'auto');
 		ga('send', 'pageview', {
-		  'page': '/archive/',
-		  'title': 'Archive'
+		  'page': '/til-20210517/',
+		  'title': 'App Delegate 메서드란?'
 		});
 	</script>
 	<!-- End Google Analytics -->
