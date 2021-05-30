@@ -1,4 +1,4 @@
-I"�1<p>iOS 앱의 상태 변화에 따른 동작을 처리하는 App Delegate 메서드들이 있다.
+I"�7<p>iOS 앱의 상태 변화에 따른 동작을 처리하는 App Delegate 메서드들이 있다.
 이 메서드들과 함께 앱이 어떠한 실행과정을 거쳐서 AppDelegate를 생성하는지까지 알아보려한다.
 내가 원하는 동작을 효과적으로 구현하기 위해서는 iOS와 UIKit 프레임워크가 어떻게 동작하는지 이해하는게 중요하다.</p>
 
@@ -11,7 +11,7 @@
     <li>UIKit 프레임워크의 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수 실행
       <ul>
         <li>1) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 싱글턴 객체 생성</li>
-        <li>2) <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a> 객체 생성 및 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체와 연결(delegate 설정)</li>
+        <li>2) AppDelegate 객체와 연결(delegate 설정)</li>
         <li>3) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 info.plist 파일에서 앱 실행에 필요한 데이터와 객체 로드</li>
         <li>4) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 Main Event Loop를 생성하고 관리</li>
         <li>5) (Info.plist에 main storyboard 세팅된 경우) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 main NIB 파일에서 main UI 로드</li>
@@ -26,6 +26,9 @@
   </ol>
 </blockquote>
 
+<p>실행과정 플로우차트는 아래와 같다. 두 플로우차트의 차이점은 main UI를 어떤 시점에 로드하는가의 차이이다.
+첫번째 플로우차트는 main UI를 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">application(<em>:didFinishLaunchingWithOptions:)](https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application)를 실행하는 시점에 로드하고, 두번째 플로우차트는 Info.plist에 main NIB을 세팅하여 [UIApplicationMain(</em> : _ : _ : _ :)</a> 함수가 main UI 로드를 실행해주게 된다.</p>
+
 <p><br /></p>
 <p align="center">
    <img src="../images/2021-05-17-til-20210517/1.png" width="700" />
@@ -38,6 +41,8 @@
    <em style="font-size: 0.9em;">출처: https://stackoverflow.com/questions/17366107/what-is-the-launch-sequence-of-an-ios-app</em>
 </p>
 <p><br /></p>
+
+<p>이제 앱 실행과정을 하나씩 확인해본다.</p>
 
 <h3 id="1-main-함수와-uiapplicationmain">1. main 함수와 UIApplicationMain</h3>
 <p>swift에서는 main.m이 자동으로 생성되는 Objective-C와 다르게,
@@ -61,7 +66,7 @@ Appdelegate.swift의 @UIApplicationMain 어노테이션을 없애고 main.swift�
    <img src="../images/2021-05-17-til-20210517/3.png" width="700" />
 </p>
 
-<p>3,4번째 파라미터인 principalClassName와 delegateClassName 는 각각 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 클래스 이름과 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a>로 초기화될 클래스 이름이다.</p>
+<p>3,4번째 파라미터인 principalClassName와 delegateClassName 는 각각 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 클래스 이름과 AppDelegate로 초기화될 클래스 이름이다.</p>
 
 <p><br /></p>
 
@@ -80,7 +85,7 @@ Appdelegate.swift의 @UIApplicationMain 어노테이션을 없애고 main.swift�
 <ol>
   <li>유저 이벤트의 초기 라우팅 처리. UIControl 클래스의 인스턴스에 의해 전달된 이벤트 메시지를 적절한 대상 객체에 전달해줌.</li>
   <li>앱의 UIView 객체들을 확인할 수 있는 UIWindow 객체 목록을 갖고있음.</li>
-  <li>UIApplicationDelegate 프로토콜을 준수하는 Delegate(=<a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a>)를 정의함. UIApplication은 이 Delegate에 앱 시작, 메모리 부족 경고,
+  <li>UIApplicationDelegate 프로토콜을 준수하는 Delegate(=AppDelegate)를 정의함. UIApplication은 이 Delegate에 앱 시작, 메모리 부족 경고,
 앱 종료와 같은 상당히 중요한 런타임 이벤트를 알려줌으로써 적절하게 대응할 수 있도록 해줌.</li>
   <li>이메일 또는 이미지파일과 같은 리소스를 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 메서드로 처리할 수 있음. 예를 들어, email URL로 이 메서드를 호출하는 앱은 Mail 앱을 시작하고 메시지를 보여줄 수 있음.</li>
   <li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 뿐만이 아니라 UIApplication의 다른 API를 사용하면 디바이스별 동작을 관리할 수 있음.
@@ -96,10 +101,22 @@ Appdelegate.swift의 @UIApplicationMain 어노테이션을 없애고 main.swift�
   </li>
 </ol>
 
-<p>대부분의 앱은 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>을 서브클래싱 할 필요가 없꼬 시스템과 앱 사이의 상호작용을 관리하기 위해 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a>를 사용한다. 니 앱이 반드시 들어오는 이벤트를 시스템 전ㄴ에 처리해야한다면, UIApplcation을 서브클래싱하고 sendEvent나 sendAction을 오버라이딩해서 니 할일 선처리하고 super. 메서드로 시스템한테 다시 dispath 하면 된다. 되도록이면 안하는게 좋다.</p>
+<p>대부분의 앱은 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>을 서브클래싱 할 필요가 없고 시스템과 앱 사이의 상호작용을 관리하기 위해 AppDelegate를 사용한다. 만약 앱이 들어오는 이벤트를 시스템이 처리하기 전에 처리하고자 한다면, <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>을 서브클래싱하고 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623043-sendevent">sendEvent(:)</a>나 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1622946-sendaction">sendAction(_:to:from:for:)</a>을 오버라이딩해서 처리한 후, super 메서드로 시스템을 다시 호출하면 된다. 물론 되도록이면 안하는게 좋다고 한다.</p>
 
 <h2 id="appdelegate">AppDelegate</h2>
-<p>AppDelegate를 알아보기로 해놓고 너무 많은 걸 더 알아봤다. 이제 APpDelegate가 무엇인지 파악해보자</p>
+<p>이제 이 글의 주제인 AppDelegate에 대해 알아보자.</p>
+
+<p>위에서 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수가 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체와 AppDelegate 객체를 생성하여 연결(delegate)해준다는 것을 확인했다.</p>
+
+<p>이 함수는 어노테이션이 있는 곳에서 호출되고 app delegate 클래스 이름으로 AppDelegate를 전달하는 것. 
+ㅇ;에 따라 UIApplication 객체 만들어서 생명주기 관리하고 AppDelegate 만들고 연결해줌.
+그리고 앱 시작하는거지 머</p>
+
+<p>UIApplicationDelegate 채택하고 UIResponder 채택하면 됨.그리고 앱 안에서 상태변화에 응답하고 window도 생성하고 그러는거</p>
+
+<p>앱 상태는 이전 블로그 있음</p>
+
+<p>UIApplicationDelegate, UIWindow, 이런거 다시 확인해보자</p>
 
 <h2 id="appdelegate의-메서드">AppDelegate의 메서드</h2>
 <p>각 메소드가 call 되는 시점 및 어떤 행동을 하는지</p>
@@ -109,6 +126,7 @@ https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-ap
 (저장되어있는 데이터나 상태를 바탕으로 UI를 세팅. 이 단계는 inactive 상태. willFinishLaunchingWithOptions method is called after your app has been launched and its main storyboard or nib file has been loaded, but before your app’s state has been restored )</p>
 
 <h2 id="결론">결론</h2>
+<p>앱의 실행과정을 알아보면서 AppDelegate가 어떤 역할을 하고 어떤 놈인지 알아봄. 유익스</p>
 
 <h2 id="레퍼런스">레퍼런스</h2>
 <ul>
