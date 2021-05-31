@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html>
+  <head>
+  <title>
+    
+
+      
+        iOS 앱은 어떻게 실행될까?
+
+      
+
+    
+  </title>
+
+  <meta charset="utf-8" />
+<meta content='text/html; charset=utf-8' http-equiv='Content-Type'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1.0'>
+<meta name="author" content="강병영" />
+
+
+    <meta name="description" content="iOS 앱의 초기화면이 나타나기 전까지 어떠한 과정을 거치는지 알아본다.
+이 과정에서 UIApplicationMain 함수는 어떤 역할을 하고 UIApplication 객체는 무엇인지도 함께 알아본다.
+" />
+    <meta property="og:description" content="iOS 앱의 초기화면이 나타나기 전까지 어떠한 과정을 거치는지 알아본다.
+이 과정에서 UIApplicationMain 함수는 어떤 역할을 하고 UIApplication 객체는 무엇인지도 함께 알아본다.
+" />
+
+
+
+    <meta property="og:type" content="article">
+    <meta property="og:title" content="강병영 - iOS 앱은 어떻게 실행될까?" />
+    <meta property="og:url" content="http://localhost:4000/til-20210516/">
+    <meta property="og:image" content="http://rokang.github.io/images/og_image.png">
+
+
+<meta property="og:image:width" content="2400"/>
+<meta property="og:image:height" content="1600"/>
+<meta property="og:image:type" content="image/png">
+
+<meta property="og:site_name" content="뱅캉 - cooool">
+
+<meta name="google-site-verification" content="t8IGfCWvNUUkdB4LZkgdJozlUQ0CEkIcOtuiQV3qiQA" />
+<meta name="google-site-verification" content="rMIHrIDY7gLS2tLF4Dq_mpy8-Z-dAQ-vaJlL5s5Mpe4" />
+  <!-- Async font loading -->
+<script>
+  window.WebFontConfig = {
+      custom: {
+          families: ['Noto Sans KR'],
+        //   families: ['Spoqa Han Sans:100,300,400,700'],
+          // urls: ['https://fonts.googleapis.com/earlyaccess/nanummyeongjo.css']
+          urls: ['https://fonts.googleapis.com/earlyaccess/notosanskr.css']
+        //   urls: ['https://spoqa.github.io/spoqa-han-sans/css/SpoqaHanSans-kr.css']
+      },
+      timeout: 60000
+  };
+  (function(d) {
+      var wf = d.createElement('script'), s = d.scripts[0];
+      wf.src = 'https://ajax.googleapis.com/ajax/libs/webfont/1.5.18/webfont.js';
+      s.parentNode.insertBefore(wf, s);
+  })(document);
+</script>
+
+  <!--[if lt IE 9]>
+    <script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+  <![endif]-->
+
+  <link rel="stylesheet" type="text/css" href="/style.css" />
+  <link rel="alternate" type="application/rss+xml" title="강병영 - 해보고 후회하기" href="/feed.xml" />
+  <link rel="shortcut icon" href="../images/circle-photoman.ico">
+
+  <!-- Created with Jekyll Now - http://github.com/barryclark/jekyll-now -->
+</head>
+  <body>
+    <div class="wrapper-masthead">
+  <div class="container">
+    <header class="masthead clearfix">
+      
+        <a href="/" class="site-avatar"><img src="https://lh3.googleusercontent.com/-LITB2XPacmw/XKDlAAeQ-mI/AAAAAAAAAC4/0RaeagHdwjABcaTOCYgvh1N9XO2lSijwwCEwYBhgLKs0DAL1OcqwASHNlJBabvWRNzO9amoXI9XMoKOgoY8eph6PZ8UibTzv4-gIuLE0FD3yOMfaIaGoG2KnNNOvoNjjTtbrPW-Qjj63-ddkYvDGrXkZ1sXGpO9yO_0tc04Ql-y_wy6H2aoqv53pYhdJ_TO50iRGKtdLPnvl4x3lwnH-rIR7hixpDyYNDNgH4stYLfQ337WdMi2Gk2VCKIOHv_xsArEciGmqE96BkjCgPUwsAIuotfOuOx14M7RpCHXG5xpAZcj6A00t0wDWu9Bp_Sr1lWvvmimYrUAXDiC2nYBejOLTMrgnUZ97OQVnMic0Mvm-BewUtk7PsVyfbQCO-C-gFzPvKPbh_OZJ5m_bWwsAI-mM-LF8sgO55oHKNO4ADdzbxUzl2VidrJCJjEXpn9N6lwsf4L3tudDExPEmm0VsQCBsqr5yMFKodFz6TnE8wVThfi1E1T1mjQfpR4J6-HiAdCPSOFMgIGuxUfZWIwMVa25AcQdlz8bvdX3_2hbxF1MBk02jei5lmI03AbdXFOl-36SJhZyzRYixcmJqW0xtvCqUCd_vb1xG_mdtw4TDQM_axEVjWCKSsChakvbRKSJojA2oO3vOMEFNgnQH_FJoww8mD9gU/w139-h140-p/photoman.png" /></a>
+      
+
+      <div class="site-info">
+        <h1 class="site-name"><a href="/">강병영</a></h1>
+        <p class="site-description">해보고 후회하기</p>
+      </div>
+
+      <nav>
+        
+        
+        <a href="/">Home</a>
+        
+        
+        
+        <a href="/til">TIL</a>
+        
+        
+        
+        <a href="/archive">Archive</a>
+        
+        
+        
+        <a href="/about">About</a>
+        
+        
+      </nav>
+    </header>
+  </div>
+</div>
+
+    <div id="main" role="main" class="container">
+      <article class="post">
+  <h1>iOS 앱은 어떻게 실행될까?</h1>
+
+  <div>
+    <span class="date">
+      2021-05-16
+    </span>
+
+    <ul class="tag">
+      
+      <li>
+        <a href="http://localhost:4000/tags#TIL">
+          TIL
+        </a>
+      </li>
+      
+      <li>
+        <a href="http://localhost:4000/tags#UIKit">
+          UIKit
+        </a>
+      </li>
+      
+      <li>
+        <a href="http://localhost:4000/tags#iOS">
+          iOS
+        </a>
+      </li>
+      
+    </ul>
+  </div>
+
+  <div class="entry">
+    <p>iOS 앱의 초기화면이 나타나기 전까지 어떠한 과정을 거치는지 알아본다.
+이 과정에서 UIApplicationMain 함수는 어떤 역할을 하고 UIApplication 객체는 무엇인지도 함께 알아본다.</p>
+
+<h2 id="-ios-앱의-실행과정">🧩 iOS 앱의 실행과정</h2>
+<p>실행과정은 아래와 같다.</p>
+
+<blockquote>
+  <ol>
+    <li>main 함수 실행</li>
+    <li>UIKit 프레임워크의 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수 실행
+      <ul>
+        <li>1) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 싱글턴 객체 생성</li>
+        <li>2) AppDelegate 객체와 연결(delegate 설정)</li>
+        <li>3) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 info.plist 파일에서 앱 실행에 필요한 데이터와 객체 로드</li>
+        <li>4) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 Main Event Loop를 생성하고 관리</li>
+        <li>5) (Info.plist에 main storyboard 세팅된 경우) <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 객체가 main NIB 파일에서 main UI 로드</li>
+      </ul>
+    </li>
+    <li>AppDelegate의 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1623032-application">application(_:willFinishLaunchingWithOptions:)</a> 호출</li>
+    <li>AppDelegate 및 ViewControllers의 추가 메서드를 호출하여 앱 상태 복원</li>
+    <li>AppDelegate의 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application">application(_:didFinishLaunchingWithOptions:)</a> 호출</li>
+    <li>(Info.plist에 main storyboard 세팅되지 않은 경우) main UI 로드</li>
+    <li>앱 이벤트 루프에서 이벤트 핸들링 시작</li>
+    <li>앱 사용!</li>
+  </ol>
+</blockquote>
+
+<p><br /></p>
+
+<p>실행과정의 플로우차트는 아래와 같다. 두 플로우차트의 차이점은 main UI를 로드하는 시점이라고 할 수 있다.</p>
+
+<p>첫번째 플로우차트는 main UI를 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate/1622921-application">application(_:didFinishLaunchingWithOptions:)</a> 함수가 실행될 때 로드한다. 이는 앱의 Info.plist 파일에 main NIB 파일을 지정하지 않아서 main UI를 로드하기 위한 별도의 로직을 추가해야하기 때문이다.</p>
+
+<p>반면 두번째 플로우차트는 Info.plist에 main NIB을 지정한 케이스이기 떄문에 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수가 실행될 때 main UI를 로드한다.</p>
+
+<p><br /></p>
+
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/1.png" width="700" />
+   <em style="font-size: 0.7em;">첫번째 플로우차트 - 출처: Revisiting the App Launch Sequence on iOS</em>
+</p>
+<p><br /></p>
+
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/2.png" width="600" />
+   <em style="font-size: 0.7em;">두번째 플로우차트 - 출처: StackOverFlow</em>
+</p>
+
+<p><br /></p>
+
+<h2 id="-main-함수와-uiapplicationmain">🔑 main 함수와 UIApplicationMain</h2>
+<p>swift에서는 main.m이 자동으로 생성되는 Objective-C와 다르게,
+Appdelegate.swift의 @UIApplicationMain 어노테이션을 없애고 main.swift를 직접 생성하여 main 함수를 커스텀할 수 있다.</p>
+
+<div class="language-swift highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kd">import</span> <span class="kt">UIKit</span>
+
+<span class="kt">UIApplicationMain</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">,</span>
+                  <span class="kt">UnsafeMutableRawPointer</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">unsafeArgv</span><span class="p">)</span><span class="o">.</span><span class="nf">bindMemory</span><span class="p">(</span>
+                      <span class="nv">to</span><span class="p">:</span> <span class="kt">UnsafeMutablePointer</span><span class="o">&lt;</span><span class="kt">Int8</span><span class="o">&gt;.</span><span class="k">self</span><span class="p">,</span>
+                      <span class="nv">capacity</span><span class="p">:</span> <span class="kt">Int</span><span class="p">(</span><span class="kt">CommandLine</span><span class="o">.</span><span class="n">argc</span><span class="p">)),</span>
+                  <span class="kc">nil</span><span class="p">,</span>
+                  <span class="kt">NSStringFromClass</span><span class="p">(</span><span class="kt">AppDelegate</span><span class="o">.</span><span class="k">self</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>main 함수에서 실행되는 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수는 UIApplication 객체와 AppDelegate 객체를 생성하여 연결(delegate)하고 Main Event Loop를 세팅한다. Main Event Loop는 앱의 Run Loop를 포함하며 처리 이벤트를 시작한다.</p>
+
+<p>공식문서에서 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain(_ : _ : _ : _ :)</a> 함수의 선언부분을 보면 아래와 같다.</p>
+
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/3.png" width="700" />
+</p>
+
+<p>3,4번째 파라미터인 principalClassName와 delegateClassName 는 각각 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 클래스 이름과 AppDelegate로 초기화될 클래스 이름이다.</p>
+
+<p><br /></p>
+
+<h2 id="-uiapplication">📱 UIApplication</h2>
+<p><a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>은 iOS에서 실행되는 앱을 위한 중앙화된 제어 및 조정 지점이라고 한다. 공식문서에서 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>의 선언부분을 보면 아래와 같다.</p>
+
+<p align="center">
+   <img src="../images/2021-05-17-til-20210517/4.png" width="700" />
+</p>
+
+<p><a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>는 <a href="https://developer.apple.com/documentation/uikit/uiresponder">UIResponder</a> 클래스를 상속받는데, <a href="https://developer.apple.com/documentation/uikit/uiresponder">UIResponder</a> 클래스는 이벤트에 반응하여 처리해주기 위한 목적의 추상 인터페이스이다.
+<a href="https://developer.apple.com/documentation/uikit/uiresponder">UIResponder</a> 인스턴스는 UIKit 앱의 이벤트를 처리하는 <strong>백본</strong>을 구성하고 UIKit은 이벤트가 발생할 때마다 해당 이벤트를 처리해주는 UIResponder 객체로 dispatch 해주게 된다. UIResponder는 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a> 뿐만 아니라 <a href="https://developer.apple.com/documentation/uikit/uiviewcontroller">UIViewController</a>, <a href="https://developer.apple.com/documentation/uikit/uiview">UIView</a>도 될 수 있다.</p>
+
+<p>UIApplication의 역할을 살펴보면 아래와 같다.</p>
+
+<ol>
+  <li>유저 이벤트의 초기 라우팅 처리. UIControl 클래스의 인스턴스에 의해 전달된 이벤트 메시지를 적절한 대상 객체에 전달해줌.</li>
+  <li>앱의 UIView 객체들을 확인할 수 있는 UIWindow 객체 목록을 갖고있음.</li>
+  <li>UIApplicationDelegate 프로토콜을 준수하는 Delegate(=AppDelegate)를 정의함. UIApplication은 이 Delegate에 앱 시작, 메모리 부족 경고,
+앱 종료와 같은 상당히 중요한 런타임 이벤트를 알려줌으로써 적절하게 대응할 수 있도록 해줌.</li>
+  <li>이메일 또는 이미지파일과 같은 리소스를 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 메서드로 처리할 수 있음. 예를 들어, email URL로 이 메서드를 호출하는 앱은 Mail 앱을 시작하고 메시지를 보여줄 수 있음.</li>
+  <li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 뿐만이 아니라 UIApplication의 다른 API를 사용하면 디바이스별 동작을 관리할 수 있음.
+    <ul>
+      <li>원격 알림 등록 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications">registerForRemoteNotifications()</a>)</li>
+      <li>실행취소-재실행 UI 트리거 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623127-applicationsupportsshaketoedit">applicationSupportsShakeToEdit</a>)</li>
+      <li>URL 스킴을 처리하기 위해 등록된 앱이 설치되어있는지 결정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl">canOpenURL(_:)</a>)</li>
+      <li>백그라운드 작업을 완료할 수 있도록하기 위한 앱 실행 확장 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask">beginBackgroundTask(expirationHandler:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask">beginBackgroundTask(withName:expirationHandler:)</a>)</li>
+      <li>로컬 알림 스케쥴링 및 취소 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623005-schedulelocalnotification">scheduleLocalNotification(:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623082-cancellocalnotification">cancelLocalNotification(_:)</a>)</li>
+      <li>원격-제어 이벤트 수신 조정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623126-beginreceivingremotecontrolevent">beginReceivingRemoteControlEvents()</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623057-endreceivingremotecontrolevents">endReceivingRemoteControlEvents()</a>)</li>
+      <li>앱 상태 복원 작업 수행 (<a href="https://developer.apple.com/documentation/uikit/uiapplication#1657552">상태 복원 작업을 관리하는 그룹</a>의 메서드)</li>
+    </ul>
+  </li>
+</ol>
+
+<p>대부분의 앱은 <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>을 서브클래싱 할 필요가 없고 시스템과 앱 사이의 상호작용을 관리하기 위해 AppDelegate를 사용한다. 만약 앱이 들어오는 이벤트를 시스템이 처리하기 전에 처리하고자 한다면, <a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>을 서브클래싱하고 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623043-sendevent">sendEvent(:)</a>나 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1622946-sendaction">sendAction(_:to:from:for:)</a>을 오버라이딩해서 처리한 후, super 메서드로 시스템을 다시 호출하면 된다. 물론 되도록이면 안하는게 좋다고 한다.</p>
+
+<h2 id="결론">결론</h2>
+<p>앱의 실행과정과 함께 UIApplicationMain 함수와 UIApplication이 무엇인지 알아보았다.</p>
+
+<h2 id="레퍼런스">레퍼런스</h2>
+<ul>
+  <li><a href="https://oleb.net/blog/2012/02/app-launch-sequence-ios-revisited/">https://oleb.net/blog/2012/02/app-launch-sequence-ios-revisited/</a></li>
+  <li>
+    <p><a href="https://stackoverflow.com/questions/17366107/what-is-the-launch-sequence-of-an-ios-app">https://stackoverflow.com/questions/17366107/what-is-the-launch-sequence-of-an-ios-app</a></p>
+  </li>
+  <li><a href="https://developer.apple.com/documentation/uikit/app_and_environment/responding_to_the_launch_of_your_app/about_the_app_launch_sequence">https://developer.apple.com/documentation/uikit/app-and-environment/responding-to-the-launch-of-your-app/about-the-app-launch_sequence</a></li>
+  <li><a href="https://medium.com/@anandin02/ios-application-launch-sequence-a13a267d1669">https://medium.com/@anandin02/ios-application-launch-sequence-a13a267d1669</a></li>
+  <li><a href="https://zeddios.tistory.com/218">https://zeddios.tistory.com/218</a></li>
+  <li><a href="https://zeddios.tistory.com/1049">https://zeddios.tistory.com/1049</a></li>
+  <li><a href="https://velog.io/@delmasong/App-Delegate">https://velog.io/@delmasong/App-Delegate</a></li>
+</ul>
+
+  </div>
+
+  <div class="pagination">
+    
+      <span class="prev" >
+          <a href="http://localhost:4000/til-20210508/">
+          < iOS 앱이 Foreground에 있을 때와 Background에 있을 때 어떤 차이점이 있을까?
+          </a>
+      </span>
+    
+    
+      <span class="next" >
+          <a href="http://localhost:4000/til-20210517/">
+            App Delegate 메서드란? >
+          </a>
+      </span>
+    
+  </div>
+
+  <script src="https://utteranc.es/client.js" 
+        repo="byeongyeong/byeongyeong.github.io" 
+        issue-term="og:title"
+        theme="github-light" 
+        crossorigin="anonymous" 
+        async>
+</script>
+</article>
+    </div>
+
+    <div class="wrapper-footer">
+      <div class="container">
+        <footer class="footer">
+          <!-- Refer to https://codepen.io/ruandre/pen/howFi -->
+<ul class="svg-icon">
+
+  
+
+  
+
+  
+  <li><a href="mailto:bykang096@gmail.com" class="icon-8 email" title="Email"><svg viewBox="0 0 512 512"><path d="M101.3 141.6v228.9h0.3 308.4 0.8V141.6H101.3zM375.7 167.8l-119.7 91.5 -119.6-91.5H375.7zM127.6 194.1l64.1 49.1 -64.1 64.1V194.1zM127.8 344.2l84.9-84.9 43.2 33.1 43-32.9 84.7 84.7L127.8 344.2 127.8 344.2zM384.4 307.8l-64.4-64.4 64.4-49.3V307.8z"/></svg><!--[if lt IE 9]><em>Email</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+  <li><a href="https://github.com/byeongyeong" class="icon-13 github" title="GitHub"><svg viewBox="0 0 512 512"><path d="M256 70.7c-102.6 0-185.9 83.2-185.9 185.9 0 82.1 53.3 151.8 127.1 176.4 9.3 1.7 12.3-4 12.3-8.9V389.4c-51.7 11.3-62.5-21.9-62.5-21.9 -8.4-21.5-20.6-27.2-20.6-27.2 -16.9-11.5 1.3-11.3 1.3-11.3 18.7 1.3 28.5 19.2 28.5 19.2 16.6 28.4 43.5 20.2 54.1 15.4 1.7-12 6.5-20.2 11.8-24.9 -41.3-4.7-84.7-20.6-84.7-91.9 0-20.3 7.3-36.9 19.2-49.9 -1.9-4.7-8.3-23.6 1.8-49.2 0 0 15.6-5 51.1 19.1 14.8-4.1 30.7-6.2 46.5-6.3 15.8 0.1 31.7 2.1 46.6 6.3 35.5-24 51.1-19.1 51.1-19.1 10.1 25.6 3.8 44.5 1.8 49.2 11.9 13 19.1 29.6 19.1 49.9 0 71.4-43.5 87.1-84.9 91.7 6.7 5.8 12.8 17.1 12.8 34.4 0 24.9 0 44.9 0 51 0 4.9 3 10.7 12.4 8.9 73.8-24.6 127-94.3 127-176.4C441.9 153.9 358.6 70.7 256 70.7z"/></svg><!--[if lt IE 9]><em>GitHub</em><![endif]--></a></li>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</ul>
+
+
+
+<p>Theme by kiko-now</p>
+
+        </footer>
+      </div>
+    </div>
+
+    
+	<!-- Google Analytics -->
+	<script>
+		(function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+		(i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+		m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+		})(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+		ga('create', 'UA-166875445-1', 'auto');
+		ga('send', 'pageview', {
+		  'page': '/til-20210516/',
+		  'title': 'iOS 앱은 어떻게 실행될까?'
+		});
+	</script>
+	<!-- End Google Analytics -->
+
+
+  </body>
+</html>
