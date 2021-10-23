@@ -1,0 +1,34 @@
+I"�<p>iOS 앱(<code class="highlighter-rouge">UIKit 프레임워크</code>)을 구성하는 핵심 객체들을 정리하고<br />
+iOS 앱이 어떻게 초기화되고 실행되는지 알아봅니다.</p>
+
+<h2 id="uikit-프레임워크의-핵심-객체들">UIKit 프레임워크의 핵심 객체들</h2>
+
+<h3 id="1-uiapplication">1) UIApplication</h3>
+<p><a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>은 앱에서 발생하는 이벤트를 받아서 처리해주는 객체이다.</p>
+
+<p>앱의 이벤트를 관리하는 중앙화된 객체인만큼 모든 앱은 하나의 UIApplication을 갖는다. 앱이 실행되면 시스템이 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain</a> 메서드를 실행하여 UIApplication의 싱글턴 객체를 생성하고 shared 전역변수로 접근 및 제어가 가능하다.</p>
+
+<ol>
+  <li>유저 이벤트의 초기 라우팅 처리를 함. UIControl 클래스의 인스턴스에 의해 전달된 이벤트 메시지를 적절한 대상 객체에 전달해줌.</li>
+  <li>앱의 UIView 객체들을 확인할 수 있는 UIWindow 객체들을 갖고있음.</li>
+  <li>UIApplicationDelegate 프로토콜을 준수하는 Delegate(=AppDelegate)를 정의함. UIApplication은 이 Delegate에 앱 시작, 메모리 부족 경고, 앱 종료와 같은 상당히 중요한 런타임 이벤트를 알려줌으로써 적절하게 대응할 수 있도록 해줌.</li>
+  <li></li>
+  <li>이메일 또는 이미지 파일과 같은 리소스를 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 메서드로 처리할 수 있음. 예를 들어, email URL로 이 메서드를 호출하는 앱은 Mail 앱을 시작하고 메시지를 보여줄 수 있음.</li>
+  <li><a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 뿐만이 아니라 UIApplication의 다른 API를 사용하면 디바이스별 동작을 관리할 수 있음.
+    <ul>
+      <li>원격 알림 등록 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications">registerForRemoteNotifications()</a>)</li>
+      <li>실행취소-재실행 UI 트리거 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623127-applicationsupportsshaketoedit">applicationSupportsShakeToEdit</a>)</li>
+      <li>URL 스킴을 처리하기 위해 등록된 앱이 설치되어있는지 결정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl">canOpenURL(_:)</a>)</li>
+      <li>백그라운드 작업을 완료할 수 있도록하기 위한 앱 실행 확장 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask">beginBackgroundTask(expirationHandler:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask">beginBackgroundTask(withName:expirationHandler:)</a>)</li>
+      <li>로컬 알림 스케쥴링 및 취소 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623005-schedulelocalnotification">scheduleLocalNotification(:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623082-cancellocalnotification">cancelLocalNotification(_:)</a>)</li>
+      <li>원격-제어 이벤트 수신 조정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623126-beginreceivingremotecontrolevent">beginReceivingRemoteControlEvents()</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623057-endreceivingremotecontrolevents">endReceivingRemoteControlEvents()</a>)</li>
+      <li>앱 상태 복원 작업 수행 (<a href="https://developer.apple.com/documentation/uikit/uiapplication#1657552">상태 복원 작업을 관리하는 그룹</a>의 메서드)</li>
+    </ul>
+  </li>
+</ol>
+
+<ul>
+  <li>1) 예외) 앱에 들어오는 이벤트를 시스템이 처리하기 전에 핸들링하고자한다면 UIApplication을 서브클래싱하고 sendEvent(:), sendAction(_:to:from:for:) 메서드를 오버라이딩하면 된다. 인터셉트한 이벤트를 핸들링한 후에 super.sendEvent(event)하여 시스템에 dispath 해주면된다. 물론 되도록이면 안하는게 좋다고 한다.
+대부분의 앱은 UIApplication을 서브클래싱 할 필요가 없고 시스템과 앱 사이의 상호작용을 관리하기 위해 AppDelegate를 사용한다.</li>
+</ul>
+:ET

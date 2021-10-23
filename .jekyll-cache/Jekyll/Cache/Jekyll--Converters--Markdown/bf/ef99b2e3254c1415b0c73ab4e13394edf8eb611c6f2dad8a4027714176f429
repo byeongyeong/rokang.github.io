@@ -1,0 +1,45 @@
+I"<p>iOS 앱(<strong>UIKit 프레임워크</strong>)을 구성하는 핵심 객체들을 정리하고,<br />
+iOS 앱이 어떻게 초기화되고 실행되는지 알아봅니다.</p>
+
+<h2 id="uikit-프레임워크의-핵심-객체들">UIKit 프레임워크의 핵심 객체들</h2>
+
+<h3 id="1-uiapplication">1) UIApplication</h3>
+<blockquote>
+  <p><a href="https://developer.apple.com/documentation/uikit/uiapplication">UIApplication</a>은 시스템으로부터 이벤트를 받아 처리해주는 객체입니다.</p>
+</blockquote>
+
+<p>UIKit 프레임워크에서 main이 실행되면, @UIApplicationMain 어노테이션이 선언된 클래스에서 <a href="https://developer.apple.com/documentation/uikit/1622933-uiapplicationmain">UIApplicationMain</a> 메서드를 실행하게 되는데, 이 메서드가 실행됨에 따라 UIApplication 객체가 생성됩니다.</p>
+
+<p>UIApplication은 앱의 main event loop를 실행시키고 loop로 들어오는 다양한 이벤트가 적절하게 처리될 수 있도록 앱의 초기 라우팅을 처리합니다.
+일반적인 유저 이벤트 뿐만 아니라 앱의 상태변화, 푸시 이벤트 처리, 앱 상태복원 작업 등 앱에서 발생하는 이벤트를 전반적으로
+처리해주는 매우 중요한 객체이며, 특별한 케이스를 제외하고 앱은 1개의 UIApplication 객체만을 갖기 때문에 싱글턴 형태로 생성되어 shared로 앱 전역에서 접근이 가능하도록 설계되어있습니다.</p>
+
+<p>UIApplication은 아래와 같은 역할을 담당합니다.</p>
+
+<ol>
+  <li><code class="highlighter-rouge">유저 이벤트의 초기 라우팅 처리</code><br />
+UIView 객체를 포함한 UIWindow 객체 리스트를 갖고있으며 발생한 이벤트를 지정된 UIWindow 객체에 보내서 적합한 UIView 객체가 받아서 처리하도록 해줍니다.</li>
+  <li><code class="highlighter-rouge">UIApplicationDelegate 프로토콜을 준수하는 delegate(=AppDelegate)를 정의</code> 
+UIApplication은 <a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">UIApplicationDelegate</a> 프로토콜을 준수하는 객체에 앱 시작, 메모리 부족 경고, 앱 종료 등과 같은 중요한 런타임 이벤트를 전달함으로서 앱이 적절하게 대응할 수 있도록 해줍니다.</li>
+  <li><code class="highlighter-rouge">이메일 또는 이미지 파일과 같은 리소스 처리</code><br />
+email URL로 <a href="https://developer.apple.com/documentation/uikit/uiapplication/1648685-open">open(_:options:completionHandler:)</a> 메서드를 호출하면 Mail 앱을 실행시킵니다.</li>
+  <li><code class="highlighter-rouge">제공하는 API로 다양한 동작 수행 가능</code>
+    <ul>
+      <li>원격 알림 등록 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623078-registerforremotenotifications">registerForRemoteNotifications()</a>)</li>
+      <li>실행취소-재실행 UI 트리거 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623127-applicationsupportsshaketoedit">applicationSupportsShakeToEdit</a>)</li>
+      <li>URL 스킴을 처리하기 위해 등록된 앱이 설치되어있는지 결정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1622952-canopenurl">canOpenURL(_:)</a>)</li>
+      <li>백그라운드 작업을 완료할 수 있도록하기 위한 앱 실행 확장 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623031-beginbackgroundtask">beginBackgroundTask(expirationHandler:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623051-beginbackgroundtask">beginBackgroundTask(withName:expirationHandler:)</a>)</li>
+      <li>로컬 알림 스케쥴링 및 취소 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623005-schedulelocalnotification">scheduleLocalNotification(:)</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623082-cancellocalnotification">cancelLocalNotification(_:)</a>)</li>
+      <li>원격-제어 이벤트 수신 조정 (<a href="https://developer.apple.com/documentation/uikit/uiapplication/1623126-beginreceivingremotecontrolevent">beginReceivingRemoteControlEvents()</a> and <a href="https://developer.apple.com/documentation/uikit/uiapplication/1623057-endreceivingremotecontrolevents">endReceivingRemoteControlEvents()</a>)</li>
+      <li>앱 상태 복원 작업 수행 (<a href="https://developer.apple.com/documentation/uikit/uiapplication#1657552">상태 복원 작업을 관리하는 그룹</a>의 메서드)</li>
+    </ul>
+  </li>
+</ol>
+
+<h3 id="2-appdelegate">2) AppDelegate</h3>
+<blockquote>
+  <p><a href="https://developer.apple.com/documentation/uikit/uiapplicationdelegate">AppDelegate</a>는 시스템에서 발생하는 이벤트 중 일부를 UIApplication에게 전달받아 처리하는 객체입니다.</p>
+</blockquote>
+
+<p>AppDelegate는 UIApplication과 마찬가지로 UIApplicationMain 메서드가 실행될 때 생성되며, 앱이 종료될때까지 UIApplication과 함께 시스템과의 일부 상호작용을 관리합니다. AppDelegate는 말그대로 App의 일부 역할을 위임(delegate)받아 동작하는 객체이며, UIApplication이 전달해주는 시스템의 런타임 이벤트에 대하여 AppDelegate가 어떤 처리를 할 것인지 정의함으로서 개발자가 앱의 실행에 부분적으로 관여할 수 있도록 해줍니다.</p>
+:ET
