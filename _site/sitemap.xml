@@ -2,10 +2,6 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
     
     <url>
-        <loc>http://localhost:4000/til-20211023/</loc>
-    </url>
-    
-    <url>
         <loc>http://localhost:4000/til-20210508/</loc>
     </url>
     
@@ -39,6 +35,14 @@
     
     <url>
         <loc>http://localhost:4000/codable/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/til-20200222/</loc>
+    </url>
+    
+    <url>
+        <loc>http://localhost:4000/til-20200221/</loc>
     </url>
     
     <url>

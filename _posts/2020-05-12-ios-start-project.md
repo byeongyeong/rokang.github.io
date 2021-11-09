@@ -14,9 +14,9 @@ tags:
 ### 2. Target에서 Main Interface에 지정된 Main 삭제(빈 상태로 만듬)
 ### 3. info.plist에서 Application Scene Manifest > Scene Configuration > Application Session Rule > Item 0 > Storyboard Name: Main 삭제
 ### 4. AppDelegate의 didFinishLaunchingWithOptions 메서드에 코드 추가
-{% gist RoKang/86c78c9975b25be0efa74222f2d16933 %}
+{% gist 86c78c9975b25be0efa74222f2d16933 %}
 ### 5. SceneDelegate의 willConnectTo 메서드에 코드 추가
-{% gist RoKang/4291c34109ea5d3b0b17b52c6c4db0f2 %}
+{% gist 4291c34109ea5d3b0b17b52c6c4db0f2 %}
 
 4번과 5번은 iOS Deployment Target이 13 이전이고 SceneDelegate를 살리기 위해서 작성하는 코드입니다. 
 SceneDelegate는 iOS 13 이후부터 App의 UI 라이프사이클을 관리하기 위한 인스턴스이기 때문에 iOS 13 이후에는 SceneDelegate에서 UIWindow를 담당하게 됩니다.
