@@ -15,10 +15,10 @@ CustomView는 같은 UI를 가지는 View들을 하나의 공통된 View로 묶�
 (지금부터는 편의상 두 가지 방법을 1번, 2번으로 쓰겠습니다)
 
 - **1번 초기화 방법**
-{% gist RoKang/afb8acf15ff66017fcf3311114b06595 %}
+{% gist afb8acf15ff66017fcf3311114b06595 %}
 
 - **2번 초기화 방법**
-{% gist RoKang/c1b1dd0771cb9eeea2dee7c7f19b87bb %}
+{% gist c1b1dd0771cb9eeea2dee7c7f19b87bb %}
 
 <br>
 
@@ -55,7 +55,7 @@ Xcode에서 개발자는 nib 파일에서 File's Owner와 다른 interface objec
 <br>
 
 ### 2. loadNibNamed(_:owner:options:)
-{% gist RoKang/7089f0772ba0ed49e056115487afe626 %}
+{% gist 7089f0772ba0ed49e056115487afe626 %}
 CustomView를 만들기 위해 구글링을 하면 대부분의 블로그에 이 코드가 포함되어 있습니다. 메인 Bundle에서 "CustomView" 라는 이름을 가진 nib 파일에 대한 unarchiving, initialize, reestablishing의 과정을 거친 뒤, 해당 nib 파일에 있는 **top-level objects**를 **[Any]**의 형태로 리턴해주죠.(**top-level objects**는 간략하게 IB 좌측 Placeholders 아래에 있는 최상단 object 리스트라고 생각하시면 될 것 같습니다. [Nib Files](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/LoadingResources/CocoaNibs/CocoaNibs.html) 공식 문서에 이에 대한 설명이 포함되어 있습니다)
 
 **loadNibNamed** 메서드에 **owner** 라는 파라미터가 포함되어 있습니다. File's Owner 인스턴스가 이 **owner**릍 통해서 전달됩니다. IB에서 File's Owner와 연결했던 outlet들이 실제 owner인 CustomView의 인스턴스와 연결되겠네요.
@@ -70,7 +70,7 @@ CustomView를 만들기 위해 구글링을 하면 대부분의 블로그에 이
 
 지금은 `equeueReusableCell` 에서 nil이 리턴되지 않지만 예전에는 이 메서드에서 nil을 뱉어내는 경우가 있었습니다.(재활용할 cell이 memory에 없을 경우겠죠) 그 때를 대비해서 cell을 직접 생성하는 코드를 작성해주어야 했습니다. 그 코드를 보면 UITableViewCell의 nib이 어떻게 로드되는지 알 수 있습니다.
 
-{% gist RoKang/a12cda61d69c077d2bffae395c846d22 %}
+{% gist a12cda61d69c077d2bffae395c846d22 %}
 
 여기서 self는 `UITableViewController`입니다.`File's Owner는 nib 파일의 컨텐츠를 책임지는 Controller object다` 라는 내용을 공식 문서에서 확인했습니다. 이걸 테이블 뷰에 적용해보면 nib 파일이 로드 될 때 각 cell의 UI outlet은 **top-level objects 중 CustomCell**과 연결되고 File's Owner는 **UITableViewController**가 되어 테이블 뷰에 포함된 모든 cell의 컨텐츠를 책임지게 되겠네요. 생각해보면 UITableViewController는 생성된 cell에 대한 터치 등등 어플리케이션의 이벤트들을 대신 핸들링해주는 역할을 담당합니다.
 
