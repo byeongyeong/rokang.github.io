@@ -13,6 +13,8 @@ navigation:
     url: /about
   # - name: Tags
   #   url: /tags
+  - name: app-ads
+    url: /app-ads.txt
 
 paginate: 5
 
