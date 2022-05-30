@@ -1,4 +1,4 @@
-I"_<p>앱 개발을 할 때 JSON 데이터 처리는 기본이면서도 정말 중요합니다. 기존에는 JSON을 주먹구구식으로 핸들링하거나 <code class="highlighter-rouge">SwiftyJSON</code>을 사용했었는데, <code class="highlighter-rouge">Swift4</code>에서 새로 도입된 <code class="highlighter-rouge">Codable</code>을 알게되서 이 프로토콜을 사용하여 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.</p>
+I"�<p>앱 개발을 할 때 JSON 데이터 처리는 기본이면서도 정말 중요합니다. 기존에는 JSON을 주먹구구식으로 핸들링하거나 <code class="highlighter-rouge">SwiftyJSON</code>을 사용했었는데, <code class="highlighter-rouge">Swift4</code>에서 새로 도입된 <code class="highlighter-rouge">Codable</code>을 알게되서 이 프로토콜을 사용하여 JSON 데이터를 더 깔끔하게 처리하는 방법을 정리하고자 합니다.</p>
 
 <h1 id="json-예시">JSON 예시</h1>
 <!-- JSON 예제 코드 -->
@@ -23,29 +23,34 @@
 
 <h1 id="struct-with-codable">Struct with Codable</h1>
 <p>예시로 든 JSON에는 room key와 messages key안에 배열로 된 데이터가 있습니다. 따라서 <strong>Result &gt; Room &gt; Message</strong> 집합 관계로 정의된 구조체에 Codable을 적용했습니다. 또한, CodingKey 프로토콜을 상속받은 CodingKeys의 case가 json 데이터의 key로 매핑되는 것을 알 수 있습니다. 예를 들어, <strong>Result의 rooms</strong>에는 <strong>room</strong> key에 해당하는 value가 매핑됩니다.
-<!-- Codable 적용한 구조체 코드 -->
-true<script src="https://gist.github.com/e665070d5d6d6b873446e217e2ea8072.js"> </script></p>
+<!-- Codable 적용한 구조체 코드 --></p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/e665070d5d6d6b873446e217e2ea8072.js"> </script>
 
 <h1 id="after">After</h1>
 <p><code class="highlighter-rouge">try? JSONDecoder().decode(Result.self, from: data)</code> 코드 한 줄로 Result, Room, Message 데이터까지 깔끔하게 처리할 수 있게 되었습니다.
 표준 라이브러리 설명과 함께 코드를 보면서 어떻게 동작하는지 좀 더 자세하게 살펴보겠습니다.
-<!-- Codable이 적용된 구조체로 디코딩하는 예제 코드 -->
-true<script src="https://gist.github.com/5a0e1026e5313142c2db2a216bea93d3.js"> </script></p>
+<!-- Codable이 적용된 구조체로 디코딩하는 예제 코드 --></p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/5a0e1026e5313142c2db2a216bea93d3.js"> </script>
 
 <h3 id="1-json-데이터를-특정-타입으로-decoding">1. JSON 데이터를 특정 타입으로 Decoding</h3>
 <p>decode 메서드는 디코딩 될 data로부터 Result 타입의 value를 만들어줍니다.
-<!-- 표준 라이브러리 코드 1 -->
-true<script src="https://gist.github.com/3f1252e502a98ce31801600d325a9d32.js"> </script></p>
+<!-- 표준 라이브러리 코드 1 --></p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/3f1252e502a98ce31801600d325a9d32.js"> </script>
 
 <h3 id="2-데이터로부터-container-생성">2. 데이터로부터 container 생성</h3>
 <p>1번 코드가 Result를 초기화하는 init 코드를 실행하고 decoder에 담겨있던 data로부터 container를 생성해줍니다. <code class="highlighter-rouge">CodingKeys.self</code> 타입이 data의 key와 매핑이 되지 않는다면 <code class="highlighter-rouge">DecodingError.typeMismatch</code> 에러를 던지겠네요.
-<!-- 표준 라이브러리 코드 2 -->
-true<script src="https://gist.github.com/c1e77fd8d79dc5816d67cd85b08ea030.js"> </script></p>
+<!-- 표준 라이브러리 코드 2 --></p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/c1e77fd8d79dc5816d67cd85b08ea030.js"> </script>
 
 <h3 id="3-container에서-nestedcontainer-생성">3. container에서 nestedContainer 생성</h3>
 <p>Nested JSON이기 때문에 해당 키에 대한 sub container(=nestedContainer)를 생성해줍니다.
-<!-- 표준 라이브러리 코드 3 -->
-true<script src="https://gist.github.com/0c1a401def1d28b496f0bf3947560525.js"> </script></p>
+<!-- 표준 라이브러리 코드 3 --></p>
+<noscript><pre>400: Invalid request</pre></noscript>
+<script src="https://gist.github.com/0c1a401def1d28b496f0bf3947560525.js"> </script>
 
 <h3 id="4-nestedcontainer에서-room-데이터-디코딩">4. nestedContainer에서 [Room] 데이터 디코딩</h3>
 <p>Room 타입도 Codable을 상속받은 구조체이기 때문에 이 과정에서 Room도 디코딩이 진행되고 마찬가지로 Message도 디코딩이 이루어집니다.
@@ -62,7 +67,7 @@ true<script src="https://gist.github.com/0c1a401def1d28b496f0bf3947560525.js"> <
     <p>날짜 JSON 데이터를 Date 타입으로 포맷팅하는건 생각보다 귀찮은 일 입니다. 그래서 Codable에는 어떤 날짜 데이터가 <strong>특정 포맷에 맞다면 자동으로 Date 인스턴스로 디코딩 해주는 strategy(전략)</strong>이 포함되어 있습니다.</p>
 
     <p>formatter 인스턴스를 만들어서 원하는 포맷의 데이터를 Date로 변환할 수도 있고 iso8601 옵션처럼 표준화 된 포맷을 적용할 수도 있습니다. 저는 <strong>formatted</strong>나 <strong>iso8601</strong> 옵션을 많이 활용하게 될 것 같습니다.
-<!-- JSONDecoder().dateDecodingStrategy 예제 코드 1 -->true<script src="https://gist.github.com/fa262e9d404d05cf4c7938978fbf7043.js"> </script></p>
+<!-- JSONDecoder().dateDecodingStrategy 예제 코드 1 --><noscript>&lt;pre&gt;400: Invalid request&lt;/pre&gt;</noscript><script src="https://gist.github.com/fa262e9d404d05cf4c7938978fbf7043.js"> </script></p>
   </li>
 </ul>
 
